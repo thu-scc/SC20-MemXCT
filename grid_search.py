@@ -10,7 +10,7 @@ import numpy as np
 RESULT_DIR="./result"
 
 
-def gpu_run(tile_size, block_power_max=4, buffer_size_max=12, dataset="ADS2"):
+def gpu_run(tile_size, block_power_max=12, buffer_size_max=48, dataset="ADS2"):
   data = {}
   data['block_size'] = []
   data['buffer_size'] = []
