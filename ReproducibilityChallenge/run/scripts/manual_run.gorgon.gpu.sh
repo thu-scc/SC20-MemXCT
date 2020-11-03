@@ -1,4 +1,5 @@
 #!/bin/bash
+# gorgon
 module load icc impi
 
 #NTASK=$1
