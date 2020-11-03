@@ -1,0 +1,140 @@
+Intel(R) Advisor can now assist with vectorization and show optimization
+  report messages with your source code.
+See "https://software.intel.com/en-us/intel-advisor-xe" for details.
+
+
+Begin optimization report for: projection(float *, float *)
+
+    Report from: Vector optimizations [vec]
+
+
+LOOP BEGIN at ../cpu-code/src/kernels.cpp(73,7)
+   remark #25460: No loop optimizations reported
+
+   LOOP BEGIN at ../cpu-code/src/kernels.cpp(74,7)
+      remark #25460: No loop optimizations reported
+
+      LOOP BEGIN at ../cpu-code/src/kernels.cpp(75,9)
+         remark #25460: No loop optimizations reported
+
+         LOOP BEGIN at ../cpu-code/src/kernels.cpp(75,9)
+            remark #15300: LOOP WAS VECTORIZED
+         LOOP END
+
+         LOOP BEGIN at ../cpu-code/src/kernels.cpp(75,9)
+         <Remainder loop for vectorization>
+         LOOP END
+      LOOP END
+
+      LOOP BEGIN at ../cpu-code/src/kernels.cpp(77,9)
+         remark #25460: No loop optimizations reported
+
+         LOOP BEGIN at ../cpu-code/src/kernels.cpp(78,11)
+            remark #25460: No loop optimizations reported
+         LOOP END
+
+         LOOP BEGIN at ../cpu-code/src/kernels.cpp(78,11)
+         <Remainder>
+         LOOP END
+
+         LOOP BEGIN at ../cpu-code/src/kernels.cpp(81,11)
+            remark #25460: No loop optimizations reported
+
+            LOOP BEGIN at ../cpu-code/src/kernels.cpp(82,13)
+               remark #25460: No loop optimizations reported
+            LOOP END
+
+            LOOP BEGIN at ../cpu-code/src/kernels.cpp(82,13)
+            <Remainder>
+            LOOP END
+         LOOP END
+      LOOP END
+
+      LOOP BEGIN at ../cpu-code/src/kernels.cpp(86,9)
+         remark #25460: No loop optimizations reported
+      LOOP END
+
+      LOOP BEGIN at ../cpu-code/src/kernels.cpp(86,9)
+      <Remainder>
+      LOOP END
+   LOOP END
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/kernels.cpp(104,5)
+   remark #25460: No loop optimizations reported
+
+   LOOP BEGIN at ../cpu-code/src/kernels.cpp(106,7)
+      remark #25460: No loop optimizations reported
+   LOOP END
+
+   LOOP BEGIN at ../cpu-code/src/kernels.cpp(106,7)
+   <Remainder>
+   LOOP END
+LOOP END
+===========================================================================
+
+Begin optimization report for: backprojection(float *, float *)
+
+    Report from: Vector optimizations [vec]
+
+
+LOOP BEGIN at ../cpu-code/src/kernels.cpp(122,5)
+   remark #25460: No loop optimizations reported
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/kernels.cpp(122,5)
+<Remainder>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/kernels.cpp(151,7)
+   remark #25460: No loop optimizations reported
+
+   LOOP BEGIN at ../cpu-code/src/kernels.cpp(152,7)
+      remark #25460: No loop optimizations reported
+
+      LOOP BEGIN at ../cpu-code/src/kernels.cpp(153,9)
+         remark #25460: No loop optimizations reported
+
+         LOOP BEGIN at ../cpu-code/src/kernels.cpp(153,9)
+            remark #15300: LOOP WAS VECTORIZED
+         LOOP END
+
+         LOOP BEGIN at ../cpu-code/src/kernels.cpp(153,9)
+         <Remainder loop for vectorization>
+         LOOP END
+      LOOP END
+
+      LOOP BEGIN at ../cpu-code/src/kernels.cpp(155,9)
+         remark #25460: No loop optimizations reported
+
+         LOOP BEGIN at ../cpu-code/src/kernels.cpp(156,11)
+            remark #25460: No loop optimizations reported
+         LOOP END
+
+         LOOP BEGIN at ../cpu-code/src/kernels.cpp(156,11)
+         <Remainder>
+         LOOP END
+
+         LOOP BEGIN at ../cpu-code/src/kernels.cpp(159,11)
+            remark #25460: No loop optimizations reported
+
+            LOOP BEGIN at ../cpu-code/src/kernels.cpp(160,13)
+               remark #25460: No loop optimizations reported
+            LOOP END
+
+            LOOP BEGIN at ../cpu-code/src/kernels.cpp(160,13)
+            <Remainder>
+            LOOP END
+         LOOP END
+      LOOP END
+
+      LOOP BEGIN at ../cpu-code/src/kernels.cpp(164,9)
+         remark #25460: No loop optimizations reported
+      LOOP END
+
+      LOOP BEGIN at ../cpu-code/src/kernels.cpp(164,9)
+      <Remainder>
+      LOOP END
+   LOOP END
+LOOP END
+===========================================================================

@@ -1,13 +1,13 @@
 # ----- Make Macros -----
 
-CXX = mpicxx
-CXXFLAGS = -std=c++11 -fopenmp 
+CXX = mpiicpc
+CXXFLAGS = -std=c++11 -qopenmp -qopt-report=1 -qopt-report-phase=vec
 OPTFLAGS = -O3 
 
-CPU_LD_FLAGS = -fopenmp
+CPU_LD_FLAGS = -qopenmp
 
 CPU_TARGETS = memxct.cpu
-CPU_OBJECTS = ../cpu-code/src/main.o ../cpu-code/src/raytrace.o ../cpu-code/src/kernels.o
+CPU_OBJECTS = main.o raytrace.o kernels.o
 
 # ----- Make Rules -----
 
@@ -16,7 +16,7 @@ all:	cpu
 
 cpu:	$(CPU_TARGETS)
 
-%.o: %.cpp
+%.o: ../cpu-code/src/%.cpp
 	${CXX} ${CXXFLAGS} ${OPTFLAGS} $^ -c -o $@
 memxct.cpu: $(CPU_OBJECTS)
 	$(CXX) -o $@ $(CPU_OBJECTS) $(CPU_LD_FLAGS)

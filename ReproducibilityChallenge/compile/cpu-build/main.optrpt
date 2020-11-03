@@ -1,0 +1,1215 @@
+Intel(R) Advisor can now assist with vectorization and show optimization
+  report messages with your source code.
+See "https://software.intel.com/en-us/intel-advisor-xe" for details.
+
+
+Begin optimization report for: main(int, char **)
+
+    Report from: Vector optimizations [vec]
+
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(281,3)
+   remark #25460: No loop optimizations reported
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(281,3)
+<Remainder>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(315,3)
+   remark #25460: No loop optimizations reported
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(315,3)
+<Remainder>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(345,3)
+   remark #25460: No loop optimizations reported
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(345,3)
+<Remainder>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(350,3)
+<Peeled loop for vectorization, Distributed chunk1>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(350,3)
+<Distributed chunk1>
+   remark #15301: PARTIAL LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(350,3)
+<Alternate Alignment Vectorized Loop, Distributed chunk1>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(350,3)
+<Remainder loop for vectorization, Distributed chunk1>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(350,3)
+<Peeled loop for vectorization, Distributed chunk2>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(350,3)
+<Distributed chunk2>
+   remark #15301: PARTIAL LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(350,3)
+<Alternate Alignment Vectorized Loop, Distributed chunk2>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(350,3)
+<Remainder loop for vectorization, Distributed chunk2>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(357,3)
+   remark #25460: No loop optimizations reported
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(357,3)
+<Remainder>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(365,3)
+<Peeled loop for vectorization>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(365,3)
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(365,3)
+<Alternate Alignment Vectorized Loop>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(365,3)
+<Remainder loop for vectorization>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(474,3)
+   remark #25460: No loop optimizations reported
+
+   LOOP BEGIN at ../cpu-code/src/main.cpp(493,5)
+      remark #25460: No loop optimizations reported
+   LOOP END
+
+   LOOP BEGIN at ../cpu-code/src/main.cpp(498,5)
+      remark #25460: No loop optimizations reported
+   LOOP END
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(509,3)
+   remark #25460: No loop optimizations reported
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(562,5)
+<Peeled loop for vectorization>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(562,5)
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(562,5)
+<Remainder loop for vectorization>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(566,5)
+   remark #25460: No loop optimizations reported
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(566,5)
+<Remainder>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(624,5)
+   remark #25460: No loop optimizations reported
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(624,5)
+<Remainder>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(627,5)
+<Peeled loop for vectorization>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(627,5)
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(627,5)
+<Remainder loop for vectorization>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(680,5)
+   remark #25460: No loop optimizations reported
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(680,5)
+<Remainder>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(684,5)
+<Peeled loop for vectorization>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(684,5)
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(684,5)
+<Remainder loop for vectorization>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(725,5)
+   remark #25460: No loop optimizations reported
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(725,5)
+<Remainder>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(733,5)
+   remark #25460: No loop optimizations reported
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(733,5)
+<Remainder>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(737,5)
+<Peeled loop for vectorization>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(737,5)
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(737,5)
+<Remainder loop for vectorization>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(829,5)
+   remark #25460: No loop optimizations reported
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(829,5)
+<Remainder>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(833,5)
+<Peeled loop for vectorization>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(833,5)
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(833,5)
+<Remainder loop for vectorization>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(874,5)
+   remark #25460: No loop optimizations reported
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(874,5)
+<Remainder>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(882,5)
+   remark #25460: No loop optimizations reported
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(882,5)
+<Remainder>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(886,5)
+<Peeled loop for vectorization>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(886,5)
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(886,5)
+<Remainder loop for vectorization>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1009,3)
+   remark #25460: No loop optimizations reported
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1009,3)
+<Remainder>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1013,3)
+   remark #25460: No loop optimizations reported
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1018,3)
+   remark #25460: No loop optimizations reported
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(264,3)
+   remark #25460: No loop optimizations reported
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(264,3)
+<Remainder>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(298,3)
+   remark #25460: No loop optimizations reported
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(298,3)
+<Remainder>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(523,5)
+   remark #25460: No loop optimizations reported
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(523,5)
+<Remainder>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(533,3)
+<Peeled loop for vectorization>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(533,3)
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(533,3)
+<Remainder loop for vectorization>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(551,19)
+   remark #25460: No loop optimizations reported
+
+   LOOP BEGIN at ../cpu-code/src/main.cpp(545,5)
+      remark #25460: No loop optimizations reported
+
+      LOOP BEGIN at ../cpu-code/src/main.cpp(549,7)
+         remark #25460: No loop optimizations reported
+      LOOP END
+   LOOP END
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(590,58)
+   remark #25460: No loop optimizations reported
+
+   LOOP BEGIN at ../cpu-code/src/main.cpp(575,5)
+      remark #25460: No loop optimizations reported
+
+      LOOP BEGIN at ../cpu-code/src/main.cpp(579,7)
+         remark #25460: No loop optimizations reported
+      LOOP END
+   LOOP END
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(607,5)
+   remark #25460: No loop optimizations reported
+
+   LOOP BEGIN at ../cpu-code/src/main.cpp(608,7)
+   <Peeled loop for vectorization>
+   LOOP END
+
+   LOOP BEGIN at ../cpu-code/src/main.cpp(608,7)
+      remark #15300: LOOP WAS VECTORIZED
+   LOOP END
+
+   LOOP BEGIN at ../cpu-code/src/main.cpp(608,7)
+   <Remainder loop for vectorization>
+   LOOP END
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(610,5)
+   remark #25460: No loop optimizations reported
+
+   LOOP BEGIN at ../cpu-code/src/main.cpp(610,5)
+      remark #25460: No loop optimizations reported
+   LOOP END
+
+   LOOP BEGIN at ../cpu-code/src/main.cpp(610,5)
+   <Remainder>
+   LOOP END
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(619,5)
+   remark #25460: No loop optimizations reported
+
+   LOOP BEGIN at ../cpu-code/src/main.cpp(620,7)
+   <Multiversioned v1>
+   LOOP END
+
+   LOOP BEGIN at ../cpu-code/src/main.cpp(620,7)
+   <Remainder, Multiversioned v1>
+   LOOP END
+
+   LOOP BEGIN at ../cpu-code/src/main.cpp(620,7)
+   <Multiversioned v2>
+   LOOP END
+
+   LOOP BEGIN at ../cpu-code/src/main.cpp(620,7)
+   <Remainder, Multiversioned v2>
+   LOOP END
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(663,7)
+   remark #25460: No loop optimizations reported
+
+   LOOP BEGIN at ../cpu-code/src/main.cpp(664,7)
+      remark #25460: No loop optimizations reported
+
+      LOOP BEGIN at ../cpu-code/src/main.cpp(665,9)
+         remark #25460: No loop optimizations reported
+      LOOP END
+
+      LOOP BEGIN at ../cpu-code/src/main.cpp(667,9)
+         remark #25460: No loop optimizations reported
+
+         LOOP BEGIN at ../cpu-code/src/main.cpp(668,11)
+            remark #25460: No loop optimizations reported
+         LOOP END
+
+         LOOP BEGIN at ../cpu-code/src/main.cpp(668,11)
+         <Remainder>
+         LOOP END
+      LOOP END
+
+      LOOP BEGIN at ../cpu-code/src/main.cpp(671,9)
+      <Peeled loop for vectorization>
+      LOOP END
+
+      LOOP BEGIN at ../cpu-code/src/main.cpp(671,9)
+         remark #15300: LOOP WAS VECTORIZED
+      LOOP END
+
+      LOOP BEGIN at ../cpu-code/src/main.cpp(671,9)
+      <Remainder loop for vectorization>
+         remark #15301: REMAINDER LOOP WAS VECTORIZED
+      LOOP END
+
+      LOOP BEGIN at ../cpu-code/src/main.cpp(671,9)
+      <Remainder loop for vectorization>
+      LOOP END
+   LOOP END
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(694,7)
+   remark #25460: No loop optimizations reported
+
+   LOOP BEGIN at ../cpu-code/src/main.cpp(694,7)
+      remark #25460: No loop optimizations reported
+   LOOP END
+
+   LOOP BEGIN at ../cpu-code/src/main.cpp(694,7)
+   <Remainder>
+   LOOP END
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(697,7)
+   remark #25460: No loop optimizations reported
+
+   LOOP BEGIN at ../cpu-code/src/main.cpp(697,7)
+      remark #25460: No loop optimizations reported
+   LOOP END
+
+   LOOP BEGIN at ../cpu-code/src/main.cpp(697,7)
+   <Remainder>
+   LOOP END
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(700,7)
+   remark #25460: No loop optimizations reported
+
+   LOOP BEGIN at ../cpu-code/src/main.cpp(701,7)
+      remark #25460: No loop optimizations reported
+
+      LOOP BEGIN at ../cpu-code/src/main.cpp(702,9)
+         remark #25460: No loop optimizations reported
+      LOOP END
+
+      LOOP BEGIN at ../cpu-code/src/main.cpp(704,9)
+         remark #25460: No loop optimizations reported
+
+         LOOP BEGIN at ../cpu-code/src/main.cpp(705,11)
+            remark #25460: No loop optimizations reported
+         LOOP END
+
+         LOOP BEGIN at ../cpu-code/src/main.cpp(705,11)
+         <Remainder>
+         LOOP END
+      LOOP END
+
+      LOOP BEGIN at ../cpu-code/src/main.cpp(708,9)
+         remark #25460: No loop optimizations reported
+      LOOP END
+
+      LOOP BEGIN at ../cpu-code/src/main.cpp(717,9)
+         remark #25460: No loop optimizations reported
+
+         LOOP BEGIN at ../cpu-code/src/main.cpp(718,11)
+            remark #25460: No loop optimizations reported
+         LOOP END
+
+         LOOP BEGIN at ../cpu-code/src/main.cpp(718,11)
+         <Remainder>
+         LOOP END
+      LOOP END
+   LOOP END
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(748,7)
+   remark #25460: No loop optimizations reported
+
+   LOOP BEGIN at ../cpu-code/src/main.cpp(748,7)
+      remark #25460: No loop optimizations reported
+   LOOP END
+
+   LOOP BEGIN at ../cpu-code/src/main.cpp(748,7)
+   <Remainder>
+   LOOP END
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(751,7)
+   remark #25460: No loop optimizations reported
+
+   LOOP BEGIN at ../cpu-code/src/main.cpp(751,7)
+      remark #25460: No loop optimizations reported
+   LOOP END
+
+   LOOP BEGIN at ../cpu-code/src/main.cpp(751,7)
+   <Remainder>
+   LOOP END
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(754,7)
+   remark #25460: No loop optimizations reported
+
+   LOOP BEGIN at ../cpu-code/src/main.cpp(755,7)
+      remark #25460: No loop optimizations reported
+
+      LOOP BEGIN at ../cpu-code/src/main.cpp(756,9)
+         remark #25460: No loop optimizations reported
+      LOOP END
+
+      LOOP BEGIN at ../cpu-code/src/main.cpp(758,9)
+         remark #25460: No loop optimizations reported
+
+         LOOP BEGIN at ../cpu-code/src/main.cpp(759,11)
+            remark #25460: No loop optimizations reported
+         LOOP END
+
+         LOOP BEGIN at ../cpu-code/src/main.cpp(759,11)
+         <Remainder>
+         LOOP END
+      LOOP END
+
+      LOOP BEGIN at ../cpu-code/src/main.cpp(762,9)
+         remark #25460: No loop optimizations reported
+      LOOP END
+
+      LOOP BEGIN at ../cpu-code/src/main.cpp(772,9)
+         remark #25460: No loop optimizations reported
+
+         LOOP BEGIN at ../cpu-code/src/main.cpp(773,11)
+            remark #25460: No loop optimizations reported
+         LOOP END
+      LOOP END
+   LOOP END
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(812,7)
+   remark #25460: No loop optimizations reported
+
+   LOOP BEGIN at ../cpu-code/src/main.cpp(813,7)
+      remark #25460: No loop optimizations reported
+
+      LOOP BEGIN at ../cpu-code/src/main.cpp(814,9)
+         remark #25460: No loop optimizations reported
+      LOOP END
+
+      LOOP BEGIN at ../cpu-code/src/main.cpp(816,9)
+         remark #25460: No loop optimizations reported
+
+         LOOP BEGIN at ../cpu-code/src/main.cpp(817,11)
+            remark #25460: No loop optimizations reported
+         LOOP END
+
+         LOOP BEGIN at ../cpu-code/src/main.cpp(817,11)
+         <Remainder>
+         LOOP END
+      LOOP END
+
+      LOOP BEGIN at ../cpu-code/src/main.cpp(820,9)
+      <Peeled loop for vectorization>
+      LOOP END
+
+      LOOP BEGIN at ../cpu-code/src/main.cpp(820,9)
+         remark #15300: LOOP WAS VECTORIZED
+      LOOP END
+
+      LOOP BEGIN at ../cpu-code/src/main.cpp(820,9)
+      <Remainder loop for vectorization>
+         remark #15301: REMAINDER LOOP WAS VECTORIZED
+      LOOP END
+
+      LOOP BEGIN at ../cpu-code/src/main.cpp(820,9)
+      <Remainder loop for vectorization>
+      LOOP END
+   LOOP END
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(843,7)
+   remark #25460: No loop optimizations reported
+
+   LOOP BEGIN at ../cpu-code/src/main.cpp(843,7)
+      remark #25460: No loop optimizations reported
+   LOOP END
+
+   LOOP BEGIN at ../cpu-code/src/main.cpp(843,7)
+   <Remainder>
+   LOOP END
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(846,7)
+   remark #25460: No loop optimizations reported
+
+   LOOP BEGIN at ../cpu-code/src/main.cpp(846,7)
+      remark #25460: No loop optimizations reported
+   LOOP END
+
+   LOOP BEGIN at ../cpu-code/src/main.cpp(846,7)
+   <Remainder>
+   LOOP END
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(849,7)
+   remark #25460: No loop optimizations reported
+
+   LOOP BEGIN at ../cpu-code/src/main.cpp(850,7)
+      remark #25460: No loop optimizations reported
+
+      LOOP BEGIN at ../cpu-code/src/main.cpp(851,9)
+         remark #25460: No loop optimizations reported
+      LOOP END
+
+      LOOP BEGIN at ../cpu-code/src/main.cpp(853,9)
+         remark #25460: No loop optimizations reported
+
+         LOOP BEGIN at ../cpu-code/src/main.cpp(854,11)
+            remark #25460: No loop optimizations reported
+         LOOP END
+
+         LOOP BEGIN at ../cpu-code/src/main.cpp(854,11)
+         <Remainder>
+         LOOP END
+      LOOP END
+
+      LOOP BEGIN at ../cpu-code/src/main.cpp(857,9)
+         remark #25460: No loop optimizations reported
+      LOOP END
+
+      LOOP BEGIN at ../cpu-code/src/main.cpp(866,9)
+         remark #25460: No loop optimizations reported
+
+         LOOP BEGIN at ../cpu-code/src/main.cpp(867,11)
+            remark #25460: No loop optimizations reported
+         LOOP END
+
+         LOOP BEGIN at ../cpu-code/src/main.cpp(867,11)
+         <Remainder>
+         LOOP END
+      LOOP END
+   LOOP END
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(897,7)
+   remark #25460: No loop optimizations reported
+
+   LOOP BEGIN at ../cpu-code/src/main.cpp(897,7)
+      remark #25460: No loop optimizations reported
+   LOOP END
+
+   LOOP BEGIN at ../cpu-code/src/main.cpp(897,7)
+   <Remainder>
+   LOOP END
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(900,7)
+   remark #25460: No loop optimizations reported
+
+   LOOP BEGIN at ../cpu-code/src/main.cpp(900,7)
+      remark #25460: No loop optimizations reported
+   LOOP END
+
+   LOOP BEGIN at ../cpu-code/src/main.cpp(900,7)
+   <Remainder>
+   LOOP END
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(903,7)
+   remark #25460: No loop optimizations reported
+
+   LOOP BEGIN at ../cpu-code/src/main.cpp(904,7)
+      remark #25460: No loop optimizations reported
+
+      LOOP BEGIN at ../cpu-code/src/main.cpp(905,9)
+         remark #25460: No loop optimizations reported
+      LOOP END
+
+      LOOP BEGIN at ../cpu-code/src/main.cpp(907,9)
+         remark #25460: No loop optimizations reported
+
+         LOOP BEGIN at ../cpu-code/src/main.cpp(908,11)
+            remark #25460: No loop optimizations reported
+         LOOP END
+
+         LOOP BEGIN at ../cpu-code/src/main.cpp(908,11)
+         <Remainder>
+         LOOP END
+      LOOP END
+
+      LOOP BEGIN at ../cpu-code/src/main.cpp(911,9)
+         remark #25460: No loop optimizations reported
+      LOOP END
+
+      LOOP BEGIN at ../cpu-code/src/main.cpp(921,9)
+         remark #25460: No loop optimizations reported
+
+         LOOP BEGIN at ../cpu-code/src/main.cpp(922,11)
+            remark #25460: No loop optimizations reported
+         LOOP END
+      LOOP END
+   LOOP END
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(951,5)
+   remark #25460: No loop optimizations reported
+
+   LOOP BEGIN at ../cpu-code/src/main.cpp(951,5)
+      remark #25460: No loop optimizations reported
+   LOOP END
+
+   LOOP BEGIN at ../cpu-code/src/main.cpp(951,5)
+   <Remainder>
+   LOOP END
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(964,23)
+   remark #25460: No loop optimizations reported
+
+   LOOP BEGIN at ../cpu-code/src/main.cpp(955,5)
+      remark #25460: No loop optimizations reported
+
+      LOOP BEGIN at ../cpu-code/src/main.cpp(956,7)
+         remark #25460: No loop optimizations reported
+
+         LOOP BEGIN at ../cpu-code/src/main.cpp(959,9)
+            remark #25460: No loop optimizations reported
+
+            LOOP BEGIN at ../cpu-code/src/main.cpp(961,11)
+               remark #25460: No loop optimizations reported
+            LOOP END
+         LOOP END
+      LOOP END
+   LOOP END
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(978,5)
+   remark #25460: No loop optimizations reported
+
+   LOOP BEGIN at ../cpu-code/src/main.cpp(978,5)
+      remark #25460: No loop optimizations reported
+   LOOP END
+
+   LOOP BEGIN at ../cpu-code/src/main.cpp(978,5)
+   <Remainder>
+   LOOP END
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(993,25)
+   remark #25460: No loop optimizations reported
+
+   LOOP BEGIN at ../cpu-code/src/main.cpp(982,5)
+      remark #25460: No loop optimizations reported
+
+      LOOP BEGIN at ../cpu-code/src/main.cpp(983,7)
+         remark #25460: No loop optimizations reported
+
+         LOOP BEGIN at ../cpu-code/src/main.cpp(989,9)
+            remark #25460: No loop optimizations reported
+
+            LOOP BEGIN at ../cpu-code/src/main.cpp(991,11)
+               remark #25460: No loop optimizations reported
+            LOOP END
+         LOOP END
+      LOOP END
+   LOOP END
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1006,3)
+   remark #25460: No loop optimizations reported
+
+   LOOP BEGIN at ../cpu-code/src/main.cpp(1006,3)
+      remark #25460: No loop optimizations reported
+   LOOP END
+
+   LOOP BEGIN at ../cpu-code/src/main.cpp(1006,3)
+   <Remainder>
+   LOOP END
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1016,3)
+   remark #25460: No loop optimizations reported
+
+   LOOP BEGIN at ../cpu-code/src/main.cpp(1016,3)
+      remark #25460: No loop optimizations reported
+   LOOP END
+
+   LOOP BEGIN at ../cpu-code/src/main.cpp(1016,3)
+   <Remainder>
+   LOOP END
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1069,3)
+   remark #25460: No loop optimizations reported
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1069,3)
+<Remainder>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1099,3)
+   remark #25460: No loop optimizations reported
+
+   LOOP BEGIN at ../cpu-code/src/main.cpp(1099,3)
+      remark #25460: No loop optimizations reported
+   LOOP END
+
+   LOOP BEGIN at ../cpu-code/src/main.cpp(1099,3)
+   <Remainder>
+   LOOP END
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1204,3)
+   remark #25460: No loop optimizations reported
+
+   LOOP BEGIN at ../cpu-code/src/main.cpp(1204,3)
+      remark #25460: No loop optimizations reported
+   LOOP END
+
+   LOOP BEGIN at ../cpu-code/src/main.cpp(1204,3)
+   <Remainder>
+   LOOP END
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1207,3)
+   remark #25460: No loop optimizations reported
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1207,3)
+<Remainder>
+LOOP END
+===========================================================================
+
+Begin optimization report for: subtract_kernel(float *, float *, float *, int)
+
+    Report from: Vector optimizations [vec]
+
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1248,3)
+<Peeled loop for vectorization, Multiversioned v1>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1248,3)
+<Multiversioned v1>
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1248,3)
+<Alternate Alignment Vectorized Loop, Multiversioned v1>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1248,3)
+<Remainder loop for vectorization, Multiversioned v1>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1248,3)
+<Multiversioned v2>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1248,3)
+<Remainder, Multiversioned v2>
+LOOP END
+===========================================================================
+
+Begin optimization report for: saxpy_kernel(float *, float *, float, float *, int)
+
+    Report from: Vector optimizations [vec]
+
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1238,3)
+<Peeled loop for vectorization, Multiversioned v1>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1238,3)
+<Multiversioned v1>
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1238,3)
+<Alternate Alignment Vectorized Loop, Multiversioned v1>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1238,3)
+<Remainder loop for vectorization, Multiversioned v1>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1238,3)
+<Multiversioned v2>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1238,3)
+<Remainder, Multiversioned v2>
+LOOP END
+===========================================================================
+
+Begin optimization report for: norm_kernel(float *, int)
+
+    Report from: Vector optimizations [vec]
+
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1225,3)
+<Peeled loop for vectorization>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1225,3)
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1225,3)
+<Remainder loop for vectorization>
+LOOP END
+===========================================================================
+
+Begin optimization report for: dot_kernel(float *, float *, int)
+
+    Report from: Vector optimizations [vec]
+
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1232,3)
+<Peeled loop for vectorization>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1232,3)
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1232,3)
+<Alternate Alignment Vectorized Loop>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1232,3)
+<Remainder loop for vectorization>
+LOOP END
+===========================================================================
+
+Begin optimization report for: __$U0
+
+    Report from: Vector optimizations [vec]
+
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
+<Peeled loop for vectorization, Multiversioned v1>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
+<Multiversioned v1>
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
+<Remainder loop for vectorization, Multiversioned v1>
+   remark #15301: REMAINDER LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
+<Remainder loop for vectorization, Multiversioned v1>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
+<Multiversioned v2>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
+<Remainder, Multiversioned v2>
+LOOP END
+===========================================================================
+
+Begin optimization report for: __$U1
+
+    Report from: Vector optimizations [vec]
+
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
+<Peeled loop for vectorization, Multiversioned v1>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
+<Multiversioned v1>
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
+<Remainder loop for vectorization, Multiversioned v1>
+   remark #15301: REMAINDER LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
+<Remainder loop for vectorization, Multiversioned v1>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
+<Multiversioned v2>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
+<Remainder, Multiversioned v2>
+LOOP END
+===========================================================================
+
+Begin optimization report for: __$U2
+
+    Report from: Vector optimizations [vec]
+
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
+<Peeled loop for vectorization, Multiversioned v1>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
+<Multiversioned v1>
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
+<Remainder loop for vectorization, Multiversioned v1>
+   remark #15301: REMAINDER LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
+<Remainder loop for vectorization, Multiversioned v1>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
+<Multiversioned v2>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
+<Remainder, Multiversioned v2>
+LOOP END
+===========================================================================
+
+Begin optimization report for: __$U3
+
+    Report from: Vector optimizations [vec]
+
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
+<Peeled loop for vectorization, Multiversioned v1>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
+<Multiversioned v1>
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
+<Remainder loop for vectorization, Multiversioned v1>
+   remark #15301: REMAINDER LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
+<Remainder loop for vectorization, Multiversioned v1>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
+<Multiversioned v2>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
+<Remainder, Multiversioned v2>
+LOOP END
+===========================================================================
+
+Begin optimization report for: __$U4
+
+    Report from: Vector optimizations [vec]
+
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
+<Peeled loop for vectorization, Multiversioned v1>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
+<Multiversioned v1>
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
+<Remainder loop for vectorization, Multiversioned v1>
+   remark #15301: REMAINDER LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
+<Remainder loop for vectorization, Multiversioned v1>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
+<Multiversioned v2>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
+<Remainder, Multiversioned v2>
+LOOP END
+===========================================================================
+
+Begin optimization report for: __$U5
+
+    Report from: Vector optimizations [vec]
+
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
+<Peeled loop for vectorization, Multiversioned v1>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
+<Multiversioned v1>
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
+<Remainder loop for vectorization, Multiversioned v1>
+   remark #15301: REMAINDER LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
+<Remainder loop for vectorization, Multiversioned v1>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
+<Multiversioned v2>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
+<Remainder, Multiversioned v2>
+LOOP END
+===========================================================================
+
+Begin optimization report for: __$U6
+
+    Report from: Vector optimizations [vec]
+
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
+<Peeled loop for vectorization, Multiversioned v1>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
+<Multiversioned v1>
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
+<Remainder loop for vectorization, Multiversioned v1>
+   remark #15301: REMAINDER LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
+<Remainder loop for vectorization, Multiversioned v1>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
+<Multiversioned v2>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
+<Remainder, Multiversioned v2>
+LOOP END
+===========================================================================
+
+Begin optimization report for: __$U7
+
+    Report from: Vector optimizations [vec]
+
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
+<Peeled loop for vectorization, Multiversioned v1>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
+<Multiversioned v1>
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
+<Remainder loop for vectorization, Multiversioned v1>
+   remark #15301: REMAINDER LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
+<Remainder loop for vectorization, Multiversioned v1>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
+<Multiversioned v2>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
+<Remainder, Multiversioned v2>
+LOOP END
+===========================================================================
+
+Begin optimization report for: copy_kernel(float *, float *, int)
+
+    Report from: Vector optimizations [vec]
+
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1243,3)
+<Peeled loop for vectorization, Multiversioned v1>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1243,3)
+<Multiversioned v1>
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1243,3)
+<Alternate Alignment Vectorized Loop, Multiversioned v1>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1243,3)
+<Remainder loop for vectorization, Multiversioned v1>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1243,3)
+<Multiversioned v2>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1243,3)
+<Remainder, Multiversioned v2>
+LOOP END
+===========================================================================

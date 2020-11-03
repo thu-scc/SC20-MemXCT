@@ -1,0 +1,49 @@
+Intel(R) Advisor can now assist with vectorization and show optimization
+  report messages with your source code.
+See "https://software.intel.com/en-us/intel-advisor-xe" for details.
+
+
+Begin optimization report for: findnumpix(float, float, float *, int *)
+
+    Report from: Vector optimizations [vec]
+
+
+LOOP BEGIN at ../cpu-code/src/raytrace.cpp(103,5)
+   remark #25460: No loop optimizations reported
+
+   LOOP BEGIN at ../cpu-code/src/raytrace.cpp(111,7)
+   LOOP END
+LOOP END
+===========================================================================
+
+Begin optimization report for: findpixind(float, float, float *, int *, int, int *)
+
+    Report from: Vector optimizations [vec]
+
+
+LOOP BEGIN at ../cpu-code/src/raytrace.cpp(205,5)
+   remark #25460: No loop optimizations reported
+
+   LOOP BEGIN at ../cpu-code/src/raytrace.cpp(290,5) inlined into ../cpu-code/src/raytrace.cpp(233,13)
+      remark #25460: No loop optimizations reported
+   LOOP END
+
+   LOOP BEGIN at ../cpu-code/src/raytrace.cpp(213,7)
+   LOOP END
+
+   LOOP BEGIN at ../cpu-code/src/raytrace.cpp(264,3) inlined into ../cpu-code/src/raytrace.cpp(229,13)
+   LOOP END
+
+   LOOP BEGIN at ../cpu-code/src/raytrace.cpp(264,3) inlined into ../cpu-code/src/raytrace.cpp(231,13)
+   LOOP END
+LOOP END
+===========================================================================
+
+Begin optimization report for: encode(unsigned short, unsigned short)
+
+    Report from: Vector optimizations [vec]
+
+
+LOOP BEGIN at ../cpu-code/src/raytrace.cpp(264,3)
+LOOP END
+===========================================================================
