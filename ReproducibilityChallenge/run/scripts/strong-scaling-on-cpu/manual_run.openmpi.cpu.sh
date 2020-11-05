@@ -50,9 +50,9 @@ for NNODE in 1 2 4; do
   backproj_communication_time=$(echo $backproj_info | awk '{print $2}')
   backproj_reduction_time=$(echo $backproj_info | awk '{print $1}')
 
-  echo Use $DATA dataset by $NNODE nodes, $NTASK tasks, $NTHREAD threads
-  echo task, thread, tile_size, block_size, buffer_size, tot_gflops, tot_bw, tot_time
-  echo $NTASK,$NTHREAD,$4,$5,$6,$tot_gflops,$tot_bw,$tot_time
+  echo Use $DATA dataset by $NNODE nodes, $NTASK tasks, $NTHREAD threads per device
+  echo task, thread, tile_size, block_size, buffer_size
+  echo $NTASK,$NTHREAD,$4,$5,$6
   echo proj_kernel_time $proj_kernel_time sec
   echo proj_communication_time $proj_communication_time sec
   echo proj_reduction_time $proj_reduction_time sec
