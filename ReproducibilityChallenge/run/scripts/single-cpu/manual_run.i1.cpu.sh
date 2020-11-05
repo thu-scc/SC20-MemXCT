@@ -20,7 +20,7 @@ spack load intel-parallel-studio@cluster.2020.4
 #BACKBUFF=$6
 
 
-source para.sh $2 $3 $4 $4 $5 $5 $6 $6
+source ../para.sh $2 $3 $4 $4 $5 $5 $6 $6
 
 HOSTNAME=$(hostname)
 mkdir -p ../../output/original/$HOSTNAME/cpu
