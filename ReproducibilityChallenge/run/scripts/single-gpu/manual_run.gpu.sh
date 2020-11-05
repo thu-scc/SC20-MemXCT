@@ -3,30 +3,30 @@
 # set environment before executing this script!
 
 
-#GPU_TYPE=$1 (v100, p100, k80)
-#NTHREAD=$2
-#DATA=$3
+GPU=$1 #(v100, p100, k80)
+NTHREAD=$2
+DATA=$3
 
 # TILE SIZE
-#SPATSIZE=$4
-#SPECSIZE=$4
+SPATSIZE=$4
+SPECSIZE=$4
 #
 # BLOCK SIZE
-#PROJBLOCK=$5
-#BACKBLOCK=$5
+PROJBLOCK=$5
+BACKBLOCK=$5
 #
 # BUFFER SIZE
-#PROJBUFF=$6
-#BACKBUFF=$6
+PROJBUFF=$6
+BACKBUFF=$6
 
 # Usage: ./manual_run.gpu.sh v100 ${NTHREAD} ${DATASET} ${TILE_SIZE} ${BLOCK_SIZE} ${BUFFER_SIZE}
 
-source ../para.sh $2 $3 $4 $4 $5 $5 $6 $6
+source ../para.sh $NTHREAD $DATA $SPATSIZE $SPECSIZE $PROJBLOCK $BACKBLOCK $PROJBUFF $BACKBUFF
 
 HOTNAME=$(hostname)
 mkdir -p ../../output/original/$HOSTNAME/gpu
-FILE="./result/gorgon/$5/gpu.$1.$2.$2.$3.$3.$4.$4.out"
 FILE="../../output/original/$HOSTNAME/gpu/$1.$2.$3.$4.$4.$5.$5.$6.$6.out"
+FILE="../../output/original/$HOSTNAME/gpu/$GPU.$NTHREAD.$DATA.$SPATSIZE.$SPECSIZE.$PROJBLOCK.$BACKBLOCK.$PROJBUFF.$BACKBUFF.out"
 
 ../../../compile/gpu-build/$1/memxct.gpu > ${FILE}
 
@@ -37,9 +37,9 @@ prep_time=$(grep -E 'PREPROCESSING TIME: \w+.\w+[+-]\w+' -o $FILE | awk '{print 
 tot_time=$(grep -E 'Total Time: \w+.\w+[+-]\w+' -o < $FILE | awk '{print $3}')
 
 #echo $tot_gflops,$tot_bw,$prep_time,$tot_time
-echo Use $3 dataset by $1 and $2 threads
+echo Use $DATA dataset by $GPU and $NTHREAD threads
 echo gpu, thread, tile_size, block_size, buffer_size, tot_gflops, tot_bw, tot_time
-echo $1,$2,$4,$5,$6,$tot_gflops,$tot_bw,$tot_time
+echo $GPU,$NTHREAD,$4,$5,$6,$tot_gflops,$tot_bw,$tot_time
 echo tot_gflops $tot_gflops
 echo av_gflops $av_gflops
 echo tot_bw $tot_bw GB/s
