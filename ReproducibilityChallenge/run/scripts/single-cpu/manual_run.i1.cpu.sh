@@ -23,10 +23,10 @@ spack load intel-parallel-studio@cluster.2020.4
 source para.sh $2 $3 $4 $4 $5 $5 $6 $6
 
 HOSTNAME=$(hostname)
-mkdir -p ../output/original/$HOSTNAME/cpu
-FILE="../output/original/$HOSTNAME/cpu/$1.$2.$3.$4.$4.$5.$5.$6.$6.out"
+mkdir -p ../../output/original/$HOSTNAME/cpu
+FILE="../../output/original/$HOSTNAME/cpu/$1.$2.$3.$4.$4.$5.$5.$6.$6.out"
 
-mpirun -np $1 ../../compile/cpu-build/memxct.cpu > ${FILE}
+mpirun -np $1 ../../../compile/cpu-build/memxct.cpu > ${FILE}
 
 tot_bw=$(grep -E 'av: \w+.\w+' -o < $FILE | awk '{print $2}')
 av_gflops=$(grep -E 'avGFLOPS: \w+.\w+' -o < $FILE | awk '{print $2}')
