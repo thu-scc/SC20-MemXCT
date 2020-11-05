@@ -32,8 +32,8 @@ source ../para.sh $NTHREAD $DATA $SPATSIZE $SPECSIZE $PROJBLOCK $BACKBLOCK $PROJ
 HOSTNAME=$(hostname)
 mkdir -p ../../output/original/$HOSTNAME/cpu
 
-for NNODE in {1, 2, 4}; do
-  let NTASK=$CPU_PER_NODE*$NNODE
+for NNODE in 1 2 4; do
+  NTASK=`expr $CPU_PER_NODE \* $NNODE`
   FILE="../../output/original/$HOSTNAME/cpu/$NTASK.$NTHREAD.$DATA.$SPATSIZE.$SPECSIZE.$PROJBLOCK.$BACKBLOCK.$PROJBUFF.$BACKBUFF.out"
 
   mpirun -np $NTASK -hostfile $HOSTFILE -npernode $CPU_PER_NODE -bind-to socket ../../../compile/cpu-build/memxct.cpu > ${FILE}

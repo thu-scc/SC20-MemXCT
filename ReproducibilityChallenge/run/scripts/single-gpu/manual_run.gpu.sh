@@ -25,7 +25,6 @@ source ../para.sh $NTHREAD $DATA $SPATSIZE $SPECSIZE $PROJBLOCK $BACKBLOCK $PROJ
 
 HOTNAME=$(hostname)
 mkdir -p ../../output/original/$HOSTNAME/gpu
-FILE="../../output/original/$HOSTNAME/gpu/$1.$2.$3.$4.$4.$5.$5.$6.$6.out"
 FILE="../../output/original/$HOSTNAME/gpu/$GPU.$NTHREAD.$DATA.$SPATSIZE.$SPECSIZE.$PROJBLOCK.$BACKBLOCK.$PROJBUFF.$BACKBUFF.out"
 
 ../../../compile/gpu-build/$1/memxct.gpu > ${FILE}
