@@ -1,10 +1,18 @@
 # ----- Make Macros -----
 
-CXX = mpiicpc
-CXXFLAGS = -std=c++11 -qopenmp -qopt-report=1 -qopt-report-phase=vec
-OPTFLAGS = -O3 
+ICC_FOUND := $(shell command -v mpiicpc 2>/dev/null)
 
-CPU_LD_FLAGS = -qopenmp
+ifdef ICC_FOUND
+	CXX = mpiicpc
+	CXXFLAGS = -std=c++11 -qopenmp -qopt-report=1 -qopt-report-phase=vec
+	OPTFLAGS = -O3
+	CPU_LD_FLAGS = -qopenmp
+else
+	CXX = mpicxx
+	CXXFLAGS = -std=c++11 -fopenmp
+	OPTFLAGS = -O3
+	CPU_LD_FLAGS = -fopenmp
+endif
 
 CPU_TARGETS = memxct.cpu
 CPU_OBJECTS = main.o raytrace.o kernels.o

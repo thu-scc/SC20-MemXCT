@@ -66,7 +66,11 @@ def single_cpu(args):
   files = [name for name in files if name.endswith("out")]
 
   for f in files:
-    res = parse_output(os.path.join(input_dir_addr, f))
+    try:
+      res = parse_output(os.path.join(input_dir_addr, f))
+    except:
+      print("Got error parsing {}, skipping".format(f))
+      continue
     para = f.split('.')    
     para.pop()
     ds = para[1]
