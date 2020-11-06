@@ -24,13 +24,13 @@ BACKBUFF=$6
 
 HOTNAME=$(hostname)
 TARGET_DIR="../../output/single_gpu/$HOSTNAME"
-mkdir -p $ARGET_DIR/$HOSTNAME/gpu
-FILE="$TARGET_DIR/$HOSTNAME/$GPU.$NTHREAD.$DATA.$SPATSIZE.$SPECSIZE.$PROJBLOCK.$BACKBLOCK.$PROJBUFF.$BACKBUFF.out"
-BIN="$TARGET_DIR/$HOSTNAME/$GPU.$NTHREAD.$DATA.$SPATSIZE.$SPECSIZE.$PROJBLOCK.$BACKBLOCK.$PROJBUFF.$BACKBUFF.bin"
+mkdir -p $TARGET_DIR
+FILE="$TARGET_DIR/$GPU.$NTHREAD.$DATA.$SPATSIZE.$SPECSIZE.$PROJBLOCK.$BACKBLOCK.$PROJBUFF.$BACKBUFF.out"
+BIN="$TARGET_DIR/$GPU.$NTHREAD.$DATA.$SPATSIZE.$SPECSIZE.$PROJBLOCK.$BACKBLOCK.$PROJBUFF.$BACKBUFF.bin"
 
 source ../para.sh $NTHREAD $DATA $SPATSIZE $SPECSIZE $PROJBLOCK $BACKBLOCK $PROJBUFF $BACKBUFF $BIN
 
-../../../compile/gpu-build/$1/memxct.gpu > ${FILE}
+numactl --cpunodebind=0 -m 0 ../../../compile/gpu-build/$1/memxct.gpu > ${FILE}
 
 tot_bw=$(grep -E 'av: \w+.\w+' -o < $FILE | awk '{print $2}')
 av_gflops=$(grep -E 'avGFLOPS: \w+.\w+' -o < $FILE | awk '{print $2}')
