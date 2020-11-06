@@ -28,7 +28,7 @@ BIN="$TARGET_DIR/$NTHREAD.$DATA.$SPATSIZE.$SPECSIZE.$PROJBLOCK.$BACKBLOCK.$PROJB
 source ../para.sh $NTHREAD $DATA $SPATSIZE $SPECSIZE $PROJBLOCK $BACKBLOCK $PROJBUFF $BACKBUFF $BIN
 
 if [ "$RUNNER" == "mpirun" ]; then
-	mpirun -np 1 ../../../compile/cpu-build/memxct.cpu > ${FILE}
+	numactl --cpunodebind=0 -m 0 mpirun -np 1 ../../../compile/cpu-build/memxct.cpu > ${FILE}
 else
 	srun -N 1 -n 1 ../../../compile/cpu-build/memxct.cpu > ${FILE}
 fi
