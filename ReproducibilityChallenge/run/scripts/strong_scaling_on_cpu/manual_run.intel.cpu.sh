@@ -29,12 +29,14 @@ BACKBUFF=$7
 
 
 HOSTNAME=$(hostname)
-mkdir -p ../../output/original/$HOSTNAME/cpu
+TARGET_DIR="../../output/strong_scaling_on_cpu/$HOSTNAME"
+mkdir -p $TARGET_DIR
 
 for NNODE in 1 2 4; do
   NTASK=`expr $CPU_PER_NODE \* $NNODE`
-  FILE="../../output/original/$HOSTNAME/cpu/$NTASK.$NTHREAD.$DATA.$SPATSIZE.$SPECSIZE.$PROJBLOCK.$BACKBLOCK.$PROJBUFF.$BACKBUFF.out"
-  BIN="../../output/original/$HOSTNAME/cpu/$NTASK.$NTHREAD.$DATA.$SPATSIZE.$SPECSIZE.$PROJBLOCK.$BACKBLOCK.$PROJBUFF.$BACKBUFF.bin"
+  # Use NNODE as the name prefix so that figure scripts can know the node number
+  FILE="$TARGET_DIR/$NNODE.$NTHREAD.$DATA.$SPATSIZE.$SPECSIZE.$PROJBLOCK.$BACKBLOCK.$PROJBUFF.$BACKBUFF.out"
+  BIN="$TARGET_DIR/$NNODE.$NTHREAD.$DATA.$SPATSIZE.$SPECSIZE.$PROJBLOCK.$BACKBLOCK.$PROJBUFF.$BACKBUFF.bin"
   source ../para.sh $NTHREAD $DATA $SPATSIZE $SPECSIZE $PROJBLOCK $BACKBLOCK $PROJBUFF $BACKBUFF $BIN
 
   #mpirun -np $NTASK -hostfile $HOSTFILE -ppn $CPU_PER_NODE -genv I_MPI_PIN_DOMAIN socket ../../../compile/cpu-build/memxct.cpu > ${FILE}
