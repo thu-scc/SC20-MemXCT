@@ -37,7 +37,6 @@ def exec_cmd(cmd):
 def parse_output(output_file):
   res = exec_cmd("./parse.sh {}".format(output_file))
   res = res.strip().split(',')
-  print(res)
   res = [float(n.strip()) for n in res]
   assert len(res) == 11, "len is {}".format(len(res))
   
@@ -71,7 +70,7 @@ def single_cpu(args):
     para = f.split('.')    
     para.pop()
     ds = para[1]
-    if ds not in data.keys():
+    if ds not in datasets:
       raise Exception("Unknown dataset: {}".format(ds))
     data[ds].append((f, res))
 
@@ -81,7 +80,7 @@ def single_cpu(args):
     if len(data[ds]) == 0:
       print("No result for {} dataset".format(ds))
     else:
-      print("Best avGFLOPS {} comes from {}".format(data[ds][0][1].av_gflops, data[ds][0][0]))
+      print("Best avGFLOPS {} for {} dataset comes from {}".format(data[ds][0][1].av_gflops, ds, data[ds][0][0]))
   
 
   label_list = []
@@ -95,7 +94,6 @@ def single_cpu(args):
   plt.bar(label_list, num_list, color='grey', label='MemXCT')
   plt.ylabel("GFLOPS")
   plt.title("GFLOPS for single CPU")
-  plt.legend()
   plt.savefig(os.path.join(GLOBAL_OUTPUT_DIR, "gflops_single_cpu.png"))
   
 
@@ -115,14 +113,98 @@ def single_cpu(args):
     if len(data[ds]) > 0:
       label_list.append(ds)
       num_list.append(data[ds][0][1].av_bw)
-  plt.bar(label_list, num_list, color='grey', label='MemXCT')
+  plt.bar(label_list, num_list, color='grey')
   plt.title("Memory B/W Utilization (GB/s) for single cpu")
-  plt.legend()
   plt.savefig(os.path.join(GLOBAL_OUTPUT_DIR, "bw_single_cpu.png"))
   
 
 def single_gpu(args):
-  pass
+  dir_addr = os.path.join(GLOBAL_INPUT_DIR, "single_gpu")
+  datasets = ["ADS1", "ADS2"]
+  gpu_types = ["k80", "p100", "v100"]
+  data = {}
+  for gt in gpu_types:
+    data[gt] = {}
+    for ds in datasets:
+      data[gt][ds] = []
+
+  files = []
+  for path, _, file_list in os.walk(dir_addr):
+    # find all output for single gpu
+    for fn in file_list:
+      if fn.endswith("out"):
+        files.append(os.path.join(path, fn))
+  
+  for f in files:
+    res = parse_output(f)
+    para = os.path.basename(f).split('.')
+    para.pop()
+    gpu_type = para[0]
+    if gpu_type not in gpu_types:
+      raise Exception("Unknown gpu type: {}".format(gpu_type))
+    ds = para[2] 
+    if ds not in datasets:
+      raise Exception("Unknown dataset: {}".format(ds))
+    data[gpu_type][ds].append((f, res))
+  
+  # sort by gflops
+  for gpu_type in gpu_types:
+    for ds in datasets:
+      data[gpu_type][ds].sort(key=lambda x: x[1].av_gflops, reverse=True)
+      if len(data[gpu_type][ds]) == 0:
+        print("No result for {} dataset on {}".format(ds, gpu_type))
+      else:
+        print("Best avGFLOPS {} for {} dataset comes from {} ".format(data[gpu_type][ds][0][1].av_gflops, ds, data[gpu_type][ds][0][0]))
+  
+
+  # draw gflops for single gpu
+  plt.clf()
+  fig = plt.figure(figsize=(9, 5))
+  for i, gpu_type in enumerate(gpu_types):
+    #ax = plt.subplot(131 + i)
+    ax = fig.add_subplot(131 + i)
+    label_list = []
+    num_list = []
+    for ds in datasets:
+      if len(data[gpu_type][ds]) > 0:
+        label_list.append(ds)
+        num_list.append(data[gpu_type][ds][0][1].av_gflops)
+    #plt.bar(label_list, num_list, color='grey')
+    ax.bar(label_list, num_list, color='grey')
+    ax.set_title(gpu_type)
+  fig.text(0.05, 0.5, 'GFLOPS', va='center', rotation='vertical')
+  #plt.ylabel("GFLOPS")
+  fig.suptitle("GFLOPS for single GPU")
+  plt.savefig(os.path.join(GLOBAL_OUTPUT_DIR, "gflops_single_gpu.png"))
+  
+
+  # sort by bw
+  for gpu_type in gpu_types:
+    for ds in datasets:
+      data[gpu_type][ds].sort(key=lambda x: x[1].av_bw, reverse=True)
+      if len(data[gpu_type][ds]) == 0:
+        print("No result for {} dataset on {}".format(ds, gpu_type))
+      else:
+        print("Best avGFLOPS {} for {} dataset comes from {} ".format(data[gpu_type][ds][0][1].av_bw, ds, data[gpu_type][ds][0][0]))
+  
+
+  # draw bw for single gpu
+  plt.clf()
+  for i, gpu_type in enumerate(gpu_types):
+    ax = plt.subplot(131 + i)
+    label_list = []
+    num_list = []
+    for ds in datasets:
+      if len(data[gpu_type][ds]) > 0:
+        label_list.append(ds)
+        num_list.append(data[gpu_type][ds][0][1].av_gflops)
+    plt.bar(label_list, num_list, color='grey')
+    ax.set_title(gpu_type)
+  plt.suptitle("Memory B/W Utilization (GB/s) for single GPU")
+  plt.legend()
+  plt.savefig(os.path.join(GLOBAL_OUTPUT_DIR, "bw_single_gpu.png"))
+
+
 
 def strong_scaling_for_cpu(args):
   pass
@@ -146,7 +228,6 @@ if __name__ == "__main__":
 
   # single gpu
   parser_sg = subparsers.add_parser("sg", help="single gpu")
-  parser_sg.add_argument("--hostname", "-host", type=str, required=True)
   parser_sg.set_defaults(func=single_gpu)
 
 
