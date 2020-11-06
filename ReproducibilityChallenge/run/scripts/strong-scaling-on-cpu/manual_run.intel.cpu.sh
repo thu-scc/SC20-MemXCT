@@ -36,7 +36,8 @@ for NNODE in 1 2 4; do
   NTASK=`expr $CPU_PER_NODE \* $NNODE`
   FILE="../../output/original/$HOSTNAME/cpu/$NTASK.$NTHREAD.$DATA.$SPATSIZE.$SPECSIZE.$PROJBLOCK.$BACKBLOCK.$PROJBUFF.$BACKBUFF.out"
 
-  mpirun -np $NTASK -hostfile $HOSTFILE -ppn $CPU_PER_NODE -genv I_MPI_PIN_DOMAIN socket ../../../compile/cpu-build/memxct.cpu > ${FILE}
+  #mpirun -np $NTASK -hostfile $HOSTFILE -ppn $CPU_PER_NODE -genv I_MPI_PIN_DOMAIN socket ../../../compile/cpu-build/memxct.cpu > ${FILE}
+  srun --ntasks-per-node $CPU_PER_NODE -N $NNODE --cores-per-socket=1 ../../../compile/cpu-build/memxct.cpu > ${FILE}
 
   tot_time=$(grep -E 'Total Time: \w+.\w+[+-]\w+' -o < $FILE | awk '{print $3}')
 
