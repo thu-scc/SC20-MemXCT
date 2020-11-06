@@ -26,13 +26,14 @@ BACKBUFF=$8
 # Usage: ./manual_run.openmpi.gpu.sh v100 ${GPU_PER_NODE} ${NTHREAD} ${HOSTFILE} ${DATASET} ${TILE_SIZE} ${BLOCK_SIZE} ${BUFFER_SIZE}
 
 
-source ../para.sh $NTHREAD $DATA $SPATSIZE $SPECSIZE $PROJBLOCK $BACKBLOCK $PROJBUFF $BACKBUFF
 HOTNAME=$(hostname)
 mkdir -p ../../output/original/$HOSTNAME/gpu
 
 for NNODE in 1 2 4; do
   NTASK=`expr $GPU_PER_NODE \* $NNODE`
   FILE="../../output/original/$HOSTNAME/gpu/$GPU.$NTASK.$NTHREAD.$DATA.$SPATSIZE.$SPECSIZE.$PROJBLOCK.$BACKBLOCK.$PROJBUFF.$BACKBUFF.out"
+  BIN="../../output/original/$HOSTNAME/gpu/$GPU.$NTASK.$NTHREAD.$DATA.$SPATSIZE.$SPECSIZE.$PROJBLOCK.$BACKBLOCK.$PROJBUFF.$BACKBUFF.bin"
+  source ../para.sh $NTHREAD $DATA $SPATSIZE $SPECSIZE $PROJBLOCK $BACKBLOCK $PROJBUFF $BACKBUFF $BIN
 
   mpirun -np $NTASK -hostfile $HOSTFILE -npernode $GPU_PER_NODE -bind-to core ../../../compile/gpu-build/$1/memxct.gpu > ${FILE}
 

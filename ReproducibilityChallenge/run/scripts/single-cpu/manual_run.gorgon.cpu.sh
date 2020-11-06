@@ -19,11 +19,15 @@ PROJBUFF=$6
 BACKBUFF=$6
 
 
-source ../para.sh $NTHREAD $DATA $SPATSIZE $SPECSIZE $PROJBLOCK $BACKBLOCK $PROJBUFF $BACKBUFF
+
+
 
 HOSTNAME=$(hostname)
 mkdir -p ../../output/original/$HOSTNAME/cpu
 FILE="../../output/original/$HOSTNAME/cpu/$NTASK.$NTHREAD.$DATA.$SPATSIZE.$SPECSIZE.$PROJBLOCK.$BACKBLOCK.$PROJBUFF.$BACKBUFF.out"
+BIN="../../output/original/$HOSTNAME/cpu/$NTASK.$NTHREAD.$DATA.$SPATSIZE.$SPECSIZE.$PROJBLOCK.$BACKBLOCK.$PROJBUFF.$BACKBUFF.bin"
+
+source ../para.sh $NTHREAD $DATA $SPATSIZE $SPECSIZE $PROJBLOCK $BACKBLOCK $PROJBUFF $BACKBUFF $BIN
 
 #mpirun -np $1 ../../../compile/cpu-build/memxct.cpu > ${FILE}
 srun -n $NTASK ../../../compile/cpu-build/memxct.cpu > ${FILE}

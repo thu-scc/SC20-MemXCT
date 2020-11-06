@@ -21,11 +21,13 @@ BACKBUFF=$6
 
 # Usage: ./manual_run.gpu.sh v100 ${NTHREAD} ${DATASET} ${TILE_SIZE} ${BLOCK_SIZE} ${BUFFER_SIZE}
 
-source ../para.sh $NTHREAD $DATA $SPATSIZE $SPECSIZE $PROJBLOCK $BACKBLOCK $PROJBUFF $BACKBUFF
 
 HOTNAME=$(hostname)
 mkdir -p ../../output/original/$HOSTNAME/gpu
 FILE="../../output/original/$HOSTNAME/gpu/$GPU.$NTHREAD.$DATA.$SPATSIZE.$SPECSIZE.$PROJBLOCK.$BACKBLOCK.$PROJBUFF.$BACKBUFF.out"
+BIN="../../output/original/$HOSTNAME/gpu/$GPU.$NTHREAD.$DATA.$SPATSIZE.$SPECSIZE.$PROJBLOCK.$BACKBLOCK.$PROJBUFF.$BACKBUFF.bin"
+
+source ../para.sh $NTHREAD $DATA $SPATSIZE $SPECSIZE $PROJBLOCK $BACKBLOCK $PROJBUFF $BACKBUFF $BIN
 
 ../../../compile/gpu-build/$1/memxct.gpu > ${FILE}
 

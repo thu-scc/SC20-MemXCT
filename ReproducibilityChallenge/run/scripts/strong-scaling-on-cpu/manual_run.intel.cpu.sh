@@ -26,7 +26,6 @@ PROJBUFF=$7
 BACKBUFF=$7
 
 
-source ../para.sh $NTHREAD $DATA $SPATSIZE $SPECSIZE $PROJBLOCK $BACKBLOCK $PROJBUFF $BACKBUFF
 
 
 HOSTNAME=$(hostname)
@@ -35,6 +34,8 @@ mkdir -p ../../output/original/$HOSTNAME/cpu
 for NNODE in 1 2 4; do
   NTASK=`expr $CPU_PER_NODE \* $NNODE`
   FILE="../../output/original/$HOSTNAME/cpu/$NTASK.$NTHREAD.$DATA.$SPATSIZE.$SPECSIZE.$PROJBLOCK.$BACKBLOCK.$PROJBUFF.$BACKBUFF.out"
+  BIN="../../output/original/$HOSTNAME/cpu/$NTASK.$NTHREAD.$DATA.$SPATSIZE.$SPECSIZE.$PROJBLOCK.$BACKBLOCK.$PROJBUFF.$BACKBUFF.bin"
+  source ../para.sh $NTHREAD $DATA $SPATSIZE $SPECSIZE $PROJBLOCK $BACKBLOCK $PROJBUFF $BACKBUFF $BIN
 
   #mpirun -np $NTASK -hostfile $HOSTFILE -ppn $CPU_PER_NODE -genv I_MPI_PIN_DOMAIN socket ../../../compile/cpu-build/memxct.cpu > ${FILE}
   srun --ntasks-per-node $CPU_PER_NODE -N $NNODE --cores-per-socket=1 ../../../compile/cpu-build/memxct.cpu > ${FILE}
