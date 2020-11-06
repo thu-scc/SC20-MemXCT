@@ -27,8 +27,11 @@ BIN="$TARGET_DIR/$NTHREAD.$DATA.$SPATSIZE.$SPECSIZE.$PROJBLOCK.$BACKBLOCK.$PROJB
 
 source ../para.sh $NTHREAD $DATA $SPATSIZE $SPECSIZE $PROJBLOCK $BACKBLOCK $PROJBUFF $BACKBUFF $BIN
 
-#mpirun -np $1 ../../../compile/cpu-build/memxct.cpu > ${FILE}
-srun -N 1 -n 1 ../../../compile/cpu-build/memxct.cpu > ${FILE}
+if [ "$RUNNER" == "mpirun" ]; then
+	mpirun -np 1 ../../../compile/cpu-build/memxct.cpu > ${FILE}
+else
+	srun -N 1 -n 1 ../../../compile/cpu-build/memxct.cpu > ${FILE}
+fi
 
 tot_bw=$(grep -E 'av: \w+.\w+' -o < $FILE | awk '{print $2}')
 av_gflops=$(grep -E 'avGFLOPS: \w+.\w+' -o < $FILE | awk '{print $2}')
