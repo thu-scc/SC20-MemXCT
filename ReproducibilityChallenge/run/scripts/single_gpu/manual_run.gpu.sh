@@ -42,8 +42,8 @@ tot_time=$(grep -E 'Total Time: \w+.\w+[+-]\w+' -o < $FILE | awk '{print $3}')
 echo Use $DATA dataset by $GPU and $NTHREAD threads
 echo gpu, thread, tile_size, block_size, buffer_size, tot_gflops, tot_bw, tot_time
 echo $GPU,$NTHREAD,$4,$5,$6,$tot_gflops,$tot_bw,$tot_time
-echo tot_gflops $tot_gflops
-echo av_gflops $av_gflops
-echo tot_bw $tot_bw GB/s
-echo prep_time $prep_time sec
-echo tot_time $tot_time sec
+echo -e tot_gflops  "\t" $tot_gflops
+echo -e av_gflops   "\t" $av_gflops
+echo -e tot_bw      "\t" $tot_bw GB/s
+echo -e prep_time   "\t" $prep_time sec
+echo -e tot_time    "\t" $tot_time sec

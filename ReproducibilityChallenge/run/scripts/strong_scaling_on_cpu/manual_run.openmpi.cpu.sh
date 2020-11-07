@@ -54,13 +54,14 @@ for NNODE in 1 2 4; do
   echo Use $DATA dataset by $NNODE nodes, $NTASK tasks, $NTHREAD threads per device
   echo task, thread, tile_size, block_size, buffer_size
   echo $NTASK,$NTHREAD,$4,$5,$6
-  echo proj_kernel_time $proj_kernel_time sec
-  echo proj_communication_time $proj_communication_time sec
-  echo proj_reduction_time $proj_reduction_time sec
-  echo backproj_kernel_time $backproj_kernel_time sec
-  echo backproj_communication_time $backproj_communication_time sec
-  echo backproj_reduction_time $backproj_reduction_time sec
-  echo tot_time $tot_time sec
+  echo -e proj_kernel_time            "\t" $proj_kernel_time sec
+  echo -e proj_communication_time     "\t" $proj_communication_time sec
+  echo -e proj_reduction_time         "\t" $proj_reduction_time sec
+  echo -e backproj_kernel_time        "\t" $backproj_kernel_time sec
+  echo -e backproj_communication_time "\t" $backproj_communication_time sec
+  echo -e backproj_reduction_time     "\t" $backproj_reduction_time sec
+  echo -e tot_time                    "\t" $tot_time sec
+  echo -e "\n"
 
 done
 
