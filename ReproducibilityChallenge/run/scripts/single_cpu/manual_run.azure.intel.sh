@@ -1,7 +1,6 @@
 #!/bin/bash
-# amd yes
 . /mnt/exports/data/spack/share/spack/setup-env.sh
-spack load /i2mlb2h
+spack load /uqfcm7a
 cd ../../../compile
 ./clean.sh
 ./build_cpu.sh
