@@ -12,13 +12,10 @@ echo 'Resource group:' $(jq -r .compute.resourceGroupName metadata.json)
 echo 'Private ip address:' $(jq -r .network.interface[0].ipv4.ipAddress[0].privateIpAddress metadata.json)
 echo 'Public ip address:' $(jq -r .network.interface[0].ipv4.ipAddress[0].publicIpAddress metadata.json)
 echo 'CPU model': $(lscpu | sed -nr '/Model name/ s/.*:\s*(.*)/\1/p')
-echo "CPU:"
 
 # compilers
 which gcc
 gcc --version
-which icc
-icc --version
 which nvcc
 nvcc --version
 
@@ -26,16 +23,6 @@ nvcc --version
 lscpu || cat /proc/cpuinfo
 cat /sys/devices/cpu/caps/pmu_name
 gcc -march=native -Q --help=target | grep march
-
-# ipmi
-echo "Board:"
-ipmitool fru print 0 | grep "Board Product"
-ipmitool fru print 0 | grep "Board Serial"
-ipmitool fru print 0 | grep "Board Part Number"
-echo "Product:"
-ipmitool fru print 0 | grep "Product Name"
-ipmitool fru print 0 | grep "Product Part Number"
-ipmitool fru print 0 | grep "Product Serial"
 
 # env
 unset SSH_CLIENT
@@ -57,7 +44,6 @@ nvidia-smi
 
 # hpc package manager
 spack find
-module list
 
 # loaded package
 spack find --loaded -l

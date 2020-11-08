@@ -5,6 +5,9 @@ sudo apt install nfs-common -y
 sudo apt install gcc -y
 sudo apt install g++ -y
 sudo apt install make -y
+sudo apt install inxi -y
+sudo apt install lsscsi -y
+sudo apt install jq -y
 sudo mkdir -p /mnt/exports/data
 sudo chmod 777 /mnt/exports
 sudo mount 10.0.0.7:/mnt/exports/data /mnt/exports/data
