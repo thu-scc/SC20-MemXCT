@@ -1,5 +1,8 @@
 import collections
 import matplotlib.pyplot as plt
+import matplotlib.ticker as ticker
+from matplotlib.ticker import StrMethodFormatter, NullFormatter, FormatStrFormatter, FuncFormatter, ScalarFormatter
+from matplotlib.ticker import MaxNLocator
 import subprocess
 import numpy as np
 import os
@@ -140,7 +143,11 @@ def single_gpu(args):
         files.append(os.path.join(path, fn))
   
   for f in files:
-    res = parse_output(f)
+    try:
+      res = parse_output(f)
+    except:
+      print("Got error parsing {}, skipping".format(f))
+      continue
     para = os.path.basename(f).split('.')
     para.pop()
     gpu_type = para[0]
@@ -211,7 +218,92 @@ def single_gpu(args):
 
 
 def strong_scaling_for_cpu(args):
-  pass
+  input_dir_addr = os.path.join(GLOBAL_INPUT_DIR, "strong_scaling_on_cpu", args.hostname)
+  dataset = args.dataset
+  scaling_num = [1, 2, 4]
+
+  data = {}
+  for node_num in scaling_num:
+    data[node_num] = []
+  
+  files = [name for name in os.listdir(input_dir_addr) if os.path.isfile(os.path.join(input_dir_addr, name))]
+  files = [name for name in files if name.endswith("out")]
+
+  for f in files:
+    try:
+      res = parse_output(os.path.join(input_dir_addr, f))
+    except:
+      print("Got error parsing {}, skipping".format(f))
+      continue
+    para = f.split('.')
+    para.pop()
+    node_num = int(para[0])
+    if node_num not in scaling_num:
+      raise Exception("Unknown node num: {}".format(node_num))
+    data[node_num].append((f, res))
+  
+  # sort by tot_time
+  for node_num in scaling_num:
+    data[node_num].sort(key=lambda x: x[1].tot_time)
+    if len(data[node_num]) == 0:
+      print("No result for {} dataset on {} nodes".format(dataset, node_num))
+    else:
+      print("Best tot_time {} sec for {} dataset comes from {}".format(data[node_num][0][1].tot_time, dataset, data[node_num][0][0]))
+  
+  # draw tot_time, ktime(proj + backproj), ctime(..), rtime(..)
+  # result for all node_num must be available
+
+  tot_time_list = []
+  ktime_list = []
+  ctime_list = []
+  rtime_list = []
+  for node_num in scaling_num:
+    res = data[node_num][0][1]
+    tot_time = res.tot_time
+    ktime = res.proj_ktime + res.backproj_ktime
+    ctime = res.proj_ctime + res.backproj_ctime
+    rtime = res.proj_rtime + res.backproj_rtime
+    tot_time_list.append(tot_time)
+    ktime_list.append(ktime)
+    ctime_list.append(ctime)
+    rtime_list.append(rtime)
+  
+  fig, ax = plt.subplots()
+  #ax.axis(scaling_num)
+  #plt.xticks(scaling_num)
+  #ax.loglog()
+  #formatter = ScalarFormatter()
+  #formatter.set_scientific(False)
+  #ax.xaxis.set_major_formatter(formatter)
+  ax.xaxis.set_major_locator(MaxNLocator(integer=True))
+
+  plt.plot(scaling_num, tot_time_list, color='blue', label='Total')
+  plt.plot(scaling_num, ktime_list, color='red', label='kernel')
+  plt.plot(scaling_num, ctime_list, color='yellow', label='comm')
+  plt.plot(scaling_num, rtime_list, color='cyan', label='reduction')
+  plt.xscale("log")
+  plt.yscale("log")
+  plt.xticks(scaling_num)
+  plt.xlabel("Number of Nodes")
+  plt.ylabel("Solution Time(s)")
+
+
+
+
+  #ax = plt.gca()
+  #ax.set_scientific(False)
+  #tick = ticker.ScalarFormatter()
+  #tick.set_scientific(False)
+  #tick.set_powerlimits((-3,20))
+  #ax.xaxis.set_minor_formatter(tick)
+  #ax.xaxis.set_major_formatter(FormatStrFormatter("%d"))
+  #ax.xaxis.set_major_formatter(StrMethodFormatter('{x:,.0f}'))
+  #ax.xaxis.set_major_formatter(FuncFormatter(lambda x, p: format(int(x), ',')))
+  #ax.xaxis.set_minor_formatter(NullFormatter())
+  plt.title("{} Strong Scaling on CPU".format(dataset))
+  plt.legend()
+  plt.savefig(os.path.join(GLOBAL_OUTPUT_DIR, "{}_strong_scaling_on_cpu.png".format(dataset)))
+
 
 def strong_scaling_for_gpu(args):
   pass
@@ -238,6 +330,7 @@ if __name__ == "__main__":
   # strong scaling for cpu
   parser_ssc = subparsers.add_parser("ssc", help="strong scaling for cpu")
   parser_ssc.add_argument("--hostname", "-host", type=str, required=True)
+  parser_ssc.add_argument("--dataset", "-d", type=str, required=True)
   parser_ssc.set_defaults(func=strong_scaling_for_cpu)
 
 
