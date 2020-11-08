@@ -43,8 +43,23 @@ elif [[ $DATA = ADS4 ]]; then
   export NUMRHO=2048
   export THEFILE=$DATASET/ADS4_theta.bin
   export SINFILE=$DATASET/ADS4_sinogram.bin
+elif [[ $DATA = CDS1 ]]; then
+  export NUMTHE=750
+  export NUMRHO=512
+  export THEFILE=$DATASET/CDS1_theta.bin
+  export SINFILE=$DATASET/CDS1_sinogram.bin
+elif [[ $DATA = CDS2 ]]; then
+  export NUMTHE=375
+  export NUMRHO=1024
+  export THEFILE=$DATASET/CDS2_theta.bin
+  export SINFILE=$DATASET/CDS2_sinogram.bin
+elif [[ $DATA = CDS3 ]]; then
+  export NUMTHE=1501
+  export NUMRHO=2048
+  export THEFILE=$DATASET/CDS3_theta.bin
+  export SINFILE=$DATASET/CDS3_sinogram.bin
 else
-  echo "Unkown Datasets $DATA"
+  echo "Unknown Datasets $DATA"
   exit 1
 fi
 
