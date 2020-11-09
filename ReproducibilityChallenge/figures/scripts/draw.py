@@ -1,8 +1,6 @@
 import collections
 import matplotlib.pyplot as plt
-import matplotlib.ticker as ticker
-from matplotlib.ticker import StrMethodFormatter, NullFormatter, FormatStrFormatter, FuncFormatter, ScalarFormatter
-from matplotlib.ticker import MaxNLocator
+from matplotlib.ticker import FuncFormatter
 import subprocess
 import numpy as np
 import os
@@ -56,257 +54,242 @@ def parse_output(output_file):
                 backproj_ctime=res[9],
                 backproj_rtime=res[10])
   
-
-def single_cpu(args):
-  input_dir_addr = os.path.join(GLOBAL_INPUT_DIR, "single_cpu", args.hostname)
-  datasets = ["ADS1", "ADS2", "ADS3", "ADS4"]
-
+def get_best_result_for_single(dir_addr, datasets, name, get_ds, key, reverse=False):
   data = {}
   for ds in datasets:
     data[ds] = []
-
-  files = [name for name in os.listdir(input_dir_addr) if os.path.isfile(os.path.join(input_dir_addr, name))]
-  files = [name for name in files if name.endswith("out")]
-
+  files = [name for name in os.listdir(dir_addr) if os.path.isfile(os.path.join(dir_addr, name))]
+  files = [name for name in os.listdir(dir_addr) if os.path.isfile(os.path.join(dir_addr, name)) and name.endswith("out")]
   for f in files:
     try:
-      res = parse_output(os.path.join(input_dir_addr, f))
+      res = parse_output(os.path.join(dir_addr, f))
     except:
       print("Got error parsing {}, skipping".format(f))
       continue
     para = f.split('.')    
     para.pop()
-    ds = para[1]
+    ds = get_ds(para)
     if ds not in datasets:
-      raise Exception("Unknown dataset: {}".format(ds))
+      print("Warn: Unknown dataset: {}".format(ds))
+      continue
     data[ds].append((f, res))
-
-  # sort by gflops
   for ds in datasets:
-    data[ds].sort(key=lambda x: x[1].av_gflops, reverse=True)
+    data[ds].sort(key=lambda x: key(x[1]), reverse=reverse)
     if len(data[ds]) == 0:
-      print("No result for {} dataset".format(ds))
+      raise Exception("No result for {} dataset".format(ds))
     else:
-      print("Best avGFLOPS {} for {} dataset comes from {}".format(data[ds][0][1].av_gflops, ds, data[ds][0][0]))
-  
-
-  label_list = []
+      print("Best {} {} for {} dataset comes from {}".format(name, key(data[ds][0][1]), ds, data[ds][0][0]))
   num_list = []
-  plt.clf()
-  # draw gflops for single cpu
   for ds in datasets:
-    if len(data[ds]) > 0:
-      label_list.append(ds)
-      num_list.append(data[ds][0][1].av_gflops)
-  plt.bar(label_list, num_list, color='grey', label='MemXCT')
-  plt.ylabel("GFLOPS")
-  plt.title("GFLOPS for single CPU")
-  plt.savefig(os.path.join(GLOBAL_OUTPUT_DIR, "gflops_single_cpu.png"))
-  
+    num_list.append(key(data[ds][0][1]))
+  return num_list    
 
-  # sort by bw
-  for ds in datasets:
-    data[ds].sort(key=lambda x: x[1].av_bw, reverse=True)
-    if len(data[ds]) == 0:
-      print("No result for {} dataset".format(ds))
-    else:
-      print("Best bw {} comes from {}".format(data[ds][0][1].av_bw, data[ds][0][0]))
+def single_cpu(args):
+  intel_dir_addr = os.path.join(GLOBAL_INPUT_DIR, "single_cpu", "single_intel")
+  amd_dir_addr = os.path.join(GLOBAL_INPUT_DIR, "single_cpu", "single_amd")
+  datasets = ["CDS1", "CDS2"]
 
-  label_list = []
-  num_list = []
+  intel_gflops_list = get_best_result_for_single(intel_dir_addr, datasets, "avGFLOPS(intel)", get_ds=lambda x: x[1], key=lambda x: x.av_gflops, reverse=True)
+  intel_bw_list = get_best_result_for_single(intel_dir_addr, datasets, "avBW(intel)", get_ds=lambda x: x[1], key=lambda x: x.av_bw, reverse=True)
+  amd_gflops_list = get_best_result_for_single(amd_dir_addr, datasets, "avGFLOPS(amd)", get_ds=lambda x: x[1], key=lambda x: x.av_gflops, reverse=True)
+  amd_bw_list = get_best_result_for_single(amd_dir_addr, datasets, "avBW(amd)", get_ds=lambda x: x[1], key=lambda x: x.av_bw, reverse=True)
+
+  # gflops
   plt.clf()
-  # draw bw for single cpu
-  for ds in datasets:
-    if len(data[ds]) > 0:
-      label_list.append(ds)
-      num_list.append(data[ds][0][1].av_bw)
-  plt.bar(label_list, num_list, color='grey')
-  plt.title("Memory B/W Utilization (GB/s) for single cpu")
-  plt.savefig(os.path.join(GLOBAL_OUTPUT_DIR, "bw_single_cpu.png"))
-  
+  width = 0.35
+  x = np.arange(2)
+  fig, ax = plt.subplots(figsize=(4, 6))
+  ax.bar(x - width/2, intel_gflops_list, width, color='grey', label='Intel')
+  ax.bar(x + width/2, amd_gflops_list, width, color='orange', label='AMD')
+  ax.set_ylabel('GFLOPS')
+  ax.set_title('GFLOPS for single CPU')
+  ax.set_xticks(x)
+  ax.set_xticklabels(datasets)
+  ax.grid(True, axis='y')
+  ax.spines['left'].set_visible(False)
+  ax.spines['top'].set_visible(False)
+  ax.spines['right'].set_visible(False)
+  ax.legend()
+  fig.savefig(os.path.join(GLOBAL_OUTPUT_DIR, "gflops_single_cpu." + args.format), format=args.format)
+
+  # bw
+  # TODO: add STREAM result into the figure!
+  plt.clf()
+  width = 0.35
+  x = np.arange(2)
+  fig, ax = plt.subplots(figsize=(4, 6))
+  ax.bar(x - width/2, intel_bw_list, width, color='grey', label='Intel')
+  ax.bar(x + width/2, amd_bw_list, width, color='orange', label='AMD')
+  ax.set_title('Memory B/W Utilization (GB/s)')
+  ax.set_xticks(x)
+  ax.set_xticklabels(datasets)
+  ax.grid(True, axis='y')
+  ax.spines['left'].set_visible(False)
+  ax.spines['top'].set_visible(False)
+  ax.spines['right'].set_visible(False)
+  ax.legend()
+  fig.savefig(os.path.join(GLOBAL_OUTPUT_DIR, "bw_single_cpu." + args.format), format=args.format)
+
 
 def single_gpu(args):
-  dir_addr = os.path.join(GLOBAL_INPUT_DIR, "single_gpu")
+  k80_dir_addr = os.path.join(GLOBAL_INPUT_DIR, "single_gpu", "single_k80")
+  p100_dir_addr = os.path.join(GLOBAL_INPUT_DIR, "single_gpu", "single_p100")
+  v100_dir_addr = os.path.join(GLOBAL_INPUT_DIR, "single_gpu", "single_v100")
+
   datasets = ["CDS1", "CDS2"]
   gpu_types = ["k80", "p100", "v100"]
-  data = {}
-  for gt in gpu_types:
-    data[gt] = {}
-    for ds in datasets:
-      data[gt][ds] = []
 
-  files = []
-  for path, _, file_list in os.walk(dir_addr):
-    # find all output for single gpu
-    for fn in file_list:
-      if fn.endswith("out"):
-        files.append(os.path.join(path, fn))
-  
-  for f in files:
-    try:
-      res = parse_output(f)
-    except:
-      print("Got error parsing {}, skipping".format(f))
-      continue
-    para = os.path.basename(f).split('.')
-    para.pop()
-    gpu_type = para[0]
-    if gpu_type not in gpu_types:
-      raise Exception("Unknown gpu type: {}".format(gpu_type))
-    ds = para[2] 
-    if ds not in datasets:
-      raise Exception("Unknown dataset: {}".format(ds))
-    data[gpu_type][ds].append((f, res))
-  
-  # sort by gflops
-  for gpu_type in gpu_types:
-    for ds in datasets:
-      data[gpu_type][ds].sort(key=lambda x: x[1].av_gflops, reverse=True)
-      if len(data[gpu_type][ds]) == 0:
-        print("No result for {} dataset on {}".format(ds, gpu_type))
-      else:
-        print("Best avGFLOPS {} for {} dataset comes from {} ".format(data[gpu_type][ds][0][1].av_gflops, ds, data[gpu_type][ds][0][0]))
-  
+  k80_gflops_list = get_best_result_for_single(k80_dir_addr, datasets, "avGFLOPS(k80)", get_ds=lambda x: x[2], key=lambda x: x.av_gflops, reverse=True)
+  k80_bw_list = get_best_result_for_single(k80_dir_addr, datasets, "avBW(k80)", get_ds=lambda x: x[2], key=lambda x: x.av_bw, reverse=True)
+  p100_gflops_list = get_best_result_for_single(p100_dir_addr, datasets, "avGFLOPS(p100)", get_ds=lambda x: x[2], key=lambda x: x.av_gflops, reverse=True)
+  p100_bw_list = get_best_result_for_single(p100_dir_addr, datasets, "avBW(p100)", get_ds=lambda x: x[2], key=lambda x: x.av_bw, reverse=True)
+  v100_gflops_list = get_best_result_for_single(v100_dir_addr, datasets, "avGFLOPS(v100)", get_ds=lambda x: x[2], key=lambda x: x.av_gflops, reverse=True)
+  v100_bw_list = get_best_result_for_single(v100_dir_addr, datasets, "avBW(v100)", get_ds=lambda x: x[2], key=lambda x: x.av_bw, reverse=True)
 
-  # draw gflops for single gpu
+
+  x = np.array([0, 1.5]) # the label locations
+  width = 0.35  # the width of the bars
+
+  # gflops
   plt.clf()
-  fig = plt.figure(figsize=(9, 5))
-  for i, gpu_type in enumerate(gpu_types):
-    #ax = plt.subplot(131 + i)
-    ax = fig.add_subplot(131 + i)
-    label_list = []
-    num_list = []
-    for ds in datasets:
-      if len(data[gpu_type][ds]) > 0:
-        label_list.append(ds)
-        num_list.append(data[gpu_type][ds][0][1].av_gflops)
-    #plt.bar(label_list, num_list, color='grey')
-    ax.bar(label_list, num_list, color='grey')
-    ax.set_title(gpu_type)
-  fig.text(0.05, 0.5, 'GFLOPS', va='center', rotation='vertical')
-  #plt.ylabel("GFLOPS")
-  fig.suptitle("GFLOPS for single GPU")
-  plt.savefig(os.path.join(GLOBAL_OUTPUT_DIR, "gflops_single_gpu.png"))
-  
+  fig, ax = plt.subplots(figsize=(4, 6))
+  ax.bar(x - width, k80_gflops_list, width, color='grey', label='K80')
+  ax.bar(x, p100_gflops_list, width, color='orange', label='P100')
+  ax.bar(x + width, v100_gflops_list, width, color='darkturquoise', label='V100')
+  ax.set_title('GFLOPS for single GPU')
+  ax.set_xticks(x)
+  ax.set_xticklabels(datasets)
+  ax.grid(True, axis='y')
+  ax.spines['left'].set_visible(False)
+  ax.spines['top'].set_visible(False)
+  ax.spines['right'].set_visible(False)
+  ax.legend()
+  fig.savefig(os.path.join(GLOBAL_OUTPUT_DIR, "gflops_single_gpu." + args.format), format=args.format)
 
-  # sort by bw
-  for gpu_type in gpu_types:
-    for ds in datasets:
-      data[gpu_type][ds].sort(key=lambda x: x[1].av_bw, reverse=True)
-      if len(data[gpu_type][ds]) == 0:
-        print("No result for {} dataset on {}".format(ds, gpu_type))
-      else:
-        print("Best bw {} for {} dataset comes from {} ".format(data[gpu_type][ds][0][1].av_bw, ds, data[gpu_type][ds][0][0]))
-  
 
-  # draw bw for single gpu
+  # bw
   plt.clf()
-  for i, gpu_type in enumerate(gpu_types):
-    ax = plt.subplot(131 + i)
-    label_list = []
-    num_list = []
-    for ds in datasets:
-      if len(data[gpu_type][ds]) > 0:
-        label_list.append(ds)
-        num_list.append(data[gpu_type][ds][0][1].av_gflops)
-    plt.bar(label_list, num_list, color='grey')
-    ax.set_title(gpu_type)
-  plt.suptitle("Memory B/W Utilization (GB/s) for single GPU")
-  plt.legend()
-  plt.savefig(os.path.join(GLOBAL_OUTPUT_DIR, "bw_single_gpu.png"))
+  fig, ax = plt.subplots(figsize=(4, 6))
+  ax.bar(x - width, k80_bw_list, width, color='grey', label='K80')
+  ax.bar(x, p100_bw_list, width, color='orange', label='P100')
+  ax.bar(x + width, v100_bw_list, width, color='darkturquoise', label='V100')
+  ax.set_title('Memory B/W Utilization (GB/s)')
+  ax.set_xticks(x)
+  ax.set_xticklabels(datasets)
+  ax.grid(True, axis='y')
+  ax.spines['left'].set_visible(False)
+  ax.spines['top'].set_visible(False)
+  ax.spines['right'].set_visible(False)
+  ax.legend()
+  fig.savefig(os.path.join(GLOBAL_OUTPUT_DIR, "bw_single_gpu." + args.format), format=args.format)
 
 
+def get_result_for_strong_scaling(dir_addr, scaling_num, dataset, get_node, key):
+  files = [name for name in os.listdir(dir_addr) if os.path.isfile(os.path.join(dir_addr, name))]
+  files = [name for name in files if name.endswith("out") and dataset in name ]
 
-def strong_scaling_for_cpu(args):
-  input_dir_addr = os.path.join(GLOBAL_INPUT_DIR, "strong_scaling_on_cpu", args.hostname)
-  dataset = args.dataset
-  scaling_num = [1, 2, 4]
-
+  num_list = []
   data = {}
-  for node_num in scaling_num:
-    data[node_num] = []
-  
-  files = [name for name in os.listdir(input_dir_addr) if os.path.isfile(os.path.join(input_dir_addr, name))]
-  files = [name for name in files if name.endswith("out")]
+  for n in scaling_num:
+    data[n] = []
 
   for f in files:
     try:
-      res = parse_output(os.path.join(input_dir_addr, f))
+      res = parse_output(os.path.join(dir_addr, f))
     except:
       print("Got error parsing {}, skipping".format(f))
       continue
     para = f.split('.')
     para.pop()
-    node_num = int(para[0])
+    node_num = int(get_node(para))
     if node_num not in scaling_num:
       raise Exception("Unknown node num: {}".format(node_num))
-    data[node_num].append((f, res))
+    data[node_num].append(key(res))
   
-  # sort by tot_time
-  for node_num in scaling_num:
-    data[node_num].sort(key=lambda x: x[1].tot_time)
-    if len(data[node_num]) == 0:
-      print("No result for {} dataset on {} nodes".format(dataset, node_num))
-    else:
-      print("Best tot_time {} sec for {} dataset comes from {}".format(data[node_num][0][1].tot_time, dataset, data[node_num][0][0]))
+  for n in scaling_num:
+    assert len(data[n]) == 1
+    num_list.append(data[n][0])
+  return num_list
+
+def strong_scaling_for_cpu(args):
+  dir_addr = os.path.join(GLOBAL_INPUT_DIR, "strong_scaling_on_cpu", "multi_intel")
+  datasets = ["CDS1", "CDS2"]
+  scaling_num = [1, 2, 4]
   
-  # draw tot_time, ktime(proj + backproj), ctime(..), rtime(..)
-  # result for all node_num must be available
+  for ds in datasets:
+    num_list = get_result_for_strong_scaling(dir_addr, scaling_num, ds,
+      get_node=lambda x: x[0],
+      key=lambda x:
+        (x.tot_time,
+          x.proj_ktime + x.backproj_ktime,
+          x.proj_ctime + x.backproj_ctime,
+          x.proj_rtime + x.backproj_rtime))
 
-  tot_time_list = []
-  ktime_list = []
-  ctime_list = []
-  rtime_list = []
-  for node_num in scaling_num:
-    res = data[node_num][0][1]
-    tot_time = res.tot_time
-    ktime = res.proj_ktime + res.backproj_ktime
-    ctime = res.proj_ctime + res.backproj_ctime
-    rtime = res.proj_rtime + res.backproj_rtime
-    tot_time_list.append(tot_time)
-    ktime_list.append(ktime)
-    ctime_list.append(ctime)
-    rtime_list.append(rtime)
-  
-  fig, ax = plt.subplots()
-  #ax.axis(scaling_num)
-  #plt.xticks(scaling_num)
-  #ax.loglog()
-  #formatter = ScalarFormatter()
-  #formatter.set_scientific(False)
-  #ax.xaxis.set_major_formatter(formatter)
-  ax.xaxis.set_major_locator(MaxNLocator(integer=True))
+    tot_time_list = [x[0] for x in num_list ]
+    ktime_list = [x[1] for x in num_list ]
+    ctime_list = [x[2] for x in num_list ]
+    rtime_list = [x[3] for x in num_list ]
 
-  plt.plot(scaling_num, tot_time_list, color='blue', label='Total')
-  plt.plot(scaling_num, ktime_list, color='red', label='kernel')
-  plt.plot(scaling_num, ctime_list, color='yellow', label='comm')
-  plt.plot(scaling_num, rtime_list, color='cyan', label='reduction')
-  plt.xscale("log")
-  plt.yscale("log")
-  plt.xticks(scaling_num)
-  plt.xlabel("Number of Nodes")
-  plt.ylabel("Solution Time(s)")
+    fig, ax = plt.subplots()
+    ideal_list = [tot_time_list[0]]
+    for _ in range(len(scaling_num) - 1):
+      ideal_list.append(ideal_list[-1] / 2)
+    ax.plot(scaling_num, tot_time_list, marker='o', color='deepskyblue', label='Total')
+    ax.plot(scaling_num, ktime_list, marker='o', color='orangered', label='kernel')
+    ax.plot(scaling_num, ctime_list, marker='o', color='orange', label='comm')
+    ax.plot(scaling_num, rtime_list, marker='o', color='purple', label='reduction')
+    ax.plot(scaling_num, ideal_list, color='black', label='ideal')
 
-
-
-
-  #ax = plt.gca()
-  #ax.set_scientific(False)
-  #tick = ticker.ScalarFormatter()
-  #tick.set_scientific(False)
-  #tick.set_powerlimits((-3,20))
-  #ax.xaxis.set_minor_formatter(tick)
-  #ax.xaxis.set_major_formatter(FormatStrFormatter("%d"))
-  #ax.xaxis.set_major_formatter(StrMethodFormatter('{x:,.0f}'))
-  #ax.xaxis.set_major_formatter(FuncFormatter(lambda x, p: format(int(x), ',')))
-  #ax.xaxis.set_minor_formatter(NullFormatter())
-  plt.title("{} Strong Scaling on CPU".format(dataset))
-  plt.legend()
-  plt.savefig(os.path.join(GLOBAL_OUTPUT_DIR, "{}_strong_scaling_on_cpu.png".format(dataset)))
-
+    ax.set_xscale("log")
+    ax.set_yscale("log")
+    ax.set_xlabel("Number of Nodes")
+    ax.set_ylabel("Solution Time(s)")
+    ax.set_title("{} Strong Scaling on CPU".format(ds))
+    ax.xaxis.set_minor_formatter(FuncFormatter(lambda x, pos: '%d' % x))
+    ax.xaxis.set_major_formatter(FuncFormatter(lambda x, pos: '%d' % x))
+    ax.grid(True, which='both')
+    ax.legend()
+    fig.savefig(os.path.join(GLOBAL_OUTPUT_DIR, "{}_strong_scaling_on_cpu.".format(ds) + args.format), format=args.format)
 
 def strong_scaling_for_gpu(args):
-  pass
+  dir_addr = os.path.join(GLOBAL_INPUT_DIR, "strong_scaling_on_gpu", "multi_p100")
+  datasets = ["CDS1", "CDS2"]
+  scaling_num = [1, 2, 4]
+  
+  for ds in datasets:
+    num_list = get_result_for_strong_scaling(dir_addr, scaling_num, ds,
+      get_node=lambda x: int(x[1]) // 4,
+      key=lambda x:
+        (x.tot_time,
+          x.proj_ktime + x.backproj_ktime,
+          x.proj_ctime + x.backproj_ctime,
+          x.proj_rtime + x.backproj_rtime))
+
+    tot_time_list = [x[0] for x in num_list ]
+    ktime_list = [x[1] for x in num_list ]
+    ctime_list = [x[2] for x in num_list ]
+    rtime_list = [x[3] for x in num_list ]
+
+    fig, ax = plt.subplots()
+    ideal_list = [tot_time_list[0]]
+    for _ in range(len(scaling_num) - 1):
+      ideal_list.append(ideal_list[-1] / 2)
+    ax.plot(scaling_num, tot_time_list, marker='o', color='deepskyblue', label='Total')
+    ax.plot(scaling_num, ktime_list, marker='o', color='orangered', label='kernel')
+    ax.plot(scaling_num, ctime_list, marker='o', color='orange', label='comm')
+    ax.plot(scaling_num, rtime_list, marker='o', color='purple', label='reduction')
+    ax.plot(scaling_num, ideal_list, color='black', label='ideal')
+
+    ax.set_xscale("log")
+    ax.set_yscale("log")
+    ax.set_xlabel("Number of Nodes")
+    ax.set_ylabel("Solution Time(s)")
+    ax.set_title("{} Strong Scaling on P100".format(ds))
+    ax.xaxis.set_minor_formatter(FuncFormatter(lambda x, pos: '%d' % x))
+    ax.xaxis.set_major_formatter(FuncFormatter(lambda x, pos: '%d' % x))
+    ax.grid(True, which='both')
+    ax.legend()
+    fig.savefig(os.path.join(GLOBAL_OUTPUT_DIR, "{}_strong_scaling_on_gpu.".format(ds) + args.format), format=args.format)
 
 def draw_info(args):
     print('please run "python draw.py {positional argument} --help" to see guidance')
@@ -318,25 +301,25 @@ if __name__ == "__main__":
 
   # single cpu
   parser_sc = subparsers.add_parser("sc", help="single cpu")
-  parser_sc.add_argument("--hostname", "-host", type=str, required=True)
+  parser_sc.add_argument("--format", "-f", type=str, default="pdf")
   parser_sc.set_defaults(func=single_cpu)
 
 
   # single gpu
   parser_sg = subparsers.add_parser("sg", help="single gpu")
+  parser_sg.add_argument("--format", "-f", type=str, default="pdf")
   parser_sg.set_defaults(func=single_gpu)
 
 
   # strong scaling for cpu
   parser_ssc = subparsers.add_parser("ssc", help="strong scaling for cpu")
-  parser_ssc.add_argument("--hostname", "-host", type=str, required=True)
-  parser_ssc.add_argument("--dataset", "-d", type=str, required=True)
+  parser_ssc.add_argument("--format", "-f", type=str, default="pdf")
   parser_ssc.set_defaults(func=strong_scaling_for_cpu)
 
 
   # strong scaling for gpu
   parser_ssg = subparsers.add_parser("ssg", help="strong scaling for gpu ")
-  parser_ssg.add_argument("--hostname", "-host", type=str, required=True)
+  parser_ssg.add_argument("--format", "-f", type=str, default="pdf")
   parser_ssg.set_defaults(func=strong_scaling_for_gpu)
 
 
