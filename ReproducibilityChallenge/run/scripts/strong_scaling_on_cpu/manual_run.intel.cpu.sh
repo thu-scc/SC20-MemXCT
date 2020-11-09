@@ -1,9 +1,6 @@
 #!/bin/bash
 # set environment and alloc nodes before executing this script!
 
-export OMP_PLACES=cores
-export OMP_PROC_BIND=close
-
 # scaling for 1, 2, 4 nodes
 
 # Usage: ./manual_run.openmpi.cpu.sh ${CPU_PER_NODE} ${NTHREAD} ${HOSTFILE} ${DATA} ${TILE_SIZE} ${BLOCK_SIZE} ${BUFFER_SIZE}
@@ -39,8 +36,12 @@ for NNODE in 1 2 4; do
   BIN="$TARGET_DIR/$NNODE.$NTHREAD.$DATA.$SPATSIZE.$SPECSIZE.$PROJBLOCK.$BACKBLOCK.$PROJBUFF.$BACKBUFF.bin"
   source ../para.sh $NTHREAD $DATA $SPATSIZE $SPECSIZE $PROJBLOCK $BACKBLOCK $PROJBUFF $BACKBUFF $BIN
 
-  #mpirun -np $NTASK -hostfile $HOSTFILE -ppn $CPU_PER_NODE -genv I_MPI_PIN_DOMAIN socket ../../../compile/cpu-build/memxct.cpu > ${FILE}
-  srun --ntasks-per-node $CPU_PER_NODE -N $NNODE --cores-per-socket=1 ../../../compile/cpu-build/memxct.cpu > ${FILE}
+
+  #$(which mpirun) -np $NTASK -hostfile $HOSTFILE -npernode $CPU_PER_NODE -bind-to none ./inner.sh $NTHREAD $DATA $SPATSIZE $PROJBLOCK $PROJBUFF $BIN > ${FILE}
+ # $(which mpirun) -np $NTASK -hostfile $HOSTFILE -ppn $CPU_PER_NODE ./inner.sh $NTHREAD $DATA $SPATSIZE $PROJBLOCK $PROJBUFF $BIN > ${FILE}
+  #$(which mpirun) -np $NTASK  -ppn $CPU_PER_NODE -genv I_MPI_PIN_DOMAIN=socket ./inner.sh $NTHREAD $DATA $SPATSIZE $PROJBLOCK $PROJBUFF $BIN > ${FILE}
+  export I_MPI_PIN=0
+  $(which mpirun) -np $NTASK -f $HOSTFILE -bind-to none -ppn 1  -genv I_MPI_PIN=0 ./inner.sh $NTHREAD $DATA $SPATSIZE $PROJBLOCK $PROJBUFF $BIN > ${FILE}
 
   tot_time=$(grep -E 'Total Time: \w+.\w+[+-]\w+' -o < $FILE | awk '{print $3}')
 

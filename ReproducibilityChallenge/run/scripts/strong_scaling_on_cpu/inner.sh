@@ -1,0 +1,27 @@
+#!/bin/bash
+#export OMP_PLACES=cores
+#export OMP_PROC_BIND=close
+
+hostname
+
+
+NTHREAD=$1
+DATA=$2
+
+# TILE SIZE
+SPATSIZE=$3
+SPECSIZE=$3
+#
+# BLOCK SIZE
+PROJBLOCK=$4
+BACKBLOCK=$4
+#
+# BUFFER SIZE
+PROJBUFF=$5
+BACKBUFF=$5
+
+BIN=$6
+
+source ../para.sh $NTHREAD $DATA $SPATSIZE $SPECSIZE $PROJBLOCK $BACKBLOCK $PROJBUFF $BACKBUFF $BIN
+
+../../../compile/cpu-build/memxct.cpu
