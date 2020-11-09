@@ -1,0 +1,170 @@
+NUM. THETA             : 750
+NUM. RHO               : 512
+NUM. X PIXELS          : 512
+NUM. Y PIXELS          : 512
+
+NUM. OF PIXELS         : 262144
+NUM. OF RAYS           : 384000
+
+NUM. ITERATIONS        : 24
+
+SPATIAL TILE SIZE      : 128
+SPECTRAL TILE SIZE     : 128
+
+NUMBER OF X TILES      : 4
+NUMBER OF Y TILES      : 4
+NUM. OF THETA TILES    : 6
+NUM. OF RHO TILES      : 4
+
+NUM. SPATIAL TILES     : 16
+NUM. SPECTRAL TILES    : 24
+
+NUM. OF X PIXELS (EXT) : 512
+NUM. OF Y PIXELS (EXT) : 512
+NUM. OF ANGLES (EXT)   : 768
+NUM. OF RHOS (EXT)     : 512
+
+NUM. OF PIXELS (EXT)   : 262144
+NUM. OF RAYS (EXT)     : 393216
+
+NUMBER OF PROCESSES    : 8
+NUMBER OF THRD./PROC.  : 6
+
+INTEGER: 4, FLOAT: 4, LONG: 8, SHORT: 2, POINTER: 8
+APPROX. MEMORY     TOTAL: 4.394531e+00 GB
+APPROX. MEMORY PER PROC.: 5.493164e-01 GB
+
+X START       : -2.560000e+02
+Y START       : -2.560000e+02
+PIXEL SIZE    : 1.000000e+00
+RHO START     : -2.560000e+02
+RAY LENGTH    : 1.024000e+03
+
+SPATIAL INDEXING       : 5
+SPECTRAL INDEXING      : 5
+ 1: CARTESIAN, NATURAL
+ 2: CARTESIAN, TRANSPOSED
+ 3: MORTON, NATURAL
+ 4: MORTON, TRANSPOSED
+PROJECTION BLOCK SIZE      : 512
+BACKPROJECTION BLOCK SIZE  : 512
+PROJECTION BUFFER SIZE      : 48 KB
+BACKPROJECTION BUFFER SIZE  : 48 KB
+
+SINOGRAM FILE : ../../../../datasets/CDS1_sinogram.bin
+   THETA FILE : ../../../../datasets/CDS1_theta.bin
+  OUTPUT FILE : ../../output/strong_scaling_on_gpu/ip-0A00000F/p100.8.6.CDS1.128.128.512.512.48.48.bin
+
+
+PLACE TILES
+lspat 4 lspatdim 4
+lspec 6 lspecdim 8
+MPI PARTITIONING
+proc: 0 numspats: 2 numpixs: 32768 numspecs: 3 numrays: 49152
+proc: 1 numspats: 2 numpixs: 32768 numspecs: 3 numrays: 49152
+proc: 2 numspats: 2 numpixs: 32768 numspecs: 3 numrays: 49152
+proc: 3 numspats: 2 numpixs: 32768 numspecs: 3 numrays: 49152
+proc: 4 numspats: 2 numpixs: 32768 numspecs: 3 numrays: 49152
+proc: 5 numspats: 2 numpixs: 32768 numspecs: 3 numrays: 49152
+proc: 6 numspats: 2 numpixs: 32768 numspecs: 3 numrays: 49152
+proc: 7 numspats: 2 numpixs: 32768 numspecs: 3 numrays: 49152
+maxnumpix: 32768 maxnumray: 49152
+FILL PIXELS AND RAYS
+INPUT THETA DATA
+DOMAIN PARTITIONING
+myid 1 raynuminc 174234/1343996 raynumout 178890/1343996
+myid 4 raynuminc 148030/1343996 raynumout 178900/1343996
+myid 2 raynuminc 192113/1343996 raynumout 157119/1343996
+myid 5 raynuminc 162942/1343996 raynumout 157090/1343996
+myid 3 raynuminc 186961/1343996 raynumout 178890/1343996
+myid 6 raynuminc 139266/1343996 raynumout 178900/1343996
+myid 0 raynuminc 169825/1343996 raynumout 157117/1343996
+myid 7 raynuminc 170625/1343996 raynumout 157090/1343996
+
+CONSTRUCT PROJECTION MATRIX
+CSR STORAGE: 235011121 (1.750969 GB) rownzmax 383
+RAY-TRACING TIME: 2.890497e-01
+CONSTRUCT BACKPROJECTION MATRIX
+CSR STORAGE: 235011121 (1.750969 GB) rownzmax 1042
+TRANSPOSITION TIME: 9.493989e-02
+
+BLOCKING PROJECTION MATRIX
+NUMBER OF BLOCKS: 2628 BUFFSIZE: 12288
+NUMBER OF BUFFERS: 2640 AVERAGE BUFF/BLOCK: 1.004566 MAX BUFF/BLOCK: 2
+BUFF MAP: 32440320 (0.120850 GB)
+ELLPACK STORAGE: 283233280 (1.582689 GB) buffnzmax: 383 STORAGE EFFICIENCY: 1.244616 DATA REUSE: 17.129622
+BLOCKING TIME: 1.027697e-01
+BLOCKING BACKPROJECTION MATRIX
+NUMBER OF BLOCKS: 512 BUFFSIZE: 12288
+NUMBER OF BUFFERS: 1020 AVERAGE BUFF/BLOCK: 1.992188 MAX BUFF/BLOCK: 2
+BUFF MAP: 12533760 (0.046692 GB)
+ELLPACK STORAGE: 260354048 (1.454842 GB) buffnzmax: 746 STORAGE EFFICIENCY: 1.353990 DATA REUSE: 21.340651
+BLOCKING TIME: 1.707818e-01
+
+FILL PROJECTION MATRIX
+TIME: 2.692690e-01
+FILL BACKPROJECTION MATRIX
+TIME: 3.653681e-01
+REDUCTION MAPPINGS
+myid: 3 device: 3
+myid: 4 device: 4
+PREPROCESSING TIME: 1.294498e+00
+myid: 0 device: 0
+myid: 7 device: 7
+myid: 1 device: 1
+myid: 5 device: 5
+myid: 2 device: 2
+myid: 6 device: 6
+
+Device Count: 4
+Device 0 name: -852618000
+Computational Capabilities: 6, 0
+Maximum global memory size: 17071734784
+Maximum constant memory size: 65536
+Maximum shared memory size per block: 49152
+Maximum block dimensions: 1024x1024x64
+Maximum grid dimensions: 2147483647x65535x65535
+Maximum threads per block: 1024
+Warp size: 32
+
+PROC 1 TOTAL GPU MEMORY: 0.593047 GB
+PROC 0 TOTAL GPU MEMORY: 0.538656 GB
+INPUT MEASUREMENT DATA
+INPUT ENDS
+GRADIENT-DESCENT OPTIMIZATION
+PROC 7 TOTAL GPU MEMORY: 0.538541 GB
+PROC 3 TOTAL GPU MEMORY: 0.597114 GB
+PROC 2 TOTAL GPU MEMORY: 0.534466 GB
+PROC 6 TOTAL GPU MEMORY: 0.597651 GB
+PROC 4 TOTAL GPU MEMORY: 0.593235 GB
+PROC 5 TOTAL GPU MEMORY: 0.535912 GB
+iter: 0 error: 4.959038e+04 gradnorm: 1.560966e+10
+iter: 1 error: 5.316521e+03 gradnorm: 4.760847e+08
+iter: 2 error: 5.074578e+02 gradnorm: 1.604497e+07
+iter: 3 error: 2.940090e+02 gradnorm: 8.082362e+06
+iter: 4 error: 1.716262e+02 gradnorm: 1.353836e+06
+iter: 5 error: 1.154519e+02 gradnorm: 6.253266e+05
+iter: 6 error: 8.898705e+01 gradnorm: 6.390272e+05
+iter: 7 error: 7.448869e+01 gradnorm: 5.297748e+05
+iter: 8 error: 6.915632e+01 gradnorm: 1.011107e+06
+iter: 9 error: 5.777574e+01 gradnorm: 2.280134e+05
+iter: 10 error: 4.873898e+01 gradnorm: 1.926026e+05
+iter: 11 error: 4.173148e+01 gradnorm: 1.106611e+05
+iter: 12 error: 3.777302e+01 gradnorm: 1.959624e+05
+iter: 13 error: 3.468921e+01 gradnorm: 1.021249e+05
+iter: 14 error: 3.152375e+01 gradnorm: 7.812171e+04
+iter: 15 error: 3.073007e+01 gradnorm: 1.639085e+05
+iter: 16 error: 2.842467e+01 gradnorm: 5.529627e+04
+iter: 17 error: 2.682943e+01 gradnorm: 4.558668e+04
+iter: 18 error: 2.524042e+01 gradnorm: 2.665448e+04
+iter: 19 error: 2.394680e+01 gradnorm: 2.564725e+04
+iter: 20 error: 2.289246e+01 gradnorm: 1.705304e+04
+iter: 21 error: 2.259679e+01 gradnorm: 6.642881e+04
+iter: 22 error: 2.188657e+01 gradnorm: 1.212830e+04
+iter: 23 error: 2.120481e+01 gradnorm: 9.401189e+03
+iter: 24 error: 2.068280e+01 gradnorm: 8.782032e+03
+recon: 1.158762e+00 proj: 5.513923e-01 (2.389270e-02 4.780695e-01 4.751264e-02) backproj: 3.320911e-01 (1.977333e-02 2.986149e-01 1.288691e-02) ctime: 1.827287e-01 wtime: 4.850502e-02
+numproj: 49 numback: 25
+proj: 3.649943e-01 s (63.099856 GFLOPS) backproj: 1.973819e-01 s (59.532098 GFLOPS) avGFLOPS: 61.847650 totGFLOPS: 494.781202
+proj: 245.562406 GB/s back: 204.205615 GB/s av: 231.047069 GB/s tot: 1848.376548 GB/s
+Total Time: 3.584696e+00

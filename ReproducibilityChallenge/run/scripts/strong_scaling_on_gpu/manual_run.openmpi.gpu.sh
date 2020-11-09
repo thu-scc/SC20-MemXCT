@@ -27,15 +27,14 @@ BACKBUFF=$8
 
 
 HOTNAME=$(hostname)
-mkdir -p ../../output/original/$HOSTNAME/gpu
+TARGET_DIR="../../output/strong_scaling_on_gpu/$HOSTNAME"
+mkdir -p $TARGET_DIR
 
 for NNODE in 1 2 4; do
   NTASK=`expr $GPU_PER_NODE \* $NNODE`
-  FILE="../../output/original/$HOSTNAME/gpu/$GPU.$NTASK.$NTHREAD.$DATA.$SPATSIZE.$SPECSIZE.$PROJBLOCK.$BACKBLOCK.$PROJBUFF.$BACKBUFF.out"
-  BIN="../../output/original/$HOSTNAME/gpu/$GPU.$NTASK.$NTHREAD.$DATA.$SPATSIZE.$SPECSIZE.$PROJBLOCK.$BACKBLOCK.$PROJBUFF.$BACKBUFF.bin"
-  source ../para.sh $NTHREAD $DATA $SPATSIZE $SPECSIZE $PROJBLOCK $BACKBLOCK $PROJBUFF $BACKBUFF $BIN
-
-  mpirun -np $NTASK -hostfile $HOSTFILE -npernode $GPU_PER_NODE -bind-to core ../../../compile/gpu-build/$1/memxct.gpu > ${FILE}
+  FILE="$TARGET_DIR/$GPU.$NTASK.$NTHREAD.$DATA.$SPATSIZE.$SPECSIZE.$PROJBLOCK.$BACKBLOCK.$PROJBUFF.$BACKBUFF.out"
+  BIN="$TARGET_DIR/$GPU.$NTASK.$NTHREAD.$DATA.$SPATSIZE.$SPECSIZE.$PROJBLOCK.$BACKBLOCK.$PROJBUFF.$BACKBUFF.bin"
+  $(which mpirun) -np $NTASK -hostfile $HOSTFILE -npernode $GPU_PER_NODE -bind-to none ./inner.sh $GPU $NTHREAD $DATA $SPATSIZE $PROJBLOCK $PROJBUFF $BIN > ${FILE}
 
   tot_time=$(grep -E 'Total Time: \w+.\w+[+-]\w+' -o < $FILE | awk '{print $3}')
 
