@@ -350,11 +350,19 @@ LOOP BEGIN at ../cpu-code/src/main.cpp(619,5)
    remark #25460: No loop optimizations reported
 
    LOOP BEGIN at ../cpu-code/src/main.cpp(620,7)
-      remark #25460: No loop optimizations reported
+   <Multiversioned v1>
    LOOP END
 
    LOOP BEGIN at ../cpu-code/src/main.cpp(620,7)
-   <Remainder>
+   <Remainder, Multiversioned v1>
+   LOOP END
+
+   LOOP BEGIN at ../cpu-code/src/main.cpp(620,7)
+   <Multiversioned v2>
+   LOOP END
+
+   LOOP BEGIN at ../cpu-code/src/main.cpp(620,7)
+   <Remainder, Multiversioned v2>
    LOOP END
 LOOP END
 
@@ -366,18 +374,6 @@ LOOP BEGIN at ../cpu-code/src/main.cpp(663,7)
 
       LOOP BEGIN at ../cpu-code/src/main.cpp(665,9)
          remark #25460: No loop optimizations reported
-
-         LOOP BEGIN at ../cpu-code/src/main.cpp(665,9)
-         <Peeled loop for vectorization>
-         LOOP END
-
-         LOOP BEGIN at ../cpu-code/src/main.cpp(665,9)
-            remark #15300: LOOP WAS VECTORIZED
-         LOOP END
-
-         LOOP BEGIN at ../cpu-code/src/main.cpp(665,9)
-         <Remainder loop for vectorization>
-         LOOP END
       LOOP END
 
       LOOP BEGIN at ../cpu-code/src/main.cpp(667,9)
@@ -443,18 +439,6 @@ LOOP BEGIN at ../cpu-code/src/main.cpp(700,7)
 
       LOOP BEGIN at ../cpu-code/src/main.cpp(702,9)
          remark #25460: No loop optimizations reported
-
-         LOOP BEGIN at ../cpu-code/src/main.cpp(702,9)
-         <Peeled loop for vectorization>
-         LOOP END
-
-         LOOP BEGIN at ../cpu-code/src/main.cpp(702,9)
-            remark #15300: LOOP WAS VECTORIZED
-         LOOP END
-
-         LOOP BEGIN at ../cpu-code/src/main.cpp(702,9)
-         <Remainder loop for vectorization>
-         LOOP END
       LOOP END
 
       LOOP BEGIN at ../cpu-code/src/main.cpp(704,9)
@@ -519,18 +503,6 @@ LOOP BEGIN at ../cpu-code/src/main.cpp(754,7)
 
       LOOP BEGIN at ../cpu-code/src/main.cpp(756,9)
          remark #25460: No loop optimizations reported
-
-         LOOP BEGIN at ../cpu-code/src/main.cpp(756,9)
-         <Peeled loop for vectorization>
-         LOOP END
-
-         LOOP BEGIN at ../cpu-code/src/main.cpp(756,9)
-            remark #15300: LOOP WAS VECTORIZED
-         LOOP END
-
-         LOOP BEGIN at ../cpu-code/src/main.cpp(756,9)
-         <Remainder loop for vectorization>
-         LOOP END
       LOOP END
 
       LOOP BEGIN at ../cpu-code/src/main.cpp(758,9)
@@ -567,18 +539,6 @@ LOOP BEGIN at ../cpu-code/src/main.cpp(812,7)
 
       LOOP BEGIN at ../cpu-code/src/main.cpp(814,9)
          remark #25460: No loop optimizations reported
-
-         LOOP BEGIN at ../cpu-code/src/main.cpp(814,9)
-         <Peeled loop for vectorization>
-         LOOP END
-
-         LOOP BEGIN at ../cpu-code/src/main.cpp(814,9)
-            remark #15300: LOOP WAS VECTORIZED
-         LOOP END
-
-         LOOP BEGIN at ../cpu-code/src/main.cpp(814,9)
-         <Remainder loop for vectorization>
-         LOOP END
       LOOP END
 
       LOOP BEGIN at ../cpu-code/src/main.cpp(816,9)
@@ -644,18 +604,6 @@ LOOP BEGIN at ../cpu-code/src/main.cpp(849,7)
 
       LOOP BEGIN at ../cpu-code/src/main.cpp(851,9)
          remark #25460: No loop optimizations reported
-
-         LOOP BEGIN at ../cpu-code/src/main.cpp(851,9)
-         <Peeled loop for vectorization>
-         LOOP END
-
-         LOOP BEGIN at ../cpu-code/src/main.cpp(851,9)
-            remark #15300: LOOP WAS VECTORIZED
-         LOOP END
-
-         LOOP BEGIN at ../cpu-code/src/main.cpp(851,9)
-         <Remainder loop for vectorization>
-         LOOP END
       LOOP END
 
       LOOP BEGIN at ../cpu-code/src/main.cpp(853,9)
@@ -720,18 +668,6 @@ LOOP BEGIN at ../cpu-code/src/main.cpp(903,7)
 
       LOOP BEGIN at ../cpu-code/src/main.cpp(905,9)
          remark #25460: No loop optimizations reported
-
-         LOOP BEGIN at ../cpu-code/src/main.cpp(905,9)
-         <Peeled loop for vectorization>
-         LOOP END
-
-         LOOP BEGIN at ../cpu-code/src/main.cpp(905,9)
-            remark #15300: LOOP WAS VECTORIZED
-         LOOP END
-
-         LOOP BEGIN at ../cpu-code/src/main.cpp(905,9)
-         <Remainder loop for vectorization>
-         LOOP END
       LOOP END
 
       LOOP BEGIN at ../cpu-code/src/main.cpp(907,9)
@@ -804,7 +740,7 @@ LOOP BEGIN at ../cpu-code/src/main.cpp(978,5)
    LOOP END
 LOOP END
 
-LOOP BEGIN at ../cpu-code/src/main.cpp(994,27)
+LOOP BEGIN at ../cpu-code/src/main.cpp(993,25)
    remark #25460: No loop optimizations reported
 
    LOOP BEGIN at ../cpu-code/src/main.cpp(982,5)
@@ -997,20 +933,29 @@ Begin optimization report for: __$U0
 
 
 LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
-<Peeled loop for vectorization>
+<Peeled loop for vectorization, Multiversioned v1>
 LOOP END
 
 LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
+<Multiversioned v1>
    remark #15300: LOOP WAS VECTORIZED
 LOOP END
 
 LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
-<Remainder loop for vectorization>
+<Remainder loop for vectorization, Multiversioned v1>
    remark #15301: REMAINDER LOOP WAS VECTORIZED
 LOOP END
 
 LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
-<Remainder loop for vectorization>
+<Remainder loop for vectorization, Multiversioned v1>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
+<Multiversioned v2>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
+<Remainder, Multiversioned v2>
 LOOP END
 ===========================================================================
 
@@ -1020,20 +965,29 @@ Begin optimization report for: __$U1
 
 
 LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
-<Peeled loop for vectorization>
+<Peeled loop for vectorization, Multiversioned v1>
 LOOP END
 
 LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
+<Multiversioned v1>
    remark #15300: LOOP WAS VECTORIZED
 LOOP END
 
 LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
-<Remainder loop for vectorization>
+<Remainder loop for vectorization, Multiversioned v1>
    remark #15301: REMAINDER LOOP WAS VECTORIZED
 LOOP END
 
 LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
-<Remainder loop for vectorization>
+<Remainder loop for vectorization, Multiversioned v1>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
+<Multiversioned v2>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
+<Remainder, Multiversioned v2>
 LOOP END
 ===========================================================================
 
@@ -1043,20 +997,29 @@ Begin optimization report for: __$U2
 
 
 LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
-<Peeled loop for vectorization>
+<Peeled loop for vectorization, Multiversioned v1>
 LOOP END
 
 LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
+<Multiversioned v1>
    remark #15300: LOOP WAS VECTORIZED
 LOOP END
 
 LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
-<Remainder loop for vectorization>
+<Remainder loop for vectorization, Multiversioned v1>
    remark #15301: REMAINDER LOOP WAS VECTORIZED
 LOOP END
 
 LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
-<Remainder loop for vectorization>
+<Remainder loop for vectorization, Multiversioned v1>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
+<Multiversioned v2>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
+<Remainder, Multiversioned v2>
 LOOP END
 ===========================================================================
 
@@ -1066,20 +1029,29 @@ Begin optimization report for: __$U3
 
 
 LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
-<Peeled loop for vectorization>
+<Peeled loop for vectorization, Multiversioned v1>
 LOOP END
 
 LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
+<Multiversioned v1>
    remark #15300: LOOP WAS VECTORIZED
 LOOP END
 
 LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
-<Remainder loop for vectorization>
+<Remainder loop for vectorization, Multiversioned v1>
    remark #15301: REMAINDER LOOP WAS VECTORIZED
 LOOP END
 
 LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
-<Remainder loop for vectorization>
+<Remainder loop for vectorization, Multiversioned v1>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
+<Multiversioned v2>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
+<Remainder, Multiversioned v2>
 LOOP END
 ===========================================================================
 
@@ -1089,20 +1061,29 @@ Begin optimization report for: __$U4
 
 
 LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
-<Peeled loop for vectorization>
+<Peeled loop for vectorization, Multiversioned v1>
 LOOP END
 
 LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
+<Multiversioned v1>
    remark #15300: LOOP WAS VECTORIZED
 LOOP END
 
 LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
-<Remainder loop for vectorization>
+<Remainder loop for vectorization, Multiversioned v1>
    remark #15301: REMAINDER LOOP WAS VECTORIZED
 LOOP END
 
 LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
-<Remainder loop for vectorization>
+<Remainder loop for vectorization, Multiversioned v1>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
+<Multiversioned v2>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
+<Remainder, Multiversioned v2>
 LOOP END
 ===========================================================================
 
@@ -1112,20 +1093,29 @@ Begin optimization report for: __$U5
 
 
 LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
-<Peeled loop for vectorization>
+<Peeled loop for vectorization, Multiversioned v1>
 LOOP END
 
 LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
+<Multiversioned v1>
    remark #15300: LOOP WAS VECTORIZED
 LOOP END
 
 LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
-<Remainder loop for vectorization>
+<Remainder loop for vectorization, Multiversioned v1>
    remark #15301: REMAINDER LOOP WAS VECTORIZED
 LOOP END
 
 LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
-<Remainder loop for vectorization>
+<Remainder loop for vectorization, Multiversioned v1>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
+<Multiversioned v2>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
+<Remainder, Multiversioned v2>
 LOOP END
 ===========================================================================
 
@@ -1135,20 +1125,29 @@ Begin optimization report for: __$U6
 
 
 LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
-<Peeled loop for vectorization>
+<Peeled loop for vectorization, Multiversioned v1>
 LOOP END
 
 LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
+<Multiversioned v1>
    remark #15300: LOOP WAS VECTORIZED
 LOOP END
 
 LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
-<Remainder loop for vectorization>
+<Remainder loop for vectorization, Multiversioned v1>
    remark #15301: REMAINDER LOOP WAS VECTORIZED
 LOOP END
 
 LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
-<Remainder loop for vectorization>
+<Remainder loop for vectorization, Multiversioned v1>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
+<Multiversioned v2>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
+<Remainder, Multiversioned v2>
 LOOP END
 ===========================================================================
 
@@ -1158,20 +1157,29 @@ Begin optimization report for: __$U7
 
 
 LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
-<Peeled loop for vectorization>
+<Peeled loop for vectorization, Multiversioned v1>
 LOOP END
 
 LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
+<Multiversioned v1>
    remark #15300: LOOP WAS VECTORIZED
 LOOP END
 
 LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
-<Remainder loop for vectorization>
+<Remainder loop for vectorization, Multiversioned v1>
    remark #15301: REMAINDER LOOP WAS VECTORIZED
 LOOP END
 
 LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
-<Remainder loop for vectorization>
+<Remainder loop for vectorization, Multiversioned v1>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
+<Multiversioned v2>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1222,1)
+<Remainder, Multiversioned v2>
 LOOP END
 ===========================================================================
 
@@ -1181,14 +1189,27 @@ Begin optimization report for: copy_kernel(float *, float *, int)
 
 
 LOOP BEGIN at ../cpu-code/src/main.cpp(1243,3)
-   remark #25460: No loop optimizations reported
+<Peeled loop for vectorization, Multiversioned v1>
+LOOP END
 
-   LOOP BEGIN at ../cpu-code/src/main.cpp(1243,3)
-   <Multiversioned v2>
-   LOOP END
+LOOP BEGIN at ../cpu-code/src/main.cpp(1243,3)
+<Multiversioned v1>
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
 
-   LOOP BEGIN at ../cpu-code/src/main.cpp(1243,3)
-   <Remainder, Multiversioned v2>
-   LOOP END
+LOOP BEGIN at ../cpu-code/src/main.cpp(1243,3)
+<Alternate Alignment Vectorized Loop, Multiversioned v1>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1243,3)
+<Remainder loop for vectorization, Multiversioned v1>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1243,3)
+<Multiversioned v2>
+LOOP END
+
+LOOP BEGIN at ../cpu-code/src/main.cpp(1243,3)
+<Remainder, Multiversioned v2>
 LOOP END
 ===========================================================================
