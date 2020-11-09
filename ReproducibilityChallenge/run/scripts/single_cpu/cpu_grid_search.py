@@ -25,7 +25,7 @@ def cpu_run(script, thread, tile_size, block_power_max=12, buffer_size_max=48, d
     data['block_size'].append(block_size)
     for j, buffer_size in enumerate(range(1, buffer_size_max + 1)):
       data['buffer_size'].append(buffer_size)
-      cmd = "./{} 1 {} {} {} {} {}".format(script, thread, dataset, tile_size, block_size, buffer_size)
+      cmd = "./{} {} {} {} {} {}".format(script, thread, dataset, tile_size, block_size, buffer_size)
       print("CPU for tile_size: {}, block_size: {}, buffer_size: {}, dataset: {}".format(tile_size, block_size, buffer_size, dataset))
       print("\tcmd: {}".format(cmd))
       process = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)

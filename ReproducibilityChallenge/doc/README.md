@@ -4,4 +4,8 @@
 
 ### Compile
 
-See `compile/README.md` for detail.
+It contains compilation scripts, vectorization report for CPU code, README and environment info. See `compile/README.md` for detail.
+
+### Run
+
+See `run/scripts/README.md` for detail.

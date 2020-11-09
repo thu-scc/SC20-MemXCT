@@ -12,7 +12,7 @@ RESULT_DIR="./result"
 # too old, not maintain
 
 
-def gpu_run(tile_size, block_power_max=12, buffer_size_max=48, dataset="ADS2"):
+def gpu_run(gpu, thread, tile_size, block_power_max=12, buffer_size_max=48, dataset="ADS2"):
   data = {}
   data['block_size'] = []
   data['buffer_size'] = []
@@ -27,7 +27,7 @@ def gpu_run(tile_size, block_power_max=12, buffer_size_max=48, dataset="ADS2"):
     data['block_size'].append(block_size)
     for j, buffer_size in enumerate(range(1, buffer_size_max + 1)):
       data['buffer_size'].append(buffer_size)
-      cmd = "./run.gpu.sh {} {} {} {} {} {} {}".format(dataset, tile_size, tile_size, block_size, block_size, buffer_size, buffer_size)
+      cmd = "./run.gpu.sh {} {} {} {} {} {}".format(gpu, thread, dataset, tile_size, block_size, buffer_size)
       print("GPU for tile_size: {}, block_size: {}, buffer_size: {}, dataset: {}".format(tile_size, block_size, buffer_size, dataset))
       print("\tcmd: {}".format(cmd))
       process = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
@@ -48,11 +48,13 @@ def gpu_run(tile_size, block_power_max=12, buffer_size_max=48, dataset="ADS2"):
 
 if __name__ == "__main__":
   parser = argparse.ArgumentParser()
+  parser.add_argument("--gpu", "-gpu", required=True, type=str, dest="gpu", help="gpu")
+  parser.add_argument("--thread", "-thread", required=True, type=int, dest="thread", help="thread")
   parser.add_argument("--tile_size", "-tile", required=True, type=int, dest="tile_size", help="tile_size")
   #parser.add_argument("--block_size", "-block", dest="block_size", help='block size')
   #parser.add_argument("--buffer_size", "-buf", dest="buffer_size", help='buffer size')
 
   args = parser.parse_args()
-  gpu_run(args.tile_size)
+  gpu_run(args.gpu, args.thread, args.tile_size)
 
   

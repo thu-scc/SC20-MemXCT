@@ -12,6 +12,19 @@ What's used:
 
 No modifications have been made to source code because they compile without problems. We wrote our own Makefiles to detect compilers and setup correct optimization flags based on CPU or GPU architectures.
 
+Specifically, you can install these dependencies by:
+
+```shell
+# GCC
+sudo apt install -y g++
+# Spack
+. /opt/spack/share/spack/setup-env.sh
+# OpenMPI, UCX and CUDA
+spack install openmpi@3.0.1 fabrics=ucx +cuda "^cuda@10.0.130"
+# Intel w/ licenses put into /opt/intel/licenses
+spack install intel-parallel-studio@cluster.2020.2
+```
+
 ## Compilation scripts
 
 The directory structure of `compile` directory is as follows:

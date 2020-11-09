@@ -20,9 +20,6 @@ PROJBUFF=$5
 BACKBUFF=$5
 
 
-HOSTFILE=$6
-
-
 HOSTNAME=$(hostname)
 TARGET_DIR="../../output/single_cpu/$HOSTNAME"
 mkdir -p $TARGET_DIR
