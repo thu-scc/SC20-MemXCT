@@ -32,7 +32,7 @@ BIN="$TARGET_DIR/$NTHREAD.$DATA.$SPATSIZE.$SPECSIZE.$PROJBLOCK.$BACKBLOCK.$PROJB
 
 source ../para.sh $NTHREAD $DATA $SPATSIZE $SPECSIZE $PROJBLOCK $BACKBLOCK $PROJBUFF $BACKBUFF $BIN
 
-mpirun -np 1 --bind-to core ../../../compile/cpu-build/memxct.cpu > ${FILE}
+mpirun -np 1 --bind-to none ../../../compile/cpu-build/memxct.cpu > ${FILE}
 
 tot_bw=$(grep -E 'av: \w+.\w+' -o < $FILE | awk '{print $2}')
 av_gflops=$(grep -E 'avGFLOPS: \w+.\w+' -o < $FILE | awk '{print $2}')
