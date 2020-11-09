@@ -127,7 +127,7 @@ def single_cpu(args):
 
 def single_gpu(args):
   dir_addr = os.path.join(GLOBAL_INPUT_DIR, "single_gpu")
-  datasets = ["ADS1", "ADS2"]
+  datasets = ["CDS1", "CDS2"]
   gpu_types = ["k80", "p100", "v100"]
   data = {}
   for gt in gpu_types:
