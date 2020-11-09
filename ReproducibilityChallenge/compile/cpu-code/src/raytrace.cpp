@@ -267,9 +267,6 @@ int encode(unsigned short x, unsigned short y){
 }
 
 //rotate/flip a quadrant appropriately
-// 如果 rx == 0 && ry == 0 则只是x与y换位，相当于翻转
-// 如果 rx == 1 && ry == 0 则相当于中心对称
-// 如果 ry == 1 do nothing
 void rot(int n, int *x, int *y, int rx, int ry) {
     if (ry == 0) {
         if (rx == 1) {
@@ -284,7 +281,6 @@ void rot(int n, int *x, int *y, int rx, int ry) {
     }
 }
 //convert (x,y) to d
-// 将二维坐标转换为Hilbert Order Index
 int xy2d (int n, int x, int y) {
     int rx, ry, s, d=0;
     for (s=n/2; s>0; s/=2) {

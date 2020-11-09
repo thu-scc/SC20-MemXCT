@@ -149,10 +149,8 @@ int main(int argc, char** argv){
   numiter = atoi(chartemp);
 
   chartemp = getenv("SPATSIZE");
-  // tomogram 分块
   spatsize = atof(chartemp);
   chartemp = getenv("SPECSIZE");
-  // sinogram 分块
   specsize = atof(chartemp);
 
   chartemp = getenv("PROJBLOCK");
@@ -177,11 +175,8 @@ int main(int argc, char** argv){
   if(numrho%specsize)numrtile++;
   numttile = numthe/specsize;
   if(numthe%specsize)numttile++;
-  // tomogram 分块数量
   numspattile = numxtile*numytile;
-  // sinogram 分块数量
   numspectile = numrtile*numttile;
-  // 扩展后的pix和ray数量(边界处会因为分块出现padding)
   numpix = numspattile*pow(spatsize,2);
   numray = numspectile*pow(specsize,2);
   //PRINT DATA
@@ -242,22 +237,18 @@ int main(int argc, char** argv){
     printf("\n");
     printf("\n");
   }
-  // TODO: meaning for proj_buffersize, back_buffersize
   proj_buffsize = proj_buffsize*1024/4;
   back_buffsize = back_buffsize*1024/4;
 
   if(myid==0)printf("PLACE TILES\n");
   //PLACE SPATIAL TILES
-  // lspat: tomogram纵向和横向分块数最大值
   int lspat = numxtile;
   if(numytile > lspat)lspat = numytile;
   int spatlevel = 0;
-  // spatlevel: 第一个满足 2^spatlevel >= lspat(满足 >= log2 lspat的整数)
   while(true){
     if(lspat<=pow(2,spatlevel))break;
     spatlevel++;
   }
-  // lspatdim: 显然 >= lspat,相比于lspat有padding，相当于把分块数padding到2的幂
   int lspatdim = pow(2,spatlevel);
   if(myid==0)printf("lspat %d lspatdim %d\n",lspat,lspatdim);
   complex<float> *spatlltemp = new complex<float>[lspatdim*lspatdim];
@@ -327,31 +318,24 @@ int main(int argc, char** argv){
   int *numrays = new int[numproc];
   int *pixstart = new int[numproc];
   int *raystart = new int[numproc];
-  // 一个进程负责多少个tomogram的块
   int myspattile = numspattile/numproc;
-  // 负载均衡，每个进程尽量分配相同数量的块，多的块从rank 0开始往后分配
   if(myid < numspattile-myspattile*numproc)
     myspattile++;
-  // 一个进程负责多少个sinogram的块
   int myspectile = numspectile/numproc;
-  // 负载均衡，每个进程尽量分配相同数量的块，多的块从rank 0开始往后分配
   if(myid < numspectile-myspectile*numproc)
     myspectile++;
   MPI_Allgather(&myspattile,1,MPI_INTEGER,numspats,1,MPI_INTEGER,MPI_COMM_WORLD);
   MPI_Allgather(&myspectile,1,MPI_INTEGER,numspecs,1,MPI_INTEGER,MPI_COMM_WORLD);
-  // 开始的块编号
   spatstart[0] = 0;
   specstart[0] = 0;
   for(int p = 1; p < numproc; p++){
     spatstart[p] = spatstart[p-1] + numspats[p-1];
     specstart[p] = specstart[p-1] + numspecs[p-1];
   }
-  // 每个进程需要处理多少pix和ray
   for(int p = 0; p < numproc; p++){
     numpixs[p] = numspats[p]*spatsize*spatsize;
     numrays[p] = numspecs[p]*specsize*specsize;
   }
-  // pix和ray的开始编号
   pixstart[0] = 0;
   raystart[0] = 0;
   for(int p = 1; p < numproc; p++){
@@ -379,16 +363,12 @@ int main(int argc, char** argv){
   for(int pix = 0; pix < mynumpix; pix++){
     int tile = pix/(spatsize*spatsize);
     int pixloc = pix%(spatsize*spatsize);
-    // pix在自身块中的local_x和local_y
     int pixlocy = pixloc/spatsize;
     int pixlocx = pixloc%spatsize;
     int ind = 0;
-    // TODO: spatindexing 看起来是用来做对比实验的参数
     if(spatindexing==1)
-      // row major
       ind = pixlocy*spatsize+pixlocx;
     if(spatindexing==2)
-      // column major
       ind = pixlocx*spatsize+pixlocy;
     if(spatindexing==3)
       ind = encode(pixlocx,pixlocy);
@@ -397,12 +377,10 @@ int main(int argc, char** argv){
     if(spatindexing==5)
       //ind = encode(pixlocx,pixlocy);
       ind = xy2d(spatsize,pixlocx,pixlocy);
-    // 加上前面所有的pix num 获得global的index
     ind = ind + tile*spatsize*spatsize;
     float x = spatll[spatstart[myid]+tile].real()+pixsize/2+pixlocx*pixsize;
     float y = spatll[spatstart[myid]+tile].imag()+pixsize/2+pixlocy*pixsize;
     pixcoor[ind] = complex<float>(x,y);
-    // TODO: meaning for pixglobalind
     //GLOBAL SPATIAL INDEX (EXTENDED)
     int xglobalind = (int)((x-xstart)/pixsize);
     int yglobalind = (int)((y-ystart)/pixsize);

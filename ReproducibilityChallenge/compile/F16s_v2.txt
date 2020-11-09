@@ -1,0 +1,457 @@
++ curl -H Metadata: true http://169.254.169.254/metadata/instance?api-version=2020-06-01
++ jq -r .compute.vmSize metadata.json
++ echo VM size: Standard_F16s_v2
+VM size: Standard_F16s_v2
++ jq -r .compute.name metadata.json
++ echo VM name: master-MUZWGMRYGJTDELLDMM4WMLJUMQ
+VM name: master-MUZWGMRYGJTDELLDMM4WMLJUMQ
++ jq -r .compute.location metadata.json
++ echo VM location: southcentralus
+VM location: southcentralus
++ jq -r .compute.resourceGroupName metadata.json
++ echo Resource group: scc-rg5
+Resource group: scc-rg5
++ jq -r .network.interface[0].ipv4.ipAddress[0].privateIpAddress metadata.json
++ echo Private ip address: 10.0.0.15
+Private ip address: 10.0.0.15
++ jq -r .network.interface[0].ipv4.ipAddress[0].publicIpAddress metadata.json
++ echo Public ip address: 104.215.79.130
+Public ip address: 104.215.79.130
++ lscpu
++ sed -nr /Model name/ s/.*:\s*(.*)/\1/p
++ echo CPU model: Intel(R) Xeon(R) Platinum 8168 CPU @ 2.70GHz
+CPU model: Intel(R) Xeon(R) Platinum 8168 CPU @ 2.70GHz
++ which gcc
+/usr/bin/gcc
++ gcc --version
+gcc (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0
+Copyright (C) 2017 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
++ which icc
+/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/compilers_and_libraries_2020.2.254/linux/bin/intel64/icc
++ icc --version
+icc (ICC) 19.1.2.254 20200623
+Copyright (C) 1985-2020 Intel Corporation.  All rights reserved.
+
++ lscpu
+Architecture:        x86_64
+CPU op-mode(s):      32-bit, 64-bit
+Byte Order:          Little Endian
+CPU(s):              16
+On-line CPU(s) list: 0-15
+Thread(s) per core:  2
+Core(s) per socket:  8
+Socket(s):           1
+NUMA node(s):        1
+Vendor ID:           GenuineIntel
+CPU family:          6
+Model:               85
+Model name:          Intel(R) Xeon(R) Platinum 8168 CPU @ 2.70GHz
+Stepping:            4
+CPU MHz:             2693.677
+BogoMIPS:            5387.35
+Virtualization:      VT-x
+Hypervisor vendor:   Microsoft
+Virtualization type: full
+L1d cache:           32K
+L1i cache:           32K
+L2 cache:            1024K
+L3 cache:            33792K
+NUMA node0 CPU(s):   0-15
+Flags:               fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss ht syscall nx pdpe1gb rdtscp lm constant_tsc rep_good nopl xtopology cpuid pni pclmulqdq vmx ssse3 fma cx16 pcid sse4_1 sse4_2 movbe popcnt aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch invpcid_single pti tpr_shadow vnmi ept vpid fsgsbase bmi1 hle avx2 smep bmi2 erms invpcid rtm mpx avx512f avx512dq rdseed adx smap clflushopt avx512cd avx512bw avx512vl xsaveopt xsavec xsaves md_clear
++ gcc -march=native -Q --help=target
++ grep march
+  -march=                     		knl
++ unset SSH_CLIENT
++ unset SSH_CONNECTION
++ env
++ sed s/ccuser/USER/g
+LIBRARY_PATH=/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/compilers_and_libraries_2020.2.254/linux/mpi/intel64/libfabric/lib:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/compilers_and_libraries_2020.2.254/linux/ipp/lib/intel64:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/compilers_and_libraries_2020.2.254/linux/compiler/lib/intel64_lin:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/compilers_and_libraries_2020.2.254/linux/mkl/lib/intel64_lin:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/compilers_and_libraries_2020.2.254/linux/tbb/lib/intel64/gcc4.8:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/compilers_and_libraries_2020.2.254/linux/tbb/lib/intel64/gcc4.8:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/compilers_and_libraries_2020.2.254/linux/daal/lib/intel64_lin:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/compilers_and_libraries_2020.2.254/linux/tbb/lib/intel64_lin/gcc4.4:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/compilers_and_libraries_2020.2.254/linux/tbb/lib/intel64_lin/gcc4.8:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/lib
+MPIFC=/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/compilers_and_libraries_2020.2.254/linux/mpi/intel64/bin/mpif90
+LESSOPEN=| /usr/bin/lesspipe %s
+MAIL=/var/mail/USER
+USER=USER
+MPIF77=/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/compilers_and_libraries_2020.2.254/linux/mpi/intel64/bin/mpif77
+LD_LIBRARY_PATH=/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/compilers_and_libraries_2020.2.254/linux/compiler/lib/intel64_lin:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/compilers_and_libraries_2020.2.254/linux/mpi/intel64/libfabric/lib:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/compilers_and_libraries_2020.2.254/linux/mpi/intel64/lib/release:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/compilers_and_libraries_2020.2.254/linux/mpi/intel64/lib:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/compilers_and_libraries_2020.2.254/linux/ipp/lib/intel64:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/compilers_and_libraries_2020.2.254/linux/mkl/lib/intel64_lin:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/compilers_and_libraries_2020.2.254/linux/tbb/lib/intel64/gcc4.8:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/compilers_and_libraries_2020.2.254/linux/daal/lib/intel64_lin:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/compilers_and_libraries_2020.2.254/linux/tbb/lib/intel64_lin/gcc4.4:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/compilers_and_libraries_2020.2.254/linux/tbb/lib/intel64_lin/gcc4.8:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/lib
+SHLVL=1
+OLDPWD=/home/USER/MemXCT-SC20/ReproducibilityChallenge/run/scripts
+HOME=/home/USER
+INTEL_LICENSE_FILE=/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/licenses:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/compilers_and_libraries_2020.2.254/linux/licenses:/opt/intel/licenses:/home/USER/intel/licenses
+SSH_TTY=/dev/pts/0
+IPPROOT=/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/compilers_and_libraries_2020.2.254/linux/ipp
+DAALROOT=/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/compilers_and_libraries_2020.2.254/linux/daal
+SPACK_ROOT=/mnt/exports/data/spack
+LC_TERMINAL_VERSION=3.3.12
+TBBROOT=/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/compilers_and_libraries_2020.2.254/linux/tbb
+LOGNAME=USER
+PSTLROOT=/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/compilers_and_libraries_2020.2.254/linux/pstl
+_=./collect.sh
+PKG_CONFIG_PATH=/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/compilers_and_libraries_2020.2.254/linux/mkl/bin/pkgconfig
+XDG_SESSION_ID=6
+TERM=xterm-256color
+PATH=/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/compilers_and_libraries_2020.2.254/linux/bin/intel64:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/compilers_and_libraries_2020.2.254/linux/bin:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/compilers_and_libraries_2020.2.254/linux/mpi/intel64/libfabric/bin:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/compilers_and_libraries_2020.2.254/linux/mpi/intel64/bin:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/bin:/mnt/exports/data/spack/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/opt/cycle/jetpack/bin:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/parallel_studio_xe_2020.2.108/bin
+XDG_RUNTIME_DIR=/run/user/20002
+CYCLECLOUD_HOME=/opt/cycle/jetpack
+LANG=C.UTF-8
+LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:
+SHELL=/bin/bash
+SPACK_LOADED_HASHES=3shm2o472lj3yzyjuma7cvvtbxx32dup
+MPICXX=/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/compilers_and_libraries_2020.2.254/linux/mpi/intel64/bin/mpicxx
+LESSCLOSE=/usr/bin/lesspipe %s %s
+MKLROOT=/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/compilers_and_libraries_2020.2.254/linux/mkl
+LC_TERMINAL=iTerm2
+CLASSPATH=/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/compilers_and_libraries_2020.2.254/linux/mpi/intel64/lib/mpi.jar:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/compilers_and_libraries_2020.2.254/linux/daal/lib/daal.jar
+NLSPATH=/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/compilers_and_libraries_2020.2.254/linux/compiler/lib/intel64/locale/%l_%t/%N:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/compilers_and_libraries_2020.2.254/linux/mkl/lib/intel64_lin/locale/%l_%t/%N
+FI_PROVIDER_PATH=/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/compilers_and_libraries_2020.2.254/linux/mpi/intel64/libfabric/lib/prov
+PWD=/home/USER/MemXCT-SC20/ReproducibilityChallenge/run/scripts/single_cpu
+XDG_DATA_DIRS=/usr/local/share:/usr/share:/var/lib/snapd/desktop
+I_MPI_ROOT=/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/compilers_and_libraries_2020.2.254/linux/mpi
+CPATH=/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/compilers_and_libraries_2020.2.254/linux/ipp/include:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/compilers_and_libraries_2020.2.254/linux/mkl/include:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/compilers_and_libraries_2020.2.254/linux/pstl/include:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/compilers_and_libraries_2020.2.254/linux/pstl/stdlib:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/compilers_and_libraries_2020.2.254/linux/tbb/include:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/compilers_and_libraries_2020.2.254/linux/tbb/include:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/compilers_and_libraries_2020.2.254/linux/daal/include:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/include
+MPICC=/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/compilers_and_libraries_2020.2.254/linux/mpi/intel64/bin/mpicc
+MANPATH=/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/man/common::::/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/man
+MODULEPATH=/mnt/exports/data/spack/share/spack/modules/linux-ubuntu18.04-x86_64:/mnt/exports/data/spack/share/spack/modules/linux-ubuntu18.04-broadwell:/mnt/exports/data/spack/share/spack/modules/linux-ubuntu18.04-skylake
+MPIF90=/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/compilers_and_libraries_2020.2.254/linux/mpi/intel64/bin/mpif90
+CMAKE_PREFIX_PATH=/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup
+CYCLECLOUD_BOOTSTRAP=/opt/cycle/jetpack/system/bootstrap
++ lsb_release -a
+No LSB modules are available.
+Distributor ID:	Ubuntu
+Description:	Ubuntu 18.04.5 LTS
+Release:	18.04
+Codename:	bionic
++ uname -a
+Linux ip-0A00000F 5.4.0-1031-azure #32~18.04.1-Ubuntu SMP Tue Oct 6 10:03:22 UTC 2020 x86_64 x86_64 x86_64 GNU/Linux
++ cat /proc/meminfo
+MemTotal:       32886244 kB
+MemFree:        30722996 kB
+MemAvailable:   31955084 kB
+Buffers:           57828 kB
+Cached:          1465876 kB
+SwapCached:            0 kB
+Active:           600912 kB
+Inactive:        1043296 kB
+Active(anon):     121140 kB
+Inactive(anon):      368 kB
+Active(file):     479772 kB
+Inactive(file):  1042928 kB
+Unevictable:           0 kB
+Mlocked:               0 kB
+SwapTotal:             0 kB
+SwapFree:              0 kB
+Dirty:               344 kB
+Writeback:             0 kB
+AnonPages:        115912 kB
+Mapped:            43824 kB
+Shmem:               788 kB
+KReclaimable:     167020 kB
+Slab:             321764 kB
+SReclaimable:     167020 kB
+SUnreclaim:       154744 kB
+KernelStack:        4964 kB
+PageTables:         6404 kB
+NFS_Unstable:          0 kB
+Bounce:                0 kB
+WritebackTmp:          0 kB
+CommitLimit:    16443120 kB
+Committed_AS:     348088 kB
+VmallocTotal:   34359738367 kB
+VmallocUsed:       33716 kB
+VmallocChunk:          0 kB
+Percpu:            10304 kB
+HardwareCorrupted:     0 kB
+AnonHugePages:     14336 kB
+ShmemHugePages:        0 kB
+ShmemPmdMapped:        0 kB
+FileHugePages:         0 kB
+FilePmdMapped:         0 kB
+CmaTotal:              0 kB
+CmaFree:               0 kB
+HugePages_Total:       0
+HugePages_Free:        0
+HugePages_Rsvd:        0
+HugePages_Surp:        0
+Hugepagesize:       2048 kB
+Hugetlb:               0 kB
+DirectMap4k:      282560 kB
+DirectMap2M:     3911680 kB
+DirectMap1G:    31457280 kB
++ inxi -F -c0
+System:    Host: ip-0A00000F Kernel: 5.4.0-1031-azure x86_64 bits: 64 Console: tty 0 Distro: Ubuntu 18.04.5 LTS
+Machine:   Device: desktop Mobo: Microsoft model: Virtual Machine v: 7.0 serial: N/A
+           BIOS: American Megatrends v: 090008 date: 12/07/2018
+CPU:       8 core Intel Xeon Platinum 8168 (-MT-MCP-) cache: 33792 KB
+           clock speeds: max: 2693 MHz 1: 2693 MHz 2: 2693 MHz 3: 2693 MHz 4: 2693 MHz 5: 2693 MHz 6: 2693 MHz
+           7: 2693 MHz 8: 2693 MHz 9: 2693 MHz 10: 2693 MHz 11: 2693 MHz 12: 2693 MHz 13: 2693 MHz 14: 2693 MHz
+           15: 2693 MHz 16: 2693 MHz
+Graphics:  Card: Microsoft Hyper-V virtual VGA
+           Display Server: N/A driver: hyperv_fb tty size: 222x64 Advanced Data: N/A out of X
+Network:   Card: Mellanox MT27710 Family [ConnectX-4 Lx Virtual Function] driver: mlx5_core
+           IF: N/A state: N/A speed: N/A duplex: N/A mac: N/A
+Drives:    HDD Total Size: 169.7GB (1.5% used)
+           ID-1: /dev/sda model: Virtual_Disk size: 32.2GB
+           ID-2: /dev/sdb model: Virtual_Disk size: 137.4GB
+Partition: ID-1: / size: 29G used: 2.4G (8%) fs: ext4 dev: /dev/sda1
+RAID:      No RAID devices: /proc/mdstat, md_mod kernel module present
+Sensors:   None detected - is lm-sensors installed and configured?
+Info:      Processes: 279 Uptime: 8 min Memory: 635.7/32115.5MB Init: systemd runlevel: 5
+           Client: Shell (collect.sh) inxi: 2.3.56
++ lsblk -a
+NAME    MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+loop0     7:0    0        0 loop 
+loop1     7:1    0        0 loop 
+loop2     7:2    0        0 loop 
+loop3     7:3    0        0 loop 
+loop4     7:4    0        0 loop 
+loop5     7:5    0        0 loop 
+loop6     7:6    0        0 loop 
+loop7     7:7    0        0 loop 
+sda       8:0    0   30G  0 disk 
+├─sda1    8:1    0 29.9G  0 part /
+├─sda14   8:14   0    4M  0 part 
+└─sda15   8:15   0  106M  0 part /boot/efi
+sdb       8:16   0  128G  0 disk 
+└─sdb1    8:17   0  128G  0 part /mnt
+sr0      11:0    1  628K  0 rom  
++ lsscsi -s
+[0:0:0:0]    disk    Msft     Virtual Disk     1.0   /dev/sda   32.2GB
+[1:0:1:0]    disk    Msft     Virtual Disk     1.0   /dev/sdb    137GB
+[5:0:0:0]    cd/dvd  Msft     Virtual CD/ROM   1.0   /dev/sr0        -
++ lshw -short -quiet -sanitize
++ cat
+WARNING: you should run this program as super-user.
+WARNING: output may be incomplete or inaccurate, you should run this program as super-user.
+H/W path    Device  Class      Description
+==========================================
+                    system     Computer
+/0                  bus        Motherboard
+/0/0                memory     31GiB System memory
+/0/1                processor  Intel(R) Xeon(R) Platinum 8168 CPU @ 2.70GHz
+/0/100              bridge     440BX/ZX/DX - 82443BX/ZX/DX Host bridge (AGP disabled)
+/0/100/7            bridge     82371AB/EB/MB PIIX4 ISA
+/0/100/7.1          storage    82371AB/EB/MB PIIX4 IDE
+/0/100/7.3          bridge     82371AB/EB/MB PIIX4 ACPI
+/0/100/8            display    Hyper-V virtual VGA
+/0/2        enP1s1  network    MT27710 Family [ConnectX-4 Lx Virtual Function]
+/1          eth0    network    Ethernet interface
++ spack find
+-- linux-ubuntu18.04-broadwell / gcc@7.5.0 ----------------------
+autoconf@2.69
+autoconf-archive@2019.01.06
+automake@1.16.2
+berkeley-db@18.1.40
+gcc@10.2.0
+gdbm@1.18.1
+gmp@6.1.2
+isl@0.21
+libsigsegv@2.12
+libtool@2.4.6
+m4@1.4.18
+mpc@1.1.0
+mpfr@4.0.2
+ncurses@6.2
+perl@5.30.3
+pkgconf@1.7.3
+readline@8.0
+zlib@1.2.11
+zstd@1.4.5
+
+-- linux-ubuntu18.04-broadwell / gcc@8.3.0 ----------------------
+cpio@2.13
+intel-mkl@2020.3.279
+
+-- linux-ubuntu18.04-broadwell / gcc@10.2.0 ---------------------
+cpio@2.13
+cuda@11.1.0
+intel-mkl@2020.3.279
+libiconv@1.16
+libxml2@2.9.10
+pkgconf@1.7.3
+xz@5.2.5
+zlib@1.2.11
+
+-- linux-ubuntu18.04-skylake / gcc@7.5.0 ------------------------
+pkgconf@1.7.3
+
+-- linux-ubuntu18.04-skylake / gcc@8.3.0 ------------------------
+autoconf@2.69
+automake@1.16.2
+berkeley-db@18.1.40
+bison@3.6.4
+bzip2@1.0.8
+cmake@3.18.4
+diffutils@3.7
+expat@2.2.9
+findutils@4.6.0
+flex@2.6.4
+gdbm@1.18.1
+gettext@0.21
+gmake@4.2.1
+help2man@1.47.11
+intel@19.0.3
+intel-parallel-studio@cluster.2020.2
+libbsd@0.10.0
+libffi@3.3
+libgit2@1.0.1
+libiconv@1.16
+libnl@3.3.0
+libsigsegv@2.12
+libssh2@1.8.0
+libtool@2.4.6
+libuuid@1.0.3
+libxml2@2.9.10
+m4@1.4.18
+ncurses@6.2
+numactl@2.0.14
+openssl@1.1.1g
+perl@5.30.3
+pkgconf@1.7.3
+python@3.8.6
+rdma-core@20
+readline@8.0
+sqlite@3.33.0
+tar@1.32
+texinfo@6.5
+ucx@1.9.0
+xz@5.2.5
+zlib@1.2.11
+
+-- linux-ubuntu18.04-x86_64 / gcc@7.5.0 -------------------------
+autoconf@2.69
+automake@1.16.2
+berkeley-db@18.1.40
+bison@3.6.4
+bzip2@1.0.8
+cmake@3.18.4
+cuda@10.0.130
+cuda@10.2.89
+diffutils@3.7
+findutils@4.6.0
+flex@2.6.4
+gcc@8.3.0
+gdbm@1.18.1
+gettext@0.21
+gmp@6.1.2
+help2man@1.47.11
+hwloc@1.11.11
+hwloc@1.11.11
+isl@0.18
+libiconv@1.16
+libnl@3.3.0
+libpciaccess@0.16
+libsigsegv@2.12
+libtool@2.4.6
+libxml2@2.9.10
+m4@1.4.18
+mpc@1.1.0
+mpfr@3.1.6
+ncurses@6.2
+numactl@2.0.14
+openmpi@3.0.1
+openmpi@3.0.1
+openssl@1.1.1g
+osu-micro-benchmarks@5.6.3
+osu-micro-benchmarks@5.6.3
+perl@5.30.3
+pkgconf@1.7.3
+rdma-core@20
+readline@8.0
+tar@1.32
+texinfo@6.5
+ucx@1.9.0
+util-macros@1.19.1
+xz@5.2.5
+zlib@1.2.11
+
+-- linux-ubuntu18.04-x86_64 / gcc@8.3.0 -------------------------
+autoconf@2.69
+automake@1.16.2
+berkeley-db@18.1.40
+bison@3.6.4
+bzip2@1.0.8
+cmake@3.18.4
+cuda@10.0.130
+cuda@10.2.89
+cuda@11.0.2
+cuda@11.1.0
+diffutils@3.7
+findutils@4.6.0
+flex@2.6.4
+gdbm@1.18.1
+gettext@0.21
+gmake@4.2.1
+help2man@1.47.11
+hwloc@1.11.11
+hwloc@2.2.0
+hwloc@2.2.0
+intel@18.0.5
+libiconv@1.16
+libnl@3.3.0
+libpciaccess@0.16
+libsigsegv@2.12
+libtool@2.4.6
+libxml2@2.9.10
+m4@1.4.18
+ncurses@6.2
+netlib-lapack@3.8.0
+numactl@2.0.14
+openblas@0.3.10
+openmpi@4.0.5
+openmpi@4.0.5
+openssl@1.1.1g
+osu-micro-benchmarks@5.6.3
+perl@5.30.3
+pkgconf@1.7.3
+rdma-core@20
+readline@8.0
+tar@1.32
+texinfo@6.5
+ucx@1.9.0
+util-macros@1.19.1
+xz@5.2.5
+zlib@1.2.11
+
+-- linux-ubuntu18.04-x86_64 / intel@18.0.5 ----------------------
+berkeley-db@18.1.40
+cpio@2.13
+gdbm@1.18.1
+hdf5@1.10.7
+hdf5@1.10.7
+intel-mkl@2020.3.279
+intel-mpi@2019.7.217
+intel-mpi@2019.8.254
+libiconv@1.16
+libsigsegv@2.12
+m4@1.4.18
+ncurses@6.2
+netcdf-c@4.7.4
+netcdf-c@4.7.4
+openssl@1.1.1g
+parallel-netcdf@1.12.1
+parallel-netcdf@1.12.1
+perl@5.30.3
+pkgconf@1.7.3
+readline@8.0
+zlib@1.2.11
+
+-- linux-ubuntu18.04-x86_64 / intel@19.0.3.199 ------------------
+berkeley-db@18.1.40
+cpio@2.13
+gdbm@1.18.1
+hdf5@1.10.7
+intel-mkl@2020.3.279
+intel-mpi@2019.8.254
+libsigsegv@2.12
+m4@1.4.18
+ncurses@6.2
+parallel-netcdf@1.12.1
+perl@5.30.3
+pkgconf@1.7.3
+readline@8.0
+zlib@1.2.11
++ module list
+./collect.sh: 48: ./collect.sh: module: not found
++ spack find --loaded -l
+-- linux-ubuntu18.04-skylake / gcc@8.3.0 ------------------------
+3shm2o4 intel-parallel-studio@cluster.2020.2

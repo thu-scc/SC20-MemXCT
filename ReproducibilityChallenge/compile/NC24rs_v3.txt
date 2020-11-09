@@ -1,0 +1,503 @@
++ curl -H Metadata: true http://169.254.169.254/metadata/instance?api-version=2020-06-01
++ jq -r .compute.vmSize metadata.json
++ echo VM size: Standard_NC24rs_v3
+VM size: Standard_NC24rs_v3
++ jq -r .compute.name metadata.json
++ echo VM name: master-GU3DOMRXGIYGKLLGHA4GELJUHE
+VM name: master-GU3DOMRXGIYGKLLGHA4GELJUHE
++ jq -r .compute.location metadata.json
++ echo VM location: southcentralus
+VM location: southcentralus
++ jq -r .compute.resourceGroupName metadata.json
++ echo Resource group: scc-rg5
+Resource group: scc-rg5
++ jq -r .network.interface[0].ipv4.ipAddress[0].privateIpAddress metadata.json
++ echo Private ip address: 10.0.0.15
+Private ip address: 10.0.0.15
++ jq -r .network.interface[0].ipv4.ipAddress[0].publicIpAddress metadata.json
++ echo Public ip address: 13.84.144.208
+Public ip address: 13.84.144.208
++ lscpu
++ sed -nr /Model name/ s/.*:\s*(.*)/\1/p
++ echo CPU model: Intel(R) Xeon(R) CPU E5-2690 v4 @ 2.60GHz
+CPU model: Intel(R) Xeon(R) CPU E5-2690 v4 @ 2.60GHz
++ which gcc
+/usr/bin/gcc
++ gcc --version
+gcc (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0
+Copyright (C) 2017 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
++ which nvcc
+/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/cuda-10.0.130-g3rvbyx2g7gaknxghedbsqvmojqrr3j5/bin/nvcc
++ nvcc --version
+nvcc: NVIDIA (R) Cuda compiler driver
+Copyright (c) 2005-2018 NVIDIA Corporation
+Built on Sat_Aug_25_21:08:01_CDT_2018
+Cuda compilation tools, release 10.0, V10.0.130
++ lscpu
+Architecture:        x86_64
+CPU op-mode(s):      32-bit, 64-bit
+Byte Order:          Little Endian
+CPU(s):              24
+On-line CPU(s) list: 0-23
+Thread(s) per core:  1
+Core(s) per socket:  12
+Socket(s):           2
+NUMA node(s):        2
+Vendor ID:           GenuineIntel
+CPU family:          6
+Model:               79
+Model name:          Intel(R) Xeon(R) CPU E5-2690 v4 @ 2.60GHz
+Stepping:            1
+CPU MHz:             2593.991
+BogoMIPS:            5187.98
+Hypervisor vendor:   Microsoft
+Virtualization type: full
+L1d cache:           32K
+L1i cache:           32K
+L2 cache:            256K
+L3 cache:            35840K
+NUMA node0 CPU(s):   0-11
+NUMA node1 CPU(s):   12-23
+Flags:               fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss ht syscall nx pdpe1gb rdtscp lm constant_tsc rep_good nopl xtopology cpuid pni pclmulqdq ssse3 fma cx16 pcid sse4_1 sse4_2 movbe popcnt aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch invpcid_single pti fsgsbase bmi1 hle avx2 smep bmi2 erms invpcid rtm rdseed adx smap xsaveopt md_clear
++ gcc -march=native -Q --help=target
++ grep march
+  -march=                     		broadwell
++ unset SSH_CLIENT
++ unset SSH_CONNECTION
++ env
++ sed s/ccuser/USER/g
+LIBRARY_PATH=/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/openmpi-3.0.1-i2mlb2hxgh2hvlkjyjnongutzegih3wx/lib:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/ucx-1.9.0-wh5zdh6ser4fqt3ae4g5as3x4bdtbz5s/lib:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/rdma-core-20-6fllhdhdezbpqwy34kqqwdfbpdusvjqm/lib:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/libnl-3.3.0-ttz66sudimuy63cgrpf4d43mebz4v7bj/lib:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/hwloc-1.11.11-zqwfzhw5k2ollygh6nrjpsi7u4d4g6lu/lib:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/numactl-2.0.14-wbqbc5vw5sxzwhvu56p6x5nd5n4abrvh/lib:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/libxml2-2.9.10-yn2r3wfhiilelyulh5toteicdtxjhw7d/lib:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/zlib-1.2.11-smoyzzo2qhzpn6mg6rd3l2p7b23enshg/lib:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/xz-5.2.5-komekkmyciga3kl24edjmredhj3uyt7v/lib:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/libiconv-1.16-jearpk4xci4zc7dkrza4fufaqfkq7rfl/lib:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/libpciaccess-0.16-bob4o5m3uku6vtdil5imasprgy775zg7/lib:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/cuda-10.0.130-g3rvbyx2g7gaknxghedbsqvmojqrr3j5/lib64
+LESSOPEN=| /usr/bin/lesspipe %s
+MAIL=/var/mail/USER
+USER=USER
+MPIF77=/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/openmpi-3.0.1-i2mlb2hxgh2hvlkjyjnongutzegih3wx/bin/mpif77
+LD_LIBRARY_PATH=/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/openmpi-3.0.1-i2mlb2hxgh2hvlkjyjnongutzegih3wx/lib:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/ucx-1.9.0-wh5zdh6ser4fqt3ae4g5as3x4bdtbz5s/lib:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/rdma-core-20-6fllhdhdezbpqwy34kqqwdfbpdusvjqm/lib:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/libnl-3.3.0-ttz66sudimuy63cgrpf4d43mebz4v7bj/lib:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/hwloc-1.11.11-zqwfzhw5k2ollygh6nrjpsi7u4d4g6lu/lib:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/numactl-2.0.14-wbqbc5vw5sxzwhvu56p6x5nd5n4abrvh/lib:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/libxml2-2.9.10-yn2r3wfhiilelyulh5toteicdtxjhw7d/lib:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/zlib-1.2.11-smoyzzo2qhzpn6mg6rd3l2p7b23enshg/lib:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/xz-5.2.5-komekkmyciga3kl24edjmredhj3uyt7v/lib:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/libiconv-1.16-jearpk4xci4zc7dkrza4fufaqfkq7rfl/lib:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/libpciaccess-0.16-bob4o5m3uku6vtdil5imasprgy775zg7/lib:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/cuda-10.0.130-g3rvbyx2g7gaknxghedbsqvmojqrr3j5/lib64
+SHLVL=1
+OLDPWD=/home/USER/MemXCT-SC20/ReproducibilityChallenge/run/scripts
+HOME=/home/USER
+SSH_TTY=/dev/pts/0
+SPACK_ROOT=/mnt/exports/data/spack
+LC_TERMINAL_VERSION=3.3.12
+LOGNAME=USER
+_=./collect.sh
+PKG_CONFIG_PATH=/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/openmpi-3.0.1-i2mlb2hxgh2hvlkjyjnongutzegih3wx/lib/pkgconfig:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/ucx-1.9.0-wh5zdh6ser4fqt3ae4g5as3x4bdtbz5s/lib/pkgconfig:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/rdma-core-20-6fllhdhdezbpqwy34kqqwdfbpdusvjqm/lib/pkgconfig:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/libnl-3.3.0-ttz66sudimuy63cgrpf4d43mebz4v7bj/lib/pkgconfig:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/hwloc-1.11.11-zqwfzhw5k2ollygh6nrjpsi7u4d4g6lu/lib/pkgconfig:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/numactl-2.0.14-wbqbc5vw5sxzwhvu56p6x5nd5n4abrvh/lib/pkgconfig:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/libxml2-2.9.10-yn2r3wfhiilelyulh5toteicdtxjhw7d/lib/pkgconfig:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/zlib-1.2.11-smoyzzo2qhzpn6mg6rd3l2p7b23enshg/lib/pkgconfig:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/xz-5.2.5-komekkmyciga3kl24edjmredhj3uyt7v/lib/pkgconfig:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/libpciaccess-0.16-bob4o5m3uku6vtdil5imasprgy775zg7/lib/pkgconfig
+XDG_SESSION_ID=6
+TERM=xterm-256color
+ACLOCAL_PATH=/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/libxml2-2.9.10-yn2r3wfhiilelyulh5toteicdtxjhw7d/share/aclocal
+PATH=/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/openmpi-3.0.1-i2mlb2hxgh2hvlkjyjnongutzegih3wx/bin:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/ucx-1.9.0-wh5zdh6ser4fqt3ae4g5as3x4bdtbz5s/bin:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/rdma-core-20-6fllhdhdezbpqwy34kqqwdfbpdusvjqm/bin:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/libnl-3.3.0-ttz66sudimuy63cgrpf4d43mebz4v7bj/bin:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/hwloc-1.11.11-zqwfzhw5k2ollygh6nrjpsi7u4d4g6lu/bin:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/numactl-2.0.14-wbqbc5vw5sxzwhvu56p6x5nd5n4abrvh/bin:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/libxml2-2.9.10-yn2r3wfhiilelyulh5toteicdtxjhw7d/bin:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/xz-5.2.5-komekkmyciga3kl24edjmredhj3uyt7v/bin:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/libiconv-1.16-jearpk4xci4zc7dkrza4fufaqfkq7rfl/bin:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/cuda-10.0.130-g3rvbyx2g7gaknxghedbsqvmojqrr3j5/bin:/mnt/exports/data/spack/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/opt/cycle/jetpack/bin
+XDG_RUNTIME_DIR=/run/user/20002
+CYCLECLOUD_HOME=/opt/cycle/jetpack
+LANG=C.UTF-8
+LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:
+SHELL=/bin/bash
+SPACK_LOADED_HASHES=i2mlb2hxgh2hvlkjyjnongutzegih3wx:wh5zdh6ser4fqt3ae4g5as3x4bdtbz5s:6fllhdhdezbpqwy34kqqwdfbpdusvjqm:ttz66sudimuy63cgrpf4d43mebz4v7bj:zqwfzhw5k2ollygh6nrjpsi7u4d4g6lu:wbqbc5vw5sxzwhvu56p6x5nd5n4abrvh:yn2r3wfhiilelyulh5toteicdtxjhw7d:smoyzzo2qhzpn6mg6rd3l2p7b23enshg:komekkmyciga3kl24edjmredhj3uyt7v:jearpk4xci4zc7dkrza4fufaqfkq7rfl:bob4o5m3uku6vtdil5imasprgy775zg7:g3rvbyx2g7gaknxghedbsqvmojqrr3j5
+MPICXX=/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/openmpi-3.0.1-i2mlb2hxgh2hvlkjyjnongutzegih3wx/bin/mpic++
+LESSCLOSE=/usr/bin/lesspipe %s %s
+LC_TERMINAL=iTerm2
+PWD=/home/USER/MemXCT-SC20/ReproducibilityChallenge/run/scripts/single_gpu
+CUDA_HOME=/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/cuda-10.0.130-g3rvbyx2g7gaknxghedbsqvmojqrr3j5
+XDG_DATA_DIRS=/usr/local/share:/usr/share:/var/lib/snapd/desktop
+CPATH=/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/openmpi-3.0.1-i2mlb2hxgh2hvlkjyjnongutzegih3wx/include:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/ucx-1.9.0-wh5zdh6ser4fqt3ae4g5as3x4bdtbz5s/include:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/rdma-core-20-6fllhdhdezbpqwy34kqqwdfbpdusvjqm/include:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/libnl-3.3.0-ttz66sudimuy63cgrpf4d43mebz4v7bj/include:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/hwloc-1.11.11-zqwfzhw5k2ollygh6nrjpsi7u4d4g6lu/include:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/numactl-2.0.14-wbqbc5vw5sxzwhvu56p6x5nd5n4abrvh/include:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/libxml2-2.9.10-yn2r3wfhiilelyulh5toteicdtxjhw7d/include:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/zlib-1.2.11-smoyzzo2qhzpn6mg6rd3l2p7b23enshg/include:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/xz-5.2.5-komekkmyciga3kl24edjmredhj3uyt7v/include:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/libiconv-1.16-jearpk4xci4zc7dkrza4fufaqfkq7rfl/include:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/libpciaccess-0.16-bob4o5m3uku6vtdil5imasprgy775zg7/include:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/cuda-10.0.130-g3rvbyx2g7gaknxghedbsqvmojqrr3j5/include
+MPICC=/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/openmpi-3.0.1-i2mlb2hxgh2hvlkjyjnongutzegih3wx/bin/mpicc
+SPACK_LD_LIBRARY_PATH=/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/cuda-10.0.130-g3rvbyx2g7gaknxghedbsqvmojqrr3j5/lib64
+MANPATH=/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/openmpi-3.0.1-i2mlb2hxgh2hvlkjyjnongutzegih3wx/share/man:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/rdma-core-20-6fllhdhdezbpqwy34kqqwdfbpdusvjqm/share/man:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/libnl-3.3.0-ttz66sudimuy63cgrpf4d43mebz4v7bj/share/man:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/hwloc-1.11.11-zqwfzhw5k2ollygh6nrjpsi7u4d4g6lu/share/man:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/numactl-2.0.14-wbqbc5vw5sxzwhvu56p6x5nd5n4abrvh/share/man:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/libxml2-2.9.10-yn2r3wfhiilelyulh5toteicdtxjhw7d/share/man:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/zlib-1.2.11-smoyzzo2qhzpn6mg6rd3l2p7b23enshg/share/man:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/xz-5.2.5-komekkmyciga3kl24edjmredhj3uyt7v/share/man:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/libiconv-1.16-jearpk4xci4zc7dkrza4fufaqfkq7rfl/share/man
+MODULEPATH=/mnt/exports/data/spack/share/spack/modules/linux-ubuntu18.04-x86_64:/mnt/exports/data/spack/share/spack/modules/linux-ubuntu18.04-broadwell
+MPIF90=/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/openmpi-3.0.1-i2mlb2hxgh2hvlkjyjnongutzegih3wx/bin/mpif90
+CMAKE_PREFIX_PATH=/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/openmpi-3.0.1-i2mlb2hxgh2hvlkjyjnongutzegih3wx:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/ucx-1.9.0-wh5zdh6ser4fqt3ae4g5as3x4bdtbz5s:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/rdma-core-20-6fllhdhdezbpqwy34kqqwdfbpdusvjqm:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/libnl-3.3.0-ttz66sudimuy63cgrpf4d43mebz4v7bj:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/hwloc-1.11.11-zqwfzhw5k2ollygh6nrjpsi7u4d4g6lu:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/numactl-2.0.14-wbqbc5vw5sxzwhvu56p6x5nd5n4abrvh:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/libxml2-2.9.10-yn2r3wfhiilelyulh5toteicdtxjhw7d:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/zlib-1.2.11-smoyzzo2qhzpn6mg6rd3l2p7b23enshg:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/xz-5.2.5-komekkmyciga3kl24edjmredhj3uyt7v:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/libiconv-1.16-jearpk4xci4zc7dkrza4fufaqfkq7rfl:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/libpciaccess-0.16-bob4o5m3uku6vtdil5imasprgy775zg7:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/cuda-10.0.130-g3rvbyx2g7gaknxghedbsqvmojqrr3j5
+CYCLECLOUD_BOOTSTRAP=/opt/cycle/jetpack/system/bootstrap
++ lsb_release -a
+No LSB modules are available.
+Distributor ID:	Ubuntu
+Description:	Ubuntu 18.04.5 LTS
+Release:	18.04
+Codename:	bionic
++ uname -a
+Linux ip-0A00000F 5.4.0-1031-azure #32~18.04.1-Ubuntu SMP Tue Oct 6 10:03:22 UTC 2020 x86_64 x86_64 x86_64 GNU/Linux
++ cat /proc/meminfo
+MemTotal:       462323128 kB
+MemFree:        452159716 kB
+MemAvailable:   458052892 kB
+Buffers:           99024 kB
+Cached:          8063628 kB
+SwapCached:            0 kB
+Active:           796340 kB
+Inactive:        7483800 kB
+Active(anon):     117908 kB
+Inactive(anon):      424 kB
+Active(file):     678432 kB
+Inactive(file):  7483376 kB
+Unevictable:           0 kB
+Mlocked:               0 kB
+SwapTotal:             0 kB
+SwapFree:              0 kB
+Dirty:                 4 kB
+Writeback:             0 kB
+AnonPages:        117228 kB
+Mapped:            46280 kB
+Shmem:               848 kB
+KReclaimable:     426696 kB
+Slab:             615680 kB
+SReclaimable:     426696 kB
+SUnreclaim:       188984 kB
+KernelStack:        6560 kB
+PageTables:         6488 kB
+NFS_Unstable:          0 kB
+Bounce:                0 kB
+WritebackTmp:          0 kB
+CommitLimit:    231161564 kB
+Committed_AS:     433828 kB
+VmallocTotal:   34359738367 kB
+VmallocUsed:      264168 kB
+VmallocChunk:          0 kB
+Percpu:            22528 kB
+HardwareCorrupted:     0 kB
+AnonHugePages:      8192 kB
+ShmemHugePages:        0 kB
+ShmemPmdMapped:        0 kB
+FileHugePages:         0 kB
+FilePmdMapped:         0 kB
+CmaTotal:              0 kB
+CmaFree:               0 kB
+HugePages_Total:       0
+HugePages_Free:        0
+HugePages_Rsvd:        0
+HugePages_Surp:        0
+Hugepagesize:       2048 kB
+Hugetlb:               0 kB
+DirectMap4k:      307136 kB
+DirectMap2M:     9129984 kB
+DirectMap1G:    461373440 kB
++ inxi -F -c0
+System:    Host: ip-0A00000F Kernel: 5.4.0-1031-azure x86_64 bits: 64 Console: tty 0 Distro: Ubuntu 18.04.5 LTS
+Machine:   Device: desktop Mobo: Microsoft model: Virtual Machine v: 7.0 serial: N/A
+           BIOS: American Megatrends v: 090008 date: 12/07/2018
+CPU(s):    2 12 core Intel Xeon E5-2690 v4s (-MT-MCP-SMP-) cache: 71680 KB
+           clock speeds: max: 2593 MHz 1: 2593 MHz 2: 2593 MHz 3: 2593 MHz 4: 2593 MHz 5: 2593 MHz 6: 2593 MHz
+           7: 2593 MHz 8: 2593 MHz 9: 2593 MHz 10: 2593 MHz 11: 2593 MHz 12: 2593 MHz 13: 2593 MHz 14: 2593 MHz
+           15: 2593 MHz 16: 2593 MHz 17: 2593 MHz 18: 2593 MHz 19: 2593 MHz 20: 2593 MHz 21: 2593 MHz
+           22: 2593 MHz 23: 2593 MHz 24: 2593 MHz
+Graphics:  Card-1: Microsoft Hyper-V virtual VGA
+           Card-2: NVIDIA GV100GL [Tesla V100 PCIe 16GB]
+           Card-3: NVIDIA GV100GL [Tesla V100 PCIe 16GB]
+           Card-4: NVIDIA GV100GL [Tesla V100 PCIe 16GB]
+           Card-5: NVIDIA GV100GL [Tesla V100 PCIe 16GB]
+           Display Server: X.org 1.20.8 driver: hyperv_fb tty size: 222x64 Advanced Data: N/A out of X
+Network:   Card: Mellanox MT27500/MT27520 Family [ConnectX-3/ConnectX-3 Pro Virtual Function] driver: mlx4_core
+           IF: N/A state: N/A speed: N/A duplex: N/A mac: N/A
+Drives:    HDD Total Size: 3197.6GB (0.3% used)
+           ID-1: /dev/sda model: Virtual_Disk size: 3165.4GB
+           ID-2: /dev/sdb model: Virtual_Disk size: 32.2GB
+Partition: ID-1: / size: 29G used: 8.6G (30%) fs: ext4 dev: /dev/sdb1
+RAID:      No RAID devices: /proc/mdstat, md_mod kernel module present
+Sensors:   None detected - is lm-sensors installed and configured?
+Info:      Processes: 357 Uptime: 20 min Memory: 1967.5/451487.4MB Init: systemd runlevel: 5
+           Client: Shell (collect.sh) inxi: 2.3.56
++ lsblk -a
+NAME    MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+loop0     7:0    0        0 loop 
+loop1     7:1    0        0 loop 
+loop2     7:2    0        0 loop 
+loop3     7:3    0        0 loop 
+loop4     7:4    0        0 loop 
+loop5     7:5    0        0 loop 
+loop6     7:6    0        0 loop 
+loop7     7:7    0        0 loop 
+sda       8:0    0  2.9T  0 disk 
+└─sda1    8:1    0  2.9T  0 part /mnt
+sdb       8:16   0   30G  0 disk 
+├─sdb1    8:17   0 29.9G  0 part /
+├─sdb14   8:30   0    4M  0 part 
+└─sdb15   8:31   0  106M  0 part /boot/efi
+sr0      11:0    1  634K  0 rom  
++ lsscsi -s
+[0:0:0:0]    disk    Msft     Virtual Disk     1.0   /dev/sdb   32.2GB
+[1:0:1:0]    disk    Msft     Virtual Disk     1.0   /dev/sda   3.16TB
+[5:0:0:0]    cd/dvd  Msft     Virtual CD/ROM   1.0   /dev/sr0        -
++ nvidia-smi
+Mon Nov  9 01:58:44 2020       
++-----------------------------------------------------------------------------+
+| NVIDIA-SMI 455.32.00    Driver Version: 455.32.00    CUDA Version: 11.1     |
+|-------------------------------+----------------------+----------------------+
+| GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
+|                               |                      |               MIG M. |
+|===============================+======================+======================|
+|   0  Tesla V100-PCIE...  On   | 00005409:00:00.0 Off |                  Off |
+| N/A   33C    P0    38W / 250W |      0MiB / 16160MiB |      0%      Default |
+|                               |                      |                  N/A |
++-------------------------------+----------------------+----------------------+
+|   1  Tesla V100-PCIE...  On   | 00006D80:00:00.0 Off |                  Off |
+| N/A   32C    P0    35W / 250W |      0MiB / 16160MiB |      0%      Default |
+|                               |                      |                  N/A |
++-------------------------------+----------------------+----------------------+
+|   2  Tesla V100-PCIE...  On   | 00009305:00:00.0 Off |                  Off |
+| N/A   31C    P0    37W / 250W |      0MiB / 16160MiB |      0%      Default |
+|                               |                      |                  N/A |
++-------------------------------+----------------------+----------------------+
+|   3  Tesla V100-PCIE...  On   | 0000BC10:00:00.0 Off |                  Off |
+| N/A   33C    P0    41W / 250W |      0MiB / 16160MiB |      0%      Default |
+|                               |                      |                  N/A |
++-------------------------------+----------------------+----------------------+
+                                                                               
++-----------------------------------------------------------------------------+
+| Processes:                                                                  |
+|  GPU   GI   CI        PID   Type   Process name                  GPU Memory |
+|        ID   ID                                                   Usage      |
+|=============================================================================|
+|  No running processes found                                                 |
++-----------------------------------------------------------------------------+
++ lshw -short -quiet -sanitize
++ cat
+WARNING: you should run this program as super-user.
+H/W path    Device  Class      Description
+==========================================
+                    system     Computer
+/0                  bus        Motherboard
+/0/0                memory     440GiB System memory
+/0/1                processor  Intel(R) Xeon(R) CPU E5-2690 v4 @ 2.60GHz
+/0/3                processor  Intel(R) Xeon(R) CPU E5-2690 v4 @ 2.60GHz
+/0/100              bridge     440BX/ZX/DX - 82443BX/ZX/DX Host bridge (AGP disabled)
+/0/100/7            bridge     82371AB/EB/MB PIIX4 ISA
+/0/100/7.1          storage    82371AB/EB/MB PIIX4 IDE
+/0/100/7.3          bridge     82371AB/EB/MB PIIX4 ACPI
+/0/100/8            display    Hyper-V virtual VGA
+/0/2                network    MT27500/MT27520 Family [ConnectX-3/ConnectX-3 Pro Virtual Function]
+/0/4                display    GV100GL [Tesla V100 PCIe 16GB]
+/0/5                display    GV100GL [Tesla V100 PCIe 16GB]
+/0/6                display    GV100GL [Tesla V100 PCIe 16GB]
+/0/7                display    GV100GL [Tesla V100 PCIe 16GB]
+/1          eth0    network    Ethernet interface
+/2          eth1    network    Ethernet interface
+WARNING: output may be incomplete or inaccurate, you should run this program as super-user.
++ spack find
+-- linux-ubuntu18.04-broadwell / gcc@7.5.0 ----------------------
+autoconf@2.69
+autoconf-archive@2019.01.06
+automake@1.16.2
+berkeley-db@18.1.40
+gcc@10.2.0
+gdbm@1.18.1
+gmp@6.1.2
+isl@0.21
+libsigsegv@2.12
+libtool@2.4.6
+m4@1.4.18
+mpc@1.1.0
+mpfr@4.0.2
+ncurses@6.2
+perl@5.30.3
+pkgconf@1.7.3
+readline@8.0
+zlib@1.2.11
+zstd@1.4.5
+
+-- linux-ubuntu18.04-broadwell / gcc@8.3.0 ----------------------
+cpio@2.13
+intel-mkl@2020.3.279
+
+-- linux-ubuntu18.04-broadwell / gcc@10.2.0 ---------------------
+cpio@2.13
+cuda@11.1.0
+intel-mkl@2020.3.279
+libiconv@1.16
+libxml2@2.9.10
+pkgconf@1.7.3
+xz@5.2.5
+zlib@1.2.11
+
+-- linux-ubuntu18.04-skylake / gcc@7.5.0 ------------------------
+pkgconf@1.7.3
+
+-- linux-ubuntu18.04-skylake / gcc@8.3.0 ------------------------
+autoconf@2.69
+automake@1.16.2
+berkeley-db@18.1.40
+bison@3.6.4
+bzip2@1.0.8
+cmake@3.18.4
+diffutils@3.7
+expat@2.2.9
+findutils@4.6.0
+flex@2.6.4
+gdbm@1.18.1
+gettext@0.21
+gmake@4.2.1
+help2man@1.47.11
+intel@19.0.3
+intel-parallel-studio@cluster.2020.2
+libbsd@0.10.0
+libffi@3.3
+libgit2@1.0.1
+libiconv@1.16
+libnl@3.3.0
+libsigsegv@2.12
+libssh2@1.8.0
+libtool@2.4.6
+libuuid@1.0.3
+libxml2@2.9.10
+m4@1.4.18
+ncurses@6.2
+numactl@2.0.14
+openssl@1.1.1g
+perl@5.30.3
+pkgconf@1.7.3
+python@3.8.6
+rdma-core@20
+readline@8.0
+sqlite@3.33.0
+tar@1.32
+texinfo@6.5
+ucx@1.9.0
+xz@5.2.5
+zlib@1.2.11
+
+-- linux-ubuntu18.04-x86_64 / gcc@7.5.0 -------------------------
+autoconf@2.69
+automake@1.16.2
+berkeley-db@18.1.40
+bison@3.6.4
+bzip2@1.0.8
+cmake@3.18.4
+cuda@10.0.130
+cuda@10.2.89
+diffutils@3.7
+findutils@4.6.0
+flex@2.6.4
+gcc@8.3.0
+gdbm@1.18.1
+gettext@0.21
+gmp@6.1.2
+help2man@1.47.11
+hwloc@1.11.11
+hwloc@1.11.11
+isl@0.18
+libiconv@1.16
+libnl@3.3.0
+libpciaccess@0.16
+libsigsegv@2.12
+libtool@2.4.6
+libxml2@2.9.10
+m4@1.4.18
+mpc@1.1.0
+mpfr@3.1.6
+ncurses@6.2
+numactl@2.0.14
+openmpi@3.0.1
+openmpi@3.0.1
+openssl@1.1.1g
+osu-micro-benchmarks@5.6.3
+osu-micro-benchmarks@5.6.3
+perl@5.30.3
+pkgconf@1.7.3
+rdma-core@20
+readline@8.0
+tar@1.32
+texinfo@6.5
+ucx@1.9.0
+util-macros@1.19.1
+xz@5.2.5
+zlib@1.2.11
+
+-- linux-ubuntu18.04-x86_64 / gcc@8.3.0 -------------------------
+autoconf@2.69
+automake@1.16.2
+berkeley-db@18.1.40
+bison@3.6.4
+bzip2@1.0.8
+cmake@3.18.4
+cuda@10.0.130
+cuda@10.2.89
+cuda@11.0.2
+cuda@11.1.0
+diffutils@3.7
+findutils@4.6.0
+flex@2.6.4
+gdbm@1.18.1
+gettext@0.21
+gmake@4.2.1
+help2man@1.47.11
+hwloc@1.11.11
+hwloc@2.2.0
+hwloc@2.2.0
+intel@18.0.5
+libiconv@1.16
+libnl@3.3.0
+libpciaccess@0.16
+libsigsegv@2.12
+libtool@2.4.6
+libxml2@2.9.10
+m4@1.4.18
+ncurses@6.2
+netlib-lapack@3.8.0
+numactl@2.0.14
+openblas@0.3.10
+openmpi@4.0.5
+openmpi@4.0.5
+openssl@1.1.1g
+osu-micro-benchmarks@5.6.3
+perl@5.30.3
+pkgconf@1.7.3
+rdma-core@20
+readline@8.0
+tar@1.32
+texinfo@6.5
+ucx@1.9.0
+util-macros@1.19.1
+xz@5.2.5
+zlib@1.2.11
+
+-- linux-ubuntu18.04-x86_64 / intel@18.0.5 ----------------------
+berkeley-db@18.1.40
+cpio@2.13
+gdbm@1.18.1
+hdf5@1.10.7
+hdf5@1.10.7
+intel-mkl@2020.3.279
+intel-mpi@2019.7.217
+intel-mpi@2019.8.254
+libiconv@1.16
+libsigsegv@2.12
+m4@1.4.18
+ncurses@6.2
+netcdf-c@4.7.4
+netcdf-c@4.7.4
+openssl@1.1.1g
+parallel-netcdf@1.12.1
+parallel-netcdf@1.12.1
+perl@5.30.3
+pkgconf@1.7.3
+readline@8.0
+zlib@1.2.11
+
+-- linux-ubuntu18.04-x86_64 / intel@19.0.3.199 ------------------
+berkeley-db@18.1.40
+cpio@2.13
+gdbm@1.18.1
+hdf5@1.10.7
+intel-mkl@2020.3.279
+intel-mpi@2019.8.254
+libsigsegv@2.12
+m4@1.4.18
+ncurses@6.2
+parallel-netcdf@1.12.1
+perl@5.30.3
+pkgconf@1.7.3
+readline@8.0
+zlib@1.2.11
++ spack find --loaded -l
+-- linux-ubuntu18.04-x86_64 / gcc@7.5.0 -------------------------
+g3rvbyx cuda@10.0.130
+zqwfzhw hwloc@1.11.11
+jearpk4 libiconv@1.16
+ttz66su libnl@3.3.0
+bob4o5m libpciaccess@0.16
+yn2r3wf libxml2@2.9.10
+wbqbc5v numactl@2.0.14
+i2mlb2h openmpi@3.0.1
+6fllhdh rdma-core@20
+wh5zdh6 ucx@1.9.0
+komekkm xz@5.2.5
+smoyzzo zlib@1.2.11
