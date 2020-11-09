@@ -196,7 +196,7 @@ def single_gpu(args):
       if len(data[gpu_type][ds]) == 0:
         print("No result for {} dataset on {}".format(ds, gpu_type))
       else:
-        print("Best avGFLOPS {} for {} dataset comes from {} ".format(data[gpu_type][ds][0][1].av_bw, ds, data[gpu_type][ds][0][0]))
+        print("Best bw {} for {} dataset comes from {} ".format(data[gpu_type][ds][0][1].av_bw, ds, data[gpu_type][ds][0][0]))
   
 
   # draw bw for single gpu
