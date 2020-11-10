@@ -34,7 +34,7 @@ compile/
 ├── F16s_v2.txt
 ├── HB60rs.txt
 ├── NC24r_Promo.txt
-├── NC24rs_v2.tct
+├── NC24rs_v2.txt
 ├── NC24rs_v3.txt
 ├── README.md
 ├── STREAM
