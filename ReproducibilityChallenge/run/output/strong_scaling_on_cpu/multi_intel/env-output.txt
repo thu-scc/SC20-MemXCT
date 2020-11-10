@@ -1,19 +1,19 @@
-+ curl --connect-timeout 1s -H Metadata: true http://169.254.169.254/metadata/instance?api-version=2020-06-01
++ curl -H Metadata: true http://169.254.169.254/metadata/instance?api-version=2020-06-01
 + jq -r .compute.vmSize metadata.json
-+ echo VM size:
-VM size:
++ echo VM size: Standard_F16s_v2
+VM size: Standard_F16s_v2
 + jq -r .compute.name metadata.json
-+ echo VM name:
-VM name:
++ echo VM name: hpc-kohpggxymbaxp_2
+VM name: hpc-kohpggxymbaxp_2
 + jq -r .compute.location metadata.json
-+ echo VM location:
-VM location:
++ echo VM location: southcentralus
+VM location: southcentralus
 + jq -r .compute.resourceGroupName metadata.json
-+ echo Resource group:
-Resource group:
++ echo Resource group: scc-rg5
+Resource group: scc-rg5
 + jq -r .network.interface[0].ipv4.ipAddress[0].privateIpAddress metadata.json
-+ echo Private ip address:
-Private ip address:
++ echo Private ip address: 10.0.0.22
+Private ip address: 10.0.0.22
 + jq -r .network.interface[0].ipv4.ipAddress[0].publicIpAddress metadata.json
 + echo Public ip address:
 Public ip address:
@@ -34,9 +34,22 @@ warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 + which icc
 /mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/compilers_and_libraries_2020.2.254/linux/bin/intel64/icc
 + icc --version
-icc (ICC) 19.1.2.254 20200623
-Copyright (C) 1985-2020 Intel Corporation.  All rights reserved.
 
+Error: A license for Comp-CL is not available (-2,413,2).
+
+License file(s) used were (in this order):
+**  1.  /mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/licenses
+**  2.  /mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/compilers_and_libraries_2020.2.254/linux/licenses
+**  3.  /opt/intel/licenses
+**  4.  /shared/home/ccuser/intel/licenses
+**  5.  /mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/compilers_and_libraries_2020.2.254/linux/bin/intel64/../../Licenses
+**  6.  /shared/home/ccuser/Licenses
+**  7.  /Users/Shared/Library/Application Support/Intel/Licenses
+**  8.  /mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/compilers_and_libraries_2020.2.254/linux/bin/intel64/license.lic
+
+Please refer http://software.intel.com/sites/support/ for more information..
+
+icc: error #10052: could not checkout FLEXlm license
 + lscpu
 Architecture:        x86_64
 CPU op-mode(s):      32-bit, 64-bit
@@ -52,8 +65,8 @@ CPU family:          6
 Model:               85
 Model name:          Intel(R) Xeon(R) Platinum 8168 CPU @ 2.70GHz
 Stepping:            4
-CPU MHz:             2693.699
-BogoMIPS:            5387.39
+CPU MHz:             2693.671
+BogoMIPS:            5387.34
 Virtualization:      VT-x
 Hypervisor vendor:   Microsoft
 Virtualization type: full
@@ -80,7 +93,7 @@ USER=USER
 MPIF77=/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/compilers_and_libraries_2020.2.254/linux/mpi/intel64/bin/mpif77
 LD_LIBRARY_PATH=/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/compilers_and_libraries_2020.2.254/linux/compiler/lib/intel64_lin:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/compilers_and_libraries_2020.2.254/linux/mpi/intel64/libfabric/lib:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/compilers_and_libraries_2020.2.254/linux/mpi/intel64/lib/release:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/compilers_and_libraries_2020.2.254/linux/mpi/intel64/lib:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/compilers_and_libraries_2020.2.254/linux/ipp/lib/intel64:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/compilers_and_libraries_2020.2.254/linux/mkl/lib/intel64_lin:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/compilers_and_libraries_2020.2.254/linux/tbb/lib/intel64/gcc4.8:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/compilers_and_libraries_2020.2.254/linux/daal/lib/intel64_lin:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/compilers_and_libraries_2020.2.254/linux/tbb/lib/intel64_lin/gcc4.4:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/compilers_and_libraries_2020.2.254/linux/tbb/lib/intel64_lin/gcc4.8:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/lib
 SHLVL=1
-OLDPWD=/shared/home/USER/MemXCT-SC20/ReproducibilityChallenge/run/output/strong_scaling_on_cpu
+OLDPWD=/shared/home/USER/MemXCT-SC20/ReproducibilityChallenge/run/scripts
 HOME=/shared/home/USER
 INTEL_LICENSE_FILE=/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/licenses:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/compilers_and_libraries_2020.2.254/linux/licenses:/opt/intel/licenses:/shared/home/USER/intel/licenses
 SSH_TTY=/dev/pts/0
@@ -93,7 +106,7 @@ LOGNAME=USER
 PSTLROOT=/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/compilers_and_libraries_2020.2.254/linux/pstl
 _=./collect.sh
 PKG_CONFIG_PATH=/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/compilers_and_libraries_2020.2.254/linux/mkl/bin/pkgconfig
-XDG_SESSION_ID=1
+XDG_SESSION_ID=2
 TERM=xterm-256color
 PATH=/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/compilers_and_libraries_2020.2.254/linux/bin/intel64:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/compilers_and_libraries_2020.2.254/linux/bin:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/compilers_and_libraries_2020.2.254/linux/mpi/intel64/libfabric/bin:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/compilers_and_libraries_2020.2.254/linux/mpi/intel64/bin:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/bin:/mnt/exports/data/spack/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/opt/cycle/jetpack/bin:/mnt/exports/data/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-8.3.0/intel-parallel-studio-cluster.2020.2-3shm2o472lj3yzyjuma7cvvtbxx32dup/parallel_studio_xe_2020.2.108/bin
 XDG_RUNTIME_DIR=/run/user/20002
@@ -126,46 +139,46 @@ Description:	Ubuntu 18.04.5 LTS
 Release:	18.04
 Codename:	bionic
 + uname -a
-Linux ip-0A00001C 5.4.0-1031-azure #32~18.04.1-Ubuntu SMP Tue Oct 6 10:03:22 UTC 2020 x86_64 x86_64 x86_64 GNU/Linux
+Linux ip-0A000016 5.4.0-1031-azure #32~18.04.1-Ubuntu SMP Tue Oct 6 10:03:22 UTC 2020 x86_64 x86_64 x86_64 GNU/Linux
 + cat /proc/meminfo
 MemTotal:       32886244 kB
-MemFree:        30819456 kB
-MemAvailable:   31947944 kB
-Buffers:           60776 kB
-Cached:          1359388 kB
+MemFree:        31104160 kB
+MemAvailable:   31958424 kB
+Buffers:           59600 kB
+Cached:          1086832 kB
 SwapCached:            0 kB
-Active:           629020 kB
-Inactive:         903804 kB
-Active(anon):     113076 kB
-Inactive(anon):      364 kB
-Active(file):     515944 kB
-Inactive(file):   903440 kB
+Active:           570228 kB
+Inactive:         691448 kB
+Active(anon):     115676 kB
+Inactive(anon):      356 kB
+Active(file):     454552 kB
+Inactive(file):   691092 kB
 Unevictable:           0 kB
 Mlocked:               0 kB
 SwapTotal:             0 kB
 SwapFree:              0 kB
 Dirty:                 0 kB
 Writeback:             0 kB
-AnonPages:        113432 kB
-Mapped:            47068 kB
+AnonPages:        115796 kB
+Mapped:            46728 kB
 Shmem:               788 kB
-KReclaimable:     166456 kB
-Slab:             327400 kB
-SReclaimable:     166456 kB
-SUnreclaim:       160944 kB
-KernelStack:        4660 kB
-PageTables:         5672 kB
+KReclaimable:     165488 kB
+Slab:             320756 kB
+SReclaimable:     165488 kB
+SUnreclaim:       155268 kB
+KernelStack:        4916 kB
+PageTables:         5976 kB
 NFS_Unstable:          0 kB
 Bounce:                0 kB
 WritebackTmp:          0 kB
 CommitLimit:    16443120 kB
-Committed_AS:     350980 kB
+Committed_AS:     342332 kB
 VmallocTotal:   34359738367 kB
-VmallocUsed:       33352 kB
+VmallocUsed:       33560 kB
 VmallocChunk:          0 kB
-Percpu:            11072 kB
+Percpu:            10880 kB
 HardwareCorrupted:     0 kB
-AnonHugePages:     10240 kB
+AnonHugePages:     18432 kB
 ShmemHugePages:        0 kB
 ShmemPmdMapped:        0 kB
 FileHugePages:         0 kB
@@ -178,11 +191,11 @@ HugePages_Rsvd:        0
 HugePages_Surp:        0
 Hugepagesize:       2048 kB
 Hugetlb:               0 kB
-DirectMap4k:      249792 kB
-DirectMap2M:     3944448 kB
+DirectMap4k:      284608 kB
+DirectMap2M:     3909632 kB
 DirectMap1G:    31457280 kB
 + inxi -F -c0
-System:    Host: ip-0A00001C Kernel: 5.4.0-1031-azure x86_64 bits: 64 Console: tty 0 Distro: Ubuntu 18.04.5 LTS
+System:    Host: ip-0A000016 Kernel: 5.4.0-1031-azure x86_64 bits: 64 Console: tty 0 Distro: Ubuntu 18.04.5 LTS
 Machine:   Device: desktop Mobo: Microsoft model: Virtual Machine v: 7.0 serial: N/A
            BIOS: American Megatrends v: 090008 date: 12/07/2018
 CPU:       8 core Intel Xeon Platinum 8168 (-MT-MCP-) cache: 33792 KB
@@ -194,12 +207,12 @@ Graphics:  Card: Microsoft Hyper-V virtual VGA
 Network:   Card: Mellanox MT27710 Family [ConnectX-4 Lx Virtual Function] driver: mlx5_core
            IF: N/A state: N/A speed: N/A duplex: N/A mac: N/A
 Drives:    HDD Total Size: 169.7GB (1.4% used)
-           ID-1: /dev/sda model: Virtual_Disk size: 137.4GB
-           ID-2: /dev/sdb model: Virtual_Disk size: 32.2GB
-Partition: ID-1: / size: 29G used: 2.1G (8%) fs: ext4 dev: /dev/sdb1
+           ID-1: /dev/sda model: Virtual_Disk size: 32.2GB
+           ID-2: /dev/sdb model: Virtual_Disk size: 137.4GB
+Partition: ID-1: / size: 29G used: 2.1G (8%) fs: ext4 dev: /dev/sda1
 RAID:      No RAID devices: /proc/mdstat, md_mod kernel module present
 Sensors:   None detected - is lm-sensors installed and configured?
-Info:      Processes: 247 Uptime: 20 min Memory: 637.6/32115.5MB Init: systemd runlevel: 5
+Info:      Processes: 263 Uptime: 7 min Memory: 627.0/32115.5MB Init: systemd runlevel: 5
            Client: Shell (collect.sh) inxi: 2.3.56
 + lsblk -a
 NAME    MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
@@ -211,16 +224,16 @@ loop4     7:4    0        0 loop
 loop5     7:5    0        0 loop 
 loop6     7:6    0        0 loop 
 loop7     7:7    0        0 loop 
-sda       8:0    0  128G  0 disk 
-└─sda1    8:1    0  128G  0 part /mnt
-sdb       8:16   0   30G  0 disk 
-├─sdb1    8:17   0 29.9G  0 part /
-├─sdb14   8:30   0    4M  0 part 
-└─sdb15   8:31   0  106M  0 part /boot/efi
+sda       8:0    0   30G  0 disk 
+├─sda1    8:1    0 29.9G  0 part /
+├─sda14   8:14   0    4M  0 part 
+└─sda15   8:15   0  106M  0 part /boot/efi
+sdb       8:16   0  128G  0 disk 
+└─sdb1    8:17   0  128G  0 part /mnt
 sr0      11:0    1  628K  0 rom  
 + lsscsi -s
-[0:0:0:0]    disk    Msft     Virtual Disk     1.0   /dev/sdb   32.2GB
-[1:0:1:0]    disk    Msft     Virtual Disk     1.0   /dev/sda    137GB
+[0:0:0:0]    disk    Msft     Virtual Disk     1.0   /dev/sda   32.2GB
+[1:0:1:0]    disk    Msft     Virtual Disk     1.0   /dev/sdb    137GB
 [5:0:0:0]    cd/dvd  Msft     Virtual CD/ROM   1.0   /dev/sr0        -
 + lshw -short -quiet -sanitize
 + cat
