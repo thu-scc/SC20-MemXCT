@@ -4,3 +4,4 @@
 /recon.*
 
 *.o
+.DS_Store
