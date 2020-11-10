@@ -1,4 +1,5 @@
 import collections
+import matplotlib
 import matplotlib.pyplot as plt
 from matplotlib.ticker import FuncFormatter
 import subprocess
@@ -6,6 +7,7 @@ import numpy as np
 import os
 import argparse
 
+plt.rcParams.update({'font.size': 18})
 
 GLOBAL_INPUT_DIR="../../run/output/"
 GLOBAL_OUTPUT_DIR="../output/"
@@ -98,10 +100,9 @@ def single_cpu(args):
   plt.clf()
   width = 0.35
   x = np.arange(2)
-  fig, ax = plt.subplots(figsize=(4, 6))
+  fig, ax = plt.subplots(figsize=(6, 6))
   ax.bar(x - width/2, intel_gflops_list, width, color='grey', label='Intel')
   ax.bar(x + width/2, amd_gflops_list, width, color='orange', label='AMD')
-  ax.set_ylabel('GFLOPS')
   ax.set_title('GFLOPS for single CPU')
   ax.set_xticks(x)
   ax.set_xticklabels(datasets)
@@ -109,7 +110,7 @@ def single_cpu(args):
   ax.spines['left'].set_visible(False)
   ax.spines['top'].set_visible(False)
   ax.spines['right'].set_visible(False)
-  ax.legend()
+  ax.legend(loc='center')
   fig.savefig(os.path.join(GLOBAL_OUTPUT_DIR, "gflops_single_cpu." + args.format), format=args.format)
 
   # bw
@@ -117,9 +118,10 @@ def single_cpu(args):
   plt.clf()
   width = 0.35
   x = np.arange(2)
-  fig, ax = plt.subplots(figsize=(4, 6))
+  fig, ax = plt.subplots(figsize=(6, 6))
   ax.bar(x - width/2, intel_bw_list, width, color='grey', label='Intel')
   ax.bar(x + width/2, amd_bw_list, width, color='orange', label='AMD')
+  #ax.axhline(82, x[0] - width/2, x[0] + width/2, linewidth=4, marker='o', label='Intel EBW(82 GB/s)')
   ax.set_title('Memory B/W Utilization (GB/s)')
   ax.set_xticks(x)
   ax.set_xticklabels(datasets)
@@ -127,7 +129,7 @@ def single_cpu(args):
   ax.spines['left'].set_visible(False)
   ax.spines['top'].set_visible(False)
   ax.spines['right'].set_visible(False)
-  ax.legend()
+  ax.legend(loc='center')
   fig.savefig(os.path.join(GLOBAL_OUTPUT_DIR, "bw_single_cpu." + args.format), format=args.format)
 
 
@@ -152,7 +154,7 @@ def single_gpu(args):
 
   # gflops
   plt.clf()
-  fig, ax = plt.subplots(figsize=(4, 6))
+  fig, ax = plt.subplots(figsize=(6, 6))
   ax.bar(x - width, k80_gflops_list, width, color='grey', label='K80')
   ax.bar(x, p100_gflops_list, width, color='orange', label='P100')
   ax.bar(x + width, v100_gflops_list, width, color='darkturquoise', label='V100')
@@ -163,13 +165,13 @@ def single_gpu(args):
   ax.spines['left'].set_visible(False)
   ax.spines['top'].set_visible(False)
   ax.spines['right'].set_visible(False)
-  ax.legend()
+  ax.legend(loc='center')
   fig.savefig(os.path.join(GLOBAL_OUTPUT_DIR, "gflops_single_gpu." + args.format), format=args.format)
 
 
   # bw
   plt.clf()
-  fig, ax = plt.subplots(figsize=(4, 6))
+  fig, ax = plt.subplots(figsize=(6, 6))
   ax.bar(x - width, k80_bw_list, width, color='grey', label='K80')
   ax.bar(x, p100_bw_list, width, color='orange', label='P100')
   ax.bar(x + width, v100_bw_list, width, color='darkturquoise', label='V100')
@@ -180,7 +182,7 @@ def single_gpu(args):
   ax.spines['left'].set_visible(False)
   ax.spines['top'].set_visible(False)
   ax.spines['right'].set_visible(False)
-  ax.legend()
+  ax.legend(loc='center')
   fig.savefig(os.path.join(GLOBAL_OUTPUT_DIR, "bw_single_gpu." + args.format), format=args.format)
 
 
@@ -230,15 +232,15 @@ def strong_scaling_for_cpu(args):
     ctime_list = [x[2] for x in num_list ]
     rtime_list = [x[3] for x in num_list ]
 
-    fig, ax = plt.subplots()
-    ideal_list = [tot_time_list[0]]
+    fig, ax = plt.subplots(figsize=(8, 6))
+    ideal_list = [ktime_list[0]]
     for _ in range(len(scaling_num) - 1):
       ideal_list.append(ideal_list[-1] / 2)
-    ax.plot(scaling_num, tot_time_list, marker='o', color='deepskyblue', label='Total')
-    ax.plot(scaling_num, ktime_list, marker='o', color='orangered', label='kernel')
-    ax.plot(scaling_num, ctime_list, marker='o', color='orange', label='comm')
-    ax.plot(scaling_num, rtime_list, marker='o', color='purple', label='reduction')
-    ax.plot(scaling_num, ideal_list, color='black', label='ideal')
+    ax.plot(scaling_num, tot_time_list, marker='o', markersize=12, color='deepskyblue', label='Total')
+    ax.plot(scaling_num, ktime_list, marker='o', markersize=12, color='orangered', label='kernel')
+    ax.plot(scaling_num, ctime_list, marker='o', markersize=12, color='orange', label='comm')
+    ax.plot(scaling_num, rtime_list, marker='o', markersize=12, color='purple', label='reduction')
+    ax.plot(scaling_num, ideal_list, linewidth=2, color='black', label='ideal')
 
     ax.set_xscale("log")
     ax.set_yscale("log")
@@ -270,15 +272,17 @@ def strong_scaling_for_gpu(args):
     ctime_list = [x[2] for x in num_list ]
     rtime_list = [x[3] for x in num_list ]
 
-    fig, ax = plt.subplots()
-    ideal_list = [tot_time_list[0]]
+    fig, ax = plt.subplots(figsize=(8, 6))
+    ideal_list = [ktime_list[0]]
     for _ in range(len(scaling_num) - 1):
       ideal_list.append(ideal_list[-1] / 2)
-    ax.plot(scaling_num, tot_time_list, marker='o', color='deepskyblue', label='Total')
-    ax.plot(scaling_num, ktime_list, marker='o', color='orangered', label='kernel')
-    ax.plot(scaling_num, ctime_list, marker='o', color='orange', label='comm')
-    ax.plot(scaling_num, rtime_list, marker='o', color='purple', label='reduction')
-    ax.plot(scaling_num, ideal_list, color='black', label='ideal')
+
+    ax.plot(scaling_num, tot_time_list, marker='o', markersize=12, color='deepskyblue', label='Total')
+    ax.plot(scaling_num, ktime_list, marker='o', markersize=12, color='orangered', label='kernel')
+    ax.plot(scaling_num, ctime_list, marker='o', markersize=12, color='orange', label='comm')
+    ax.plot(scaling_num, rtime_list, marker='o', markersize=12, color='purple', label='reduction')
+
+    ax.plot(scaling_num, ideal_list, linewidth=2, color='black', label='ideal')
 
     ax.set_xscale("log")
     ax.set_yscale("log")
