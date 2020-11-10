@@ -33,7 +33,7 @@ These scripts expects datasets to be put into the same level as ReproducibilityC
 There are three scripts in the top directory.
 
 1. `para.sh`: This script set environment variables for memxct. It will be called by other scripts. Do not use it drectly.
-2. `cluster_init.sh`: It sets up the system environment for a newly-loaded Azure VM. For a cluster managed by slurm, it can be called as `srun -n $NODE_NUM ./cluster_init.sh` to set up system environment for all nodes.
+2. `cluster_init.sh`: It sets up the system environment for a newly-loaded Azure VM. For a cluster managed by slurm, it can be called as `srun -n $NODE_NUM ./cluster_init.sh` to set up system environment for all nodes. Note that there is a hardcoding IP addresss written in it, which refers to the NFS server IP. The IP may be changed according to the NFS IP.
 3. `run_stream.sh`: It measures the memory bandwidth for CPU by STREAM benchmark. To measure a single CPU socket, run `OMP_NUM_THREADS=$CORE_PER_CPU; taskset -c $CPU_LIST ./run_stream.sh`. The output will show in stdout, so redirect it to the proper output directory.
 
 

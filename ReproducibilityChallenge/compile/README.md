@@ -32,10 +32,12 @@ The directory structure of `compile` directory is as follows:
 ```tree
 compile/
 ├── F16s_v2.txt
+├── HB120rs_v2.txt
 ├── HB60rs.txt
 ├── NC24r_Promo.txt
 ├── NC24rs_v2.txt
 ├── NC24rs_v3.txt
+├── .txt
 ├── README.md
 ├── STREAM
 │   ├── HISTORY.txt
@@ -137,6 +139,7 @@ We have use the following SKUs in the Azure Cloud:
 - NF24r Promo
 - NC24rs v2
 - NC24rs v3
+- HB120rs
 
 We have included the environment info in plaintexts in this directory, for example, you can find the info of `HB60rs` in `HB60rs.txt`. It is the output of a script adapted from [Author-Kit](https://github.com/SC-Tech-Program/Author-Kit) which queries Azure machine metadata as well. It contains machine SKU, cpu and memory info, hardware info and software used in compilation and runtime.
 
