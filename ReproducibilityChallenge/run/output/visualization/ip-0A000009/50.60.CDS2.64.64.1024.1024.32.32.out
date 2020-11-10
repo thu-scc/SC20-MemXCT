@@ -1,0 +1,169 @@
+ip-0A000012
+ip-0A000015
+ip-0A00000F
+ip-0A000014
+ip-0A000014
+ip-0A000012
+ip-0A00000F
+ip-0A000015
+NUM. THETA             : 375
+NUM. RHO               : 1024
+NUM. X PIXELS          : 1024
+NUM. Y PIXELS          : 1024
+
+NUM. OF PIXELS         : 1048576
+NUM. OF RAYS           : 384000
+
+NUM. ITERATIONS        : 50
+
+SPATIAL TILE SIZE      : 64
+SPECTRAL TILE SIZE     : 64
+
+NUMBER OF X TILES      : 16
+NUMBER OF Y TILES      : 16
+NUM. OF THETA TILES    : 6
+NUM. OF RHO TILES      : 16
+
+NUM. SPATIAL TILES     : 256
+NUM. SPECTRAL TILES    : 96
+
+NUM. OF X PIXELS (EXT) : 1024
+NUM. OF Y PIXELS (EXT) : 1024
+NUM. OF ANGLES (EXT)   : 384
+NUM. OF RHOS (EXT)     : 1024
+
+NUM. OF PIXELS (EXT)   : 1048576
+NUM. OF RAYS (EXT)     : 393216
+
+NUMBER OF PROCESSES    : 8
+NUMBER OF THRD./PROC.  : 60
+
+INTEGER: 4, FLOAT: 4, LONG: 8, SHORT: 2, POINTER: 8
+APPROX. MEMORY     TOTAL: 8.789062e+00 GB
+APPROX. MEMORY PER PROC.: 1.098633e+00 GB
+
+X START       : -5.120000e+02
+Y START       : -5.120000e+02
+PIXEL SIZE    : 1.000000e+00
+RHO START     : -5.120000e+02
+RAY LENGTH    : 2.048000e+03
+
+SPATIAL INDEXING       : 5
+SPECTRAL INDEXING      : 5
+ 1: CARTESIAN, NATURAL
+ 2: CARTESIAN, TRANSPOSED
+ 3: MORTON, NATURAL
+ 4: MORTON, TRANSPOSED
+ 5: HILBERT
+PROJECTION BLOCK SIZE      : 1024
+BACKPROJECTION BLOCK SIZE  : 1024
+PROJECTION BUFFER SIZE      : 32 KB
+BACKPROJECTION BUFFER SIZE  : 32 KB
+
+SINOGRAM FILE : ../../../../datasets/CDS2_sinogram.bin
+   THETA FILE : ../../../../datasets/CDS2_theta.bin
+  OUTPUT FILE : ../../output/visualization/ip-0A000009/50.60.CDS2.64.64.1024.1024.32.32.bin
+
+
+PLACE TILES
+lspat 16 lspatdim 16
+lspec 16 lspecdim 16
+MPI PARTITIONING
+proc: 0 numspats: 32 numpixs: 131072 numspecs: 12 numrays: 49152
+proc: 1 numspats: 32 numpixs: 131072 numspecs: 12 numrays: 49152
+proc: 2 numspats: 32 numpixs: 131072 numspecs: 12 numrays: 49152
+proc: 3 numspats: 32 numpixs: 131072 numspecs: 12 numrays: 49152
+proc: 4 numspats: 32 numpixs: 131072 numspecs: 12 numrays: 49152
+proc: 5 numspats: 32 numpixs: 131072 numspecs: 12 numrays: 49152
+proc: 6 numspats: 32 numpixs: 131072 numspecs: 12 numrays: 49152
+proc: 7 numspats: 32 numpixs: 131072 numspecs: 12 numrays: 49152
+maxnumpix: 131072 maxnumray: 49152
+FILL PIXELS AND RAYS
+INPUT THETA DATA
+DOMAIN PARTITIONING
+
+CONSTRUCT PROJECTION MATRIX
+CSR STORAGE: 470024129 (3.501953 GB) rownzmax 766
+RAY-TRACING TIME: 8.895935e-02
+CONSTRUCT BACKPROJECTION MATRIX
+CSR STORAGE: 470024129 (3.501953 GB) rownzmax 516
+TRANSPOSITION TIME: 8.334345e-02
+
+BLOCKING PROJECTION MATRIX
+NUMBER OF BLOCKS: 128 BUFFSIZE: 8192
+NUMBER OF BUFFERS: 360 AVERAGE BUFF/BLOCK: 2.812500 MAX BUFF/BLOCK: 5
+BUFFER MAP: 27223192 (0.101414 GB)
+CSR STORAGE: 470024129 (2.626464 GB) buffnzmax: 418 STORAGE EFFICIENCY: 0.153526 DATA REUSE: 20.345217
+BLOCKING TIME: 7.799448e-02
+BLOCKING BACKPROJECTION MATRIX
+NUMBER OF BLOCKS: 128 BUFFSIZE: 8192
+NUMBER OF BUFFERS: 221 AVERAGE BUFF/BLOCK: 1.726562 MAX BUFF/BLOCK: 2
+BUFFER MAP: 14686005 (0.054710 GB)
+CSR STORAGE: 470024129 (2.626464 GB) buffnzmax: 441 STORAGE EFFICIENCY: 0.153526 DATA REUSE: 32.011894
+BLOCKING TIME: 7.649545e-02
+
+FILL PROJECTION MATRIX
+TIME: 4.555792e-02
+FILL BACKPROJECTION MATRIX
+TIME: 3.794645e-02
+REDUCTION MAPPINGS
+PREPROCESSING TIME: 4.975398e-01
+INPUT MEASUREMENT DATA
+INPUT ENDS
+GRADIENT-DESCENT OPTIMIZATION
+iter: 0 error: 5.498395e+04 gradnorm: 1.963637e+10
+iter: 1 error: 3.374906e+03 gradnorm: 2.929467e+08
+iter: 2 error: 1.128328e+03 gradnorm: 5.683384e+07
+iter: 3 error: 4.706532e+02 gradnorm: 1.898262e+07
+iter: 4 error: 3.071310e+02 gradnorm: 8.967976e+06
+iter: 5 error: 2.100480e+02 gradnorm: 2.584115e+06
+iter: 6 error: 1.481365e+02 gradnorm: 1.226672e+06
+iter: 7 error: 1.194180e+02 gradnorm: 1.049806e+06
+iter: 8 error: 9.805880e+01 gradnorm: 6.879996e+05
+iter: 9 error: 7.915022e+01 gradnorm: 5.240976e+05
+iter: 10 error: 7.120175e+01 gradnorm: 1.336722e+06
+iter: 11 error: 6.292501e+01 gradnorm: 3.494146e+05
+iter: 12 error: 5.230927e+01 gradnorm: 2.609411e+05
+iter: 13 error: 4.618855e+01 gradnorm: 2.703472e+05
+iter: 14 error: 4.019708e+01 gradnorm: 1.291239e+05
+iter: 15 error: 3.521999e+01 gradnorm: 1.670416e+05
+iter: 16 error: 3.327936e+01 gradnorm: 1.797646e+05
+iter: 17 error: 3.081107e+01 gradnorm: 8.152944e+04
+iter: 18 error: 2.804900e+01 gradnorm: 1.043982e+05
+iter: 19 error: 2.744174e+01 gradnorm: 9.280600e+04
+iter: 20 error: 2.619364e+01 gradnorm: 6.367589e+04
+iter: 21 error: 2.479922e+01 gradnorm: 3.780606e+04
+iter: 22 error: 2.370856e+01 gradnorm: 2.662504e+04
+iter: 23 error: 2.296802e+01 gradnorm: 4.018853e+04
+iter: 24 error: 2.244222e+01 gradnorm: 1.874615e+04
+iter: 25 error: 2.184162e+01 gradnorm: 1.623998e+04
+iter: 26 error: 2.131348e+01 gradnorm: 1.354306e+04
+iter: 27 error: 2.112585e+01 gradnorm: 3.831841e+04
+iter: 28 error: 2.081207e+01 gradnorm: 9.852777e+03
+iter: 29 error: 2.048100e+01 gradnorm: 2.337832e+04
+iter: 30 error: 2.030064e+01 gradnorm: 8.366300e+03
+iter: 31 error: 1.990438e+01 gradnorm: 7.277132e+03
+iter: 32 error: 1.959997e+01 gradnorm: 8.110346e+03
+iter: 33 error: 1.931634e+01 gradnorm: 7.576561e+03
+iter: 34 error: 1.901533e+01 gradnorm: 1.469828e+04
+iter: 35 error: 1.894051e+01 gradnorm: 1.099980e+04
+iter: 36 error: 1.862126e+01 gradnorm: 7.342906e+03
+iter: 37 error: 1.829039e+01 gradnorm: 1.135926e+04
+iter: 38 error: 1.808785e+01 gradnorm: 1.329340e+04
+iter: 39 error: 1.787783e+01 gradnorm: 1.700722e+04
+iter: 40 error: 1.764639e+01 gradnorm: 1.304650e+04
+iter: 41 error: 1.737167e+01 gradnorm: 1.373014e+04
+iter: 42 error: 1.713595e+01 gradnorm: 1.206831e+04
+iter: 43 error: 1.680688e+01 gradnorm: 2.133102e+04
+iter: 44 error: 1.669165e+01 gradnorm: 1.609476e+04
+iter: 45 error: 1.636246e+01 gradnorm: 9.116064e+03
+iter: 46 error: 1.592427e+01 gradnorm: 1.012410e+04
+iter: 47 error: 1.568864e+01 gradnorm: 1.304575e+04
+iter: 48 error: 1.526314e+01 gradnorm: 8.497662e+03
+iter: 49 error: 1.497137e+01 gradnorm: 1.281003e+04
+iter: 50 error: 1.466447e+01 gradnorm: 1.785816e+04
+recon: 3.394675e+00 proj: 1.906164e+00 (1.120118e+00 5.912039e-01 1.947841e-01) backproj: 9.640453e-01 (1.225723e-01 2.947157e-01 5.467246e-01) ctime: 4.219653e-01 wtime: 6.203824e-02
+numproj: 101 numback: 51
+proj: 8.969221e+00 s (10.585632 GFLOPS) backproj: 4.377809e+00 s (10.951246 GFLOPS) avGFLOPS: 10.705553 totGFLOPS: 85.644426
+proj: 32.983109 GB/s back: 33.538087 GB/s av: 33.165141 GB/s tot: 265.321129 GB/s
+Total Time: 4.271029e+00
