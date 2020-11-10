@@ -4,7 +4,7 @@
 set -x
 
 # azure
-curl --connect-timeout 1s -H 'Metadata: true' http://169.254.169.254/metadata/instance?api-version=2020-06-01 2>/dev/null >metadata.json
+curl -H 'Metadata: true' http://169.254.169.254/metadata/instance?api-version=2020-06-01 2>/dev/null >metadata.json
 echo 'VM size:' $(jq -r .compute.vmSize metadata.json)
 echo 'VM name:' $(jq -r .compute.name metadata.json)
 echo 'VM location:' $(jq -r .compute.location metadata.json)

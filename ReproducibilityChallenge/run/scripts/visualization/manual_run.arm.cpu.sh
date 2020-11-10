@@ -27,7 +27,7 @@ BACKBUFF=$8
 
 
 HOSTNAME=$(hostname)
-TARGET_DIR="../../output/visualization/$HOSTNAME"
+TARGET_DIR="../../output/visualization"
 mkdir -p $TARGET_DIR
 
 NNODE=4
