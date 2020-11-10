@@ -27,16 +27,6 @@ lscpu || cat /proc/cpuinfo
 cat /sys/devices/cpu/caps/pmu_name
 gcc -march=native -Q --help=target | grep march
 
-# ipmi
-echo "Board:"
-ipmitool fru print 0 | grep "Board Product"
-ipmitool fru print 0 | grep "Board Serial"
-ipmitool fru print 0 | grep "Board Part Number"
-echo "Product:"
-ipmitool fru print 0 | grep "Product Name"
-ipmitool fru print 0 | grep "Product Part Number"
-ipmitool fru print 0 | grep "Product Serial"
-
 # env
 unset SSH_CLIENT
 unset SSH_CONNECTION
