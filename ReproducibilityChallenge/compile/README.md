@@ -139,3 +139,5 @@ We have use the following SKUs in the Azure Cloud:
 - NC24rs v3
 
 We have included the environment info in plaintexts in this directory, for example, you can find the info of `HB60rs` in `HB60rs.txt`. It is the output of a script adapted from [Author-Kit](https://github.com/SC-Tech-Program/Author-Kit) which queries Azure machine metadata as well. It contains machine SKU, cpu and memory info, hardware info and software used in compilation and runtime.
+
+We also have an aggregated environment info file named `doc/scc20_team05_ExperimentalEnvironment.txt`.
