@@ -49,7 +49,7 @@ Take CDS1 as example:
 1. Select File->Import->Raw...
 2. Choose generated binary
 3. Select `32-bit Real` to Image type
-4. Width and Height of CDS1 are both 1024 pixels respectively
+4. Width and Height of CDS2 are both 1024 pixels respectively
 5. Enable `Little-endian byte order`
 6. Click OK, a visualization is presented
 7. Then, Select File->Save As->PNG...
