@@ -1,0 +1,154 @@
+NUM. THETA             : 750
+NUM. RHO               : 512
+NUM. X PIXELS          : 512
+NUM. Y PIXELS          : 512
+
+NUM. OF PIXELS         : 262144
+NUM. OF RAYS           : 384000
+
+NUM. ITERATIONS        : 24
+
+SPATIAL TILE SIZE      : 64
+SPECTRAL TILE SIZE     : 64
+
+NUMBER OF X TILES      : 8
+NUMBER OF Y TILES      : 8
+NUM. OF THETA TILES    : 12
+NUM. OF RHO TILES      : 8
+
+NUM. SPATIAL TILES     : 64
+NUM. SPECTRAL TILES    : 96
+
+NUM. OF X PIXELS (EXT) : 512
+NUM. OF Y PIXELS (EXT) : 512
+NUM. OF ANGLES (EXT)   : 768
+NUM. OF RHOS (EXT)     : 512
+
+NUM. OF PIXELS (EXT)   : 262144
+NUM. OF RAYS (EXT)     : 393216
+
+NUMBER OF PROCESSES    : 4
+NUMBER OF THRD./PROC.  : 24
+
+INTEGER: 4, FLOAT: 4, LONG: 8, SHORT: 2, POINTER: 8
+APPROX. MEMORY     TOTAL: 4.394531e+00 GB
+APPROX. MEMORY PER PROC.: 1.098633e+00 GB
+
+X START       : -2.560000e+02
+Y START       : -2.560000e+02
+PIXEL SIZE    : 1.000000e+00
+RHO START     : -2.560000e+02
+RAY LENGTH    : 1.024000e+03
+
+SPATIAL INDEXING       : 5
+SPECTRAL INDEXING      : 5
+ 1: CARTESIAN, NATURAL
+ 2: CARTESIAN, TRANSPOSED
+ 3: MORTON, NATURAL
+ 4: MORTON, TRANSPOSED
+PROJECTION BLOCK SIZE      : 1024
+BACKPROJECTION BLOCK SIZE  : 1024
+PROJECTION BUFFER SIZE      : 48 KB
+BACKPROJECTION BUFFER SIZE  : 48 KB
+
+SINOGRAM FILE : ../../../../datasets/CDS1_sinogram.bin
+   THETA FILE : ../../../../datasets/CDS1_theta.bin
+  OUTPUT FILE : ../../output/strong_scaling_on_gpu/ip-0A000013/p100.4.24.CDS1.64.64.1024.1024.48.48.bin
+
+
+PLACE TILES
+lspat 8 lspatdim 8
+lspec 12 lspecdim 16
+MPI PARTITIONING
+proc: 0 numspats: 16 numpixs: 65536 numspecs: 24 numrays: 98304
+proc: 1 numspats: 16 numpixs: 65536 numspecs: 24 numrays: 98304
+proc: 2 numspats: 16 numpixs: 65536 numspecs: 24 numrays: 98304
+proc: 3 numspats: 16 numpixs: 65536 numspecs: 24 numrays: 98304
+maxnumpix: 65536 maxnumray: 98304
+FILL PIXELS AND RAYS
+INPUT THETA DATA
+DOMAIN PARTITIONING
+myid 1 raynuminc 223693/872870 raynumout 218218/872870
+myid 2 raynuminc 223626/872870 raynumout 218217/872870
+myid 3 raynuminc 201952/872870 raynumout 218218/872870
+myid 0 raynuminc 223599/872870 raynumout 218217/872870
+
+CONSTRUCT PROJECTION MATRIX
+CSR STORAGE: 235011227 (1.750970 GB) rownzmax 511
+RAY-TRACING TIME: 5.767392e-01
+CONSTRUCT BACKPROJECTION MATRIX
+CSR STORAGE: 235011227 (1.750970 GB) rownzmax 1092
+TRANSPOSITION TIME: 2.196291e-01
+
+BLOCKING PROJECTION MATRIX
+NUMBER OF BLOCKS: 856 BUFFSIZE: 12288
+NUMBER OF BUFFERS: 1260 AVERAGE BUFF/BLOCK: 1.471963 MAX BUFF/BLOCK: 2
+BUFF MAP: 15482880 (0.057678 GB)
+ELLPACK STORAGE: 321204224 (1.794868 GB) buffnzmax: 468 STORAGE EFFICIENCY: 1.097485 DATA REUSE: 24.014631
+BLOCKING TIME: 3.548487e-01
+BLOCKING BACKPROJECTION MATRIX
+NUMBER OF BLOCKS: 256 BUFFSIZE: 12288
+NUMBER OF BUFFERS: 728 AVERAGE BUFF/BLOCK: 2.843750 MAX BUFF/BLOCK: 3
+BUFF MAP: 8945664 (0.033325 GB)
+ELLPACK STORAGE: 279800832 (1.563509 GB) buffnzmax: 622 STORAGE EFFICIENCY: 1.259885 DATA REUSE: 32.022224
+BLOCKING TIME: 3.687543e-01
+
+FILL PROJECTION MATRIX
+TIME: 5.861110e-01
+FILL BACKPROJECTION MATRIX
+TIME: 8.215870e-01
+REDUCTION MAPPINGS
+myid: 3 device: 3
+myid: 1 device: 1
+myid: 2 device: 2
+PREPROCESSING TIME: 2.950313e+00
+myid: 0 device: 0
+
+Device Count: 4
+Device 0 name: 1898530800
+Computational Capabilities: 6, 0
+Maximum global memory size: 17071734784
+Maximum constant memory size: 65536
+Maximum shared memory size per block: 49152
+Maximum block dimensions: 1024x1024x64
+Maximum grid dimensions: 2147483647x65535x65535
+Maximum threads per block: 1024
+Warp size: 32
+
+PROC 0 TOTAL GPU MEMORY: 1.214713 GB
+INPUT MEASUREMENT DATA
+INPUT ENDS
+GRADIENT-DESCENT OPTIMIZATION
+PROC 2 TOTAL GPU MEMORY: 1.221094 GB
+PROC 1 TOTAL GPU MEMORY: 1.228598 GB
+PROC 3 TOTAL GPU MEMORY: 1.241361 GB
+iter: 0 error: 4.959039e+04 gradnorm: 1.560967e+10
+iter: 1 error: 5.316522e+03 gradnorm: 4.760845e+08
+iter: 2 error: 5.074573e+02 gradnorm: 1.604496e+07
+iter: 3 error: 2.940082e+02 gradnorm: 8.082360e+06
+iter: 4 error: 1.716258e+02 gradnorm: 1.353837e+06
+iter: 5 error: 1.154515e+02 gradnorm: 6.253242e+05
+iter: 6 error: 8.898185e+01 gradnorm: 6.373525e+05
+iter: 7 error: 7.423785e+01 gradnorm: 4.570989e+05
+iter: 8 error: 6.653873e+01 gradnorm: 1.303899e+06
+iter: 9 error: 5.776139e+01 gradnorm: 2.323347e+05
+iter: 10 error: 4.873778e+01 gradnorm: 1.925554e+05
+iter: 11 error: 4.172250e+01 gradnorm: 1.097215e+05
+iter: 12 error: 3.765081e+01 gradnorm: 1.923280e+05
+iter: 13 error: 3.466645e+01 gradnorm: 1.036009e+05
+iter: 14 error: 3.147250e+01 gradnorm: 6.236740e+04
+iter: 15 error: 2.955191e+01 gradnorm: 2.275393e+05
+iter: 16 error: 2.840477e+01 gradnorm: 6.035723e+04
+iter: 17 error: 2.682734e+01 gradnorm: 4.566298e+04
+iter: 18 error: 2.523975e+01 gradnorm: 2.666054e+04
+iter: 19 error: 2.394626e+01 gradnorm: 2.563686e+04
+iter: 20 error: 2.288597e+01 gradnorm: 1.503861e+04
+iter: 21 error: 2.197980e+01 gradnorm: 2.025736e+04
+iter: 22 error: 2.184546e+01 gradnorm: 2.467447e+04
+iter: 23 error: 2.120555e+01 gradnorm: 9.581746e+03
+iter: 24 error: 2.073138e+01 gradnorm: 1.363988e+04
+recon: 1.839671e+00 proj: 9.751309e-02 (5.293325e-02 3.540398e-02 4.150522e-03) backproj: 4.748337e-02 (2.732850e-03 1.647811e-02 2.712822e-02) ctime: 1.680795e+00 wtime: 7.650962e-03
+numproj: 49 numback: 25
+proj: 2.145155e-01 s (107.363360 GFLOPS) backproj: 1.090282e-01 s (107.775440 GFLOPS) avGFLOPS: 107.502223 totGFLOPS: 430.008894
+proj: 454.366730 GB/s back: 393.152361 GB/s av: 433.738626 GB/s tot: 1734.954503 GB/s
+Total Time: 6.119364e+00
