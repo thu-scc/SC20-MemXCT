@@ -44,7 +44,7 @@ The remaining `parse.sh` script will be used by `draw.py` to parse the standard 
 
 We use Fiji to convert reconstructed tomogram binary to PNG files.
 
-Take CDS1 as example:
+Take CDS2 as example:
 
 1. Select File->Import->Raw...
 2. Choose generated binary
