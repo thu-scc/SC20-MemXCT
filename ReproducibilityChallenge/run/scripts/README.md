@@ -28,6 +28,8 @@ These scripts expects datasets to be put into the same level as ReproducibilityC
 ├── ...
 ```
 
+The scripts expect environment to be setup by Spack. For AMD CPU and GPU experiments, load OpenMPI 3.0.1 with UCX and CUDA(10.0.130) support enabled. For Intel CPU experiments, load Intel Parallel Studio Cluter 2020.2.
+
 ## Common Scripts
 
 There are three scripts in the top directory.
