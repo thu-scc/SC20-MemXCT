@@ -1,6 +1,6 @@
 # Experimental environment
 
-Five SKUs are provided.
+Six SKUs are provided.
 
 ## F16s_v2
 
