@@ -128,7 +128,9 @@ spack load cuda@10.0.130
 ./build_cpu.sh
 ```
 
-After compilation, executables should be produced at: `cpu-build/memxct.cpu`, `gpu-build/k80/memxct.gpu`, `gpu-build/p100/memxct.gpu`, `gpu-build/v100/memxct.gpu` and `STREAM/stream`. Vectorization report is located at `cpu-build/{kernels,main,raytrace}.opt.rpt` if Intel compiler is used.
+After compilation, executables should be produced at: `cpu-build/memxct.cpu`, `gpu-build/k80/memxct.gpu`, `gpu-build/p100/memxct.gpu`, `gpu-build/v100/memxct.gpu` and `STREAM/stream`.
+
+Vectorization report is located at `cpu-build/{kernels,main,raytrace}.opt.rpt` if Intel compiler is used. We included these files in the artifact.
 
 ## Cloud environment
 

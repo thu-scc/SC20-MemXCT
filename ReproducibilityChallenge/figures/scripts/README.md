@@ -38,5 +38,19 @@ python3 draw.py ssg
 
 There is a optional parameter `-f/--format FORMAT` to specify the output file format. `FORMAT` can be `png`, `pdf`, `eps` and so on.
 
-
 The remaining `parse.sh` script will be used by `draw.py` to parse the standard result from MemXCT. No need to directly use it.
+
+## Fiji usage
+
+We use Fiji to convert reconstructed tomogram binary to PNG files.
+
+Take CDS1 as example:
+
+1. Select File->Import->Raw...
+2. Choose generated binary
+3. Select `32-bit Real` to Image type
+4. Width and Height of CDS1 are both 1024 pixels respectively
+5. Enable `Little-endian byte order`
+6. Click OK, a visualization is presented
+7. Then, Select File->Save As->PNG...
+8. Put the PNG under artifact directory
