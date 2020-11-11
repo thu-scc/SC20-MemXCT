@@ -237,9 +237,9 @@ def strong_scaling_for_cpu(args):
     for _ in range(len(scaling_num) - 1):
       ideal_list.append(ideal_list[-1] / 2)
     ax.plot(scaling_num, tot_time_list, marker='o', markersize=12, color='deepskyblue', label='Total')
-    ax.plot(scaling_num, ktime_list, marker='o', markersize=12, color='orangered', label='kernel')
-    ax.plot(scaling_num, ctime_list, marker='o', markersize=12, color='orange', label='comm')
-    ax.plot(scaling_num, rtime_list, marker='o', markersize=12, color='purple', label='reduction')
+    ax.plot(scaling_num, ktime_list, marker='o', markersize=12, color='orangered', label='Kernel')
+    ax.plot(scaling_num, ctime_list, marker='o', markersize=12, color='orange', label='Comm')
+    ax.plot(scaling_num, rtime_list, marker='o', markersize=12, color='purple', label='Reduction')
     ax.plot(scaling_num, ideal_list, linewidth=2, color='black', label='ideal')
 
     ax.set_xscale("log")
@@ -278,9 +278,9 @@ def strong_scaling_for_gpu(args):
       ideal_list.append(ideal_list[-1] / 2)
 
     ax.plot(scaling_num, tot_time_list, marker='o', markersize=12, color='deepskyblue', label='Total')
-    ax.plot(scaling_num, ktime_list, marker='o', markersize=12, color='orangered', label='kernel')
-    ax.plot(scaling_num, ctime_list, marker='o', markersize=12, color='orange', label='comm')
-    ax.plot(scaling_num, rtime_list, marker='o', markersize=12, color='purple', label='reduction')
+    ax.plot(scaling_num, ktime_list, marker='o', markersize=12, color='orangered', label='Kernel')
+    ax.plot(scaling_num, ctime_list, marker='o', markersize=12, color='orange', label='Comm')
+    ax.plot(scaling_num, rtime_list, marker='o', markersize=12, color='purple', label='Reduction')
 
     ax.plot(scaling_num, ideal_list, linewidth=2, color='black', label='ideal')
 
