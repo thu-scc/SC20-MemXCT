@@ -5,3 +5,6 @@
 
 *.o
 .DS_Store
+
+artifact.zip
+submission/*
