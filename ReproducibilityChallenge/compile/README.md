@@ -10,7 +10,7 @@ What's used:
 - CUDA 10.0.130 in Spack
 - Intel Parallel Studio Cluster 2020.2 in Spack
 
-No modifications have been made to source code because they compile without problems. We wrote our own Makefiles to detect compilers and setup correct optimization flags based on CPU or GPU architectures.
+A minor modification has been made to enable GPU binding. In `gpu-code/src/kernels.cu  line 93`, the original code `int device = myid` is changed to `int device = myid % 4`. We wrote our own Makefiles to detect compilers and setup correct optimization flags based on CPU or GPU architectures.
 
 Specifically, you can install these dependencies by:
 
