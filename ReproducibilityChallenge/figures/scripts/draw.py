@@ -240,7 +240,7 @@ def strong_scaling_for_cpu(args):
     ax.plot(scaling_num, ktime_list, marker='o', markersize=12, color='orangered', label='Kernel')
     ax.plot(scaling_num, ctime_list, marker='o', markersize=12, color='orange', label='Comm')
     ax.plot(scaling_num, rtime_list, marker='o', markersize=12, color='purple', label='Reduction')
-    ax.plot(scaling_num, ideal_list, linewidth=2, color='black', label='ideal')
+    ax.plot(scaling_num, ideal_list, linewidth=2, color='black', label='Ideal')
 
     ax.set_xscale("log")
     ax.set_yscale("log")
@@ -282,7 +282,7 @@ def strong_scaling_for_gpu(args):
     ax.plot(scaling_num, ctime_list, marker='o', markersize=12, color='orange', label='Comm')
     ax.plot(scaling_num, rtime_list, marker='o', markersize=12, color='purple', label='Reduction')
 
-    ax.plot(scaling_num, ideal_list, linewidth=2, color='black', label='ideal')
+    ax.plot(scaling_num, ideal_list, linewidth=2, color='black', label='Ideal')
 
     ax.set_xscale("log")
     ax.set_yscale("log")
